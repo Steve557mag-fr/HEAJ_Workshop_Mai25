@@ -1,12 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-using JetBrains.Annotations;
 using System.Linq;
-using UnityEngine.Rendering;
-using log4net.Core;
-using System;
-using Unity.VisualScripting.FullSerializer;
-using System.Collections.Generic;
 
 public class CardEditor : EditorWindow
 {
@@ -52,11 +46,7 @@ public class CardEditor : EditorWindow
 
     }
 
-    void GenerateCard()
-    {
-        LoadCards();
-
-    }
+    // FU
 
     void OnGUI ()
     {
@@ -94,7 +84,7 @@ public class CardEditor : EditorWindow
 
         if (GUILayout.Button("Generate Card", GUILayout.Width(150)))
         {
-            GenerateCard();
+            //FU ICI
             Debug.Log("Card Generated Successfully");
         }
         GUILayout.EndHorizontal();
