@@ -3,20 +3,28 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-internal class ReflectionUtils
+public class ReflectionUtils
 {
+
 
     /// <summary>
     /// Give all classes derived from the T class
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T"></typeparam> 
     /// <returns>array of all classes derived by T</returns>
-    internal static T[] GetClassesOf<T>()
+    public static System.Type[] GetClassesOf<T>()
     {
-        return AppDomain.CurrentDomain.GetAssemblies()
-            .SelectMany(x => x.GetTypes())
-            .Where(c => c.IsSubclassOf(typeof(T)))
-            .ToArray() as T[];
+        List<System.Type> result = new List<System.Type>();
+
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        foreach(var assembly in assemblies)
+        {
+            foreach (var tp in assembly.GetTypes()) {
+
+                if (tp.IsSubclassOf(typeof(CardBase))) result.Add(tp);   
+            }
+        }
+        return result.ToArray(); 
     }
 
 }

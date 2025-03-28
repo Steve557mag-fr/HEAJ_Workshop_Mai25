@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CardParameters", menuName = "Data/Cards/Card Example")]
 public class CardExample : CardBase
 {
 
