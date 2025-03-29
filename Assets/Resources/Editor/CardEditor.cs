@@ -1,23 +1,28 @@
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using Unity.VisualScripting;
+using System;
 
 public class CardEditor : EditorWindow
 {
-    private string generatedCardName;
-    private Sprite cardImage;
+    //Card Stats
+    private string currentCardName;
+    private Sprite currentCardImage;
 
-    private int generateSelectedIndex = 0;
-
-    private System.Type[] cardTypes;
     //Delete Dropdown menu 
-    private int deleteSelectedIndex = 0;
-    private CardBase[] cards;
-    private string[] classCards;
-    private string[] cardNames;
-    private int classSelectedIndex = 0;
+    private System.Type[] loadedCardTypes;
+    private CardBase[] loadedCards;
+    private string[] cardManagerOption = {"", "Create", "Modify", "Delete"};
+    private string[] loadedCardClasses;
+    private string[] loadedCardNames;
+    private int classDPSelectedIndex = 0;
+    private int deleteDPSelectedIndex = 0;
+    private int modifyDPSelectedIndex = 0;
 
-    [MenuItem("Window/Card Generator")]
+    Option option;
+
+    [MenuItem("Tools/Card Manager #m")]
     public static void ShowWindow()
     {
         GetWindow<CardEditor>("Card Generator");
@@ -27,68 +32,88 @@ public class CardEditor : EditorWindow
     {
         LoadCards();
         LoadCardClass();
+        option = Option.CREATE;
     }
 
     void LoadCards()
     {
         string[] guids = AssetDatabase.FindAssets("t:CardBase");
-        cards = guids.Select(guid => AssetDatabase.LoadAssetAtPath<CardBase>(AssetDatabase.GUIDToAssetPath(guid))).ToArray();
-        cardNames = cards.Select(card => card.name).ToArray();
+        loadedCards = guids.Select(guid => AssetDatabase.LoadAssetAtPath<CardBase>(AssetDatabase.GUIDToAssetPath(guid))).ToArray();
+        loadedCardNames = loadedCards.Select(card => card.name).ToArray();
 
     }
 
     void LoadCardClass()
     {
         //load class
-        cardTypes = ReflectionUtils.GetClassesOf<CardBase>();
-        Debug.Log($"Result: {cardTypes}");
-        classCards = cardTypes.Select(c => c.Name).ToArray();
+        loadedCardTypes = ReflectionUtils.GetClassesOf<CardBase>();
+        loadedCardClasses = loadedCardTypes.Select(c => c.Name).ToArray();
 
     }
 
-    // FU
-
-    void OnGUI ()
+    void GenerateCard(string name, Sprite image, int classIndex)
     {
+        CardBase card = ScriptableObject.CreateInstance<CardBase>();
+        AssetDatabase.CreateAsset(card, $"Assets/Resources/Data/Cards/{name}.asset");
+        AssetDatabase.SaveAssets();
+        LoadCards();
+    }
+    CardBase LoadModifyCard(int index)
+    {
+        return AssetDatabase.LoadAssetAtPath<CardBase>(loadedCardNames[index]);
+    }
+
+    void ApplyChanges(string name, Sprite image, CardBase card)
+    {
+        Debug.Log("Changes (Allegedly) Applied haha xd");
+    }
+
+    void DrawCreate()
+    {
+        GUILayout.BeginHorizontal();
         GUILayout.Label("Generate your dream card!", EditorStyles.boldLabel);
-        
+
+        //reloads cards if a new card was created without the generation window
+        if (GUILayout.Button("Reload Cards", GUILayout.Width(100))) LoadCards();
+        GUILayout.EndHorizontal();
+
         GUILayout.BeginVertical();
         GUILayout.Space(10);
         GUILayout.Label("Card Parameters", EditorStyles.boldLabel);
         GUILayout.Space(5);
 
-        generatedCardName = EditorGUILayout.TextField("Name", generatedCardName);
+        currentCardName = EditorGUILayout.TextField("Name", currentCardName);
 
         GUILayout.Space(5);
         GUILayout.BeginHorizontal();
         GUILayout.Label("Image");
-        cardImage = EditorGUILayout.ObjectField(cardImage, typeof(Sprite), false) as Sprite;
+
+        currentCardImage = EditorGUILayout.ObjectField(currentCardImage, typeof(Sprite), false) as Sprite;
+
         GUILayout.EndHorizontal();
 
         GUILayout.Space(5);
-
         GUILayout.EndVertical();
-
         GUILayout.Space(10);
-
         GUILayout.BeginHorizontal();
-        if (classCards.Length > 0)
+
+        if (loadedCardClasses.Length > 0)
         {
             GUILayout.Label("Chose A Class");
-            classSelectedIndex = EditorGUILayout.Popup("", classSelectedIndex, classCards);
+            classDPSelectedIndex = EditorGUILayout.Popup("", classDPSelectedIndex, loadedCardClasses);
         }
-        else
-        {
-            GUILayout.Label("No cards found.", EditorStyles.boldLabel);
-        }
+        else GUILayout.Label("No cards found.", EditorStyles.boldLabel);
 
         if (GUILayout.Button("Generate Card", GUILayout.Width(150)))
         {
-            //FU ICI
+            GenerateCard(currentCardName, currentCardImage, classDPSelectedIndex);
             Debug.Log("Card Generated Successfully");
         }
         GUILayout.EndHorizontal();
+    }
 
+    void DrawDelete()
+    {
         //introducing delete
         GUILayout.Space(15);
         GUILayout.Label("Delete A Card", EditorStyles.boldLabel);
@@ -96,37 +121,74 @@ public class CardEditor : EditorWindow
         GUILayout.Space(5);
 
         //if cards are found in the project
-        if (cards.Length > 0)
+        if (loadedCards.Length > 0)
         {
             //create the dropdown 
-            deleteSelectedIndex = EditorGUILayout.Popup("Choose a card :", deleteSelectedIndex, cardNames);
+            deleteDPSelectedIndex = EditorGUILayout.Popup("Choose a card :", deleteDPSelectedIndex, loadedCardNames);
 
             GUILayout.Space(5);
 
             //Delete button that will also save the asset change in memory and reload the dropdown
             if (GUILayout.Button("Delete Card"))
             {
-                AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(cards[deleteSelectedIndex]));
+                AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(loadedCards[deleteDPSelectedIndex]));
                 Debug.Log("Card Deleted");
                 AssetDatabase.SaveAssets();
                 Debug.Log("Saved");
                 LoadCards();
             }
         }
-        else
-        {
-            GUILayout.Label("No cards found.", EditorStyles.boldLabel);
-        }
-        //reloads cards if a new card was created without the generation window
-        if(GUILayout.Button("Reload Cards"))
-        {
-            LoadCards();
-        }
+        else GUILayout.Label("No cards found.", EditorStyles.boldLabel);
+    }
+    void DrawModify()
+    {
+        bool drawModifyIsActive = false;
+        if (!drawModifyIsActive) drawModifyIsActive = true;
+        GUILayout.Space(10);
+        GUILayout.Label("Choose a Card to Modify");
+        GUILayout.Space(5);
 
+        modifyDPSelectedIndex = EditorGUILayout.Popup("", modifyDPSelectedIndex, loadedCardNames);
+        CardBase loadedCard = LoadModifyCard(modifyDPSelectedIndex);
 
-        GUILayout.Label("Test Dropdown");
+        GUILayout.Space(10);
+        currentCardName = EditorGUILayout.TextField("Name", currentCardName);
+
+        GUILayout.Space(10);
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Name");
+        currentCardImage = EditorGUILayout.ObjectField(currentCardImage, typeof(Sprite), false) as Sprite;
+        GUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Apply Changes")) ApplyChanges(currentCardName, currentCardImage, loadedCard);
+    }
+
+    void OnGUI ()
+    {
+        option = (Option)EditorGUILayout.Popup("", (int)option, cardManagerOption);
+
+        switch(option)
+        {
+            case Option.CREATE:
+                DrawCreate();
+                break;
+            case Option.MODIFY:
+                DrawModify();
+                break;
+            case Option.DELETE:
+                DrawDelete();
+                break;
+
+        }
 
     }
 
+    enum Option
+    {
+        NONE,
+        CREATE,
+        MODIFY,
+        DELETE
+    }
 
 }
