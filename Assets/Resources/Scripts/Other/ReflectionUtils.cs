@@ -21,7 +21,7 @@ public class ReflectionUtils
         {
             foreach (var tp in assembly.GetTypes()) {
 
-                if (tp.IsSubclassOf(typeof(CardBase))) result.Add(tp);   
+                if (tp.IsSubclassOf(typeof(T))) result.Add(tp);   
             }
         }
         return result.ToArray(); 
