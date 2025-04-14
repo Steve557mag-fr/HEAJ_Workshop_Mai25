@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 public class DataSystem : MonoBehaviour
 {
-    static string DATA_VERSION = "1.0";
+    static string DATA_VERSION = "dev-1F";
+  
     static JObject DEFAULT_DATA = new JObject() {
-        {"version",DATA_VERSION}
+        {"version",DATA_VERSION},
+        {"datatest", 125}
     };
 
     internal static DataSystem instance;
@@ -21,6 +23,18 @@ public class DataSystem : MonoBehaviour
 
         instance = this;
 
+    }
+
+
+    /// <summary>
+    /// Get the raw data (string)
+    /// </summary>
+    /// <param name="savename"> the name of save</param>
+    /// <returns>a string that contain all data</returns>
+    public static string GetRawData(string savename)
+    {
+        if (File.Exists(GetPathFromName(savename))) return File.ReadAllText(GetPathFromName(savename));
+        else return "ERR FILE NOT FOUND";
     }
 
     /// <summary>
@@ -51,32 +65,34 @@ public class DataSystem : MonoBehaviour
     /// <summary>
     /// Save the data into file
     /// </summary>
-    /// <param name="dataFilePath"> where to save </param>
-    internal void Save(string dataFilePath)
+    /// <param name="saveName"> the name of save </param>
+    internal void Save(string saveName)
     {
-        File.WriteAllText(dataFilePath, data.ToString());
+        File.WriteAllText(GetPathFromName(saveName), data.ToString());
     }
 
     /// <summary>
     /// Load the data from file
     /// </summary>
-    /// <param name="dataFilePath"> where is the file </param>
-    internal void Load(string dataFilePath)
+    /// <param name="saveName"> the name of the save </param>
+    internal void Load(string saveName)
     {
-        if (File.Exists(dataFilePath))
+        if (File.Exists(GetPathFromName(saveName)))
         {
-            string rawData = File.ReadAllText(dataFilePath);
+            string rawData = GetRawData(saveName);
             data = JObject.Parse(rawData);
+            CheckVersion(ref data);
         }
-        else ResetData();
+        else ResetData(saveName);
     }
 
     /// <summary>
     /// Reset all data to default
     /// </summary>
-    internal void ResetData()
+    internal void ResetData(string saveName)
     {
         data = new JObject(DEFAULT_DATA);
+        Save(saveName);
     }
 
     /// <summary>
@@ -84,73 +100,61 @@ public class DataSystem : MonoBehaviour
     /// </summary>
     /// <param name="dataToCheck"> data to check </param>
     /// <returns> the data updated to the actual data version </returns>
-    internal JObject CheckVersion(ref JObject dataToCheck)
+    internal void CheckVersion(ref JObject dataToCheck)
     {
-        if(dataToCheck["version"].ToString() == DATA_VERSION)
-        {
-            return dataToCheck; // same version ; dont touch
-        }
+        print($"need checking:{dataToCheck.ToString()}");
+        if(dataToCheck["version"].ToString() == DATA_VERSION) return; // same version ; dont touch
 
         // need update (add new field to the data)
         foreach(KeyValuePair<string,JToken> obj in DEFAULT_DATA) {
             UpdateThisJO(obj);
         }
 
-        return dataToCheck;
+        dataToCheck["version"].Replace(DEFAULT_DATA["version"]);
 
     }
 
     void UpdateThisJO(KeyValuePair<string, JToken> pair) {
         JToken defToken = pair.Value;
         JToken inData   = data.SelectToken(defToken.Path);
-        print($"inData:{inData}");
+        print($"inData(path={defToken.Path}):{inData}");
 
-        switch (defToken.Type)
+        // check if this container / token exist
+        if (inData == null)
         {
-            case JTokenType.Object:
-                // check if this container exist
-                if (inData == null)
-                {
-                    InsertDefaultAt(pair);
-                }
-
-                // Update all child
-                foreach (KeyValuePair<string, JToken> obj in DEFAULT_DATA)
-                {
-                    UpdateThisJO(obj);
-                }
-                return;
-
-            case JTokenType.Array:
-                // check if this container exist
-                if (inData == null)
-                {
-                    InsertDefaultAt(pair);
-                }
-
-                // Update all child
-                foreach (KeyValuePair<string, JToken> obj in DEFAULT_DATA)
-                {
-                    UpdateThisJO(obj);
-                }
-                return;
-
-            default:
-                //check if this data exist into the data at the same place
-                if (inData == null)
-                {
-                    InsertDefaultAt(pair);
-                }
-                break;
-
+            InsertDefaultAt(pair);
+            return;
         }
+
+        if (inData.Type != JTokenType.Object) return;
+
+        // Update all child
+        foreach (KeyValuePair<string, JToken> obj in pair.Value.ToObject<JObject>())
+        {
+            UpdateThisJO(obj);
+        }
+        return;
+
     }
 
     void InsertDefaultAt(KeyValuePair<string, JToken> toAdd)
     {
-        JObject jo = data.SelectToken(toAdd.Value.Parent.Path).ToObject<JObject>();
-        if (jo == null) return; // no parent
-        jo.Add(toAdd.Key, toAdd.Value);
+        string parentPath = toAdd.Value.Parent.Parent.Path;
+
+        print($"need adding: {toAdd.Value.Parent.Parent.Path} pair key:{toAdd.Key}  pair value:{toAdd.Value}");
+        print($"parent path: {parentPath}");
+
+        JToken dataParent = parentPath == "" ? data : data.SelectToken(parentPath);
+        print($"dataParent: {dataParent}");
+
+        dataParent.Parent.Add(new JProperty(toAdd.Key, toAdd.Value));
+
     }
+
+    static string GetPathFromName(string dataname)
+    {
+        return $"{Application.persistentDataPath}/{dataname}.dat";
+    }
+
 
 }
