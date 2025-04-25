@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
-using Unity.VisualScripting;
 using System;
 
 public class CardEditor : EditorWindow
