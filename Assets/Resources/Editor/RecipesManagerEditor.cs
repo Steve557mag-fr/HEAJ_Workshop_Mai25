@@ -23,7 +23,7 @@ public class RecipesManagerEditor : EditorWindow
     void CreateRecipeObject()
     {
         // open file-expoler editor, for the new object
-        string savePath = EditorUtility.SaveFilePanel("Where to save?", "Assets/Resources/Data/Recipes", "NewRecipe", "asset");
+        string savePath = EditorUtility.SaveFilePanel("Where to save?", "Assets/Resources/Data", "NewRecipe", "asset");
         if (savePath == "") return;
 
         // convert abs to rel path
@@ -39,7 +39,7 @@ public class RecipesManagerEditor : EditorWindow
         int idx = allRecipes.FindIndex(r => r == recipe);
         Debug.Log(idx);
         if (idx == -1) return;
-        currentRecipeIndex = idx;
+
     }
 
     void Refresh()
@@ -56,7 +56,6 @@ public class RecipesManagerEditor : EditorWindow
         currentRecipeIndex = EditorGUILayout.Popup(currentRecipeIndex, allRecipes.Select(x=>x.name).ToArray());
         if (GUILayout.Button("Refresh")) Refresh();
         GUILayout.EndHorizontal();
-
         // new object
         if (GUILayout.Button("New Recipe")) CreateRecipeObject();
 
@@ -67,6 +66,7 @@ public class RecipesManagerEditor : EditorWindow
         // fields
         if (currentRecipe == null) return;
         currentRecipe.craftResult = (CardBase) EditorGUILayout.ObjectField("crafted card: ", currentRecipe.craftResult, typeof(CardBase),false);
+
 
 
     }

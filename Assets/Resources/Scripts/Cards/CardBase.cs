@@ -5,8 +5,8 @@ using UnityEngine;
 public class CardBase : ScriptableObject
 {
 
-    [SerializeField] internal string cardTitle;
-    [SerializeField] internal Sprite image;
+    [SerializeField] public string cardTitle;
+    [SerializeField] public Sprite image;
 
     internal virtual void Use() {}
 
