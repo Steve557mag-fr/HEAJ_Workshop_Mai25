@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using log4net.Util;
-using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
