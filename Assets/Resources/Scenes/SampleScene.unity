@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 943813900}
   - component: {fileID: 943813899}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: == TEST BLOCK ==
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 943813901}
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 943813901}
