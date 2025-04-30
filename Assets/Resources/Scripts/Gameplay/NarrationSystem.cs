@@ -23,6 +23,8 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField] GameObject choicesContainer, dialogContainer;
     [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
 
+    int[] branchindex;
+
     NarrationState state;
 
     private void Start()
@@ -40,23 +42,23 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     public void ChooseBranch(int index)
     {
         if (state == NarrationState.DIALOG) return;
-        ToggleChoiceUI();
         state = NarrationState.DIALOG;
+        ToggleChoiceUI();
         Next(index);
     }
 
-    void Next(int index = 0)
+    void Next(int index = -1)
     {
-        flowPlayer.Play(index);
+        flowPlayer.Play(index == -1 ? 0 : branchindex[index]);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
-        Debug.Log(aBranches.Count);
-        if (aBranches.Count == 0) return;
-
-        Debug.Log(aBranches[0]);
-        Debug.Log(aBranches[0].IsValid);
+        branchindex = new int[aBranches.Count];
+        for(int i = 0; i < branchindex.Length;i++) {
+            Branch aBranch = aBranches[i];
+            branchindex[i] = aBranch.BranchId;
+        }
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
@@ -90,6 +92,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         ToggleChoiceUI(true);
         state = NarrationState.CHOICE;
         List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
+
         for(int i = 0; i < connections.Count; i++)
         {
             choiceTexts[i].text = connections[i].Label;

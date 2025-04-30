@@ -407,7 +407,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1603312335}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: ChooseBranch
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -744,6 +744,7 @@ RectTransform:
   m_Children:
   - {fileID: 1377574834}
   - {fileID: 1247507368}
+  - {fileID: 1671584229}
   m_Father: {fileID: 977853016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1000,7 +1001,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1671584229}
   - {fileID: 603274004}
   - {fileID: 212092520}
   m_Father: {fileID: 1789707437}
@@ -1338,12 +1338,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 977853016}
+  m_Father: {fileID: 603274004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 424.62253}
+  m_SizeDelta: {x: 30, y: 879.24506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1671584230
 MonoBehaviour:
@@ -1660,7 +1660,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1603312335}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: ChooseBranch
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2168,7 +2168,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1603312335}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: ChooseBranch
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2301,7 +2301,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1603312335}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: ChooseBranch
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
