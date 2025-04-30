@@ -14,7 +14,4 @@ public class PlayerState : MonoBehaviour
         }
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }
-
-    
-
 }
