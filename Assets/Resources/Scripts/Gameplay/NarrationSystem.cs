@@ -1,36 +1,53 @@
-using System;
 using System.Collections.Generic;
 using Articy.Test_Project;
 using Articy.Unity;
-using Articy.Unity.Interfaces;
-using Newtonsoft.Json;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+
+enum NarrationState{
+    DIALOG,
+    CHOICE,
+    CLOSED
+}
+
 
 public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
-    JsonSerializer opt = new JsonSerializer()
-    { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore };
-
     [SerializeField] ArticyRef refTestOnStart;
 
     [Header("References")]
     [SerializeField] ArticyFlowPlayer flowPlayer;
 
     [Header("UI References")]
-    [SerializeField] GameObject uiContainer;
-    [SerializeField] TextMeshProUGUI uiTextDialog;
-    [SerializeField] TextMeshProUGUI uiTextDisplayName;
+    [SerializeField] List<TextMeshProUGUI> choiceTexts;
+    [SerializeField] GameObject choicesContainer, dialogContainer;
+    [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
+
+    NarrationState state;
 
     private void Start()
     {
+        state = NarrationState.CLOSED;
+        NextDialog();
+    }
+
+    public void NextDialog()
+    {
+        if (state == NarrationState.CHOICE) return;
         Next();
     }
 
-    public void Next()
+    public void ChooseBranch(int index)
     {
-        flowPlayer.Play();
+        if (state == NarrationState.DIALOG) return;
+        ToggleChoiceUI();
+        state = NarrationState.DIALOG;
+        Next(index);
+    }
+
+    void Next(int index = 0)
+    {
+        flowPlayer.Play(index);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
@@ -40,32 +57,56 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
         Debug.Log(aBranches[0]);
         Debug.Log(aBranches[0].IsValid);
-        //Debug.Log(Newtonsoft.Json.Linq.JObject.FromObject(aBranches,opt));
-        //throw new System.NotImplementedException();
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
         if(aObject == null) return;
-        if(aObject.GetType() == typeof(DialogueFragment)) FillUI(aObject as DialogueFragment);
-        else if(aObject.GetType() == typeof(Hub)) FillChoices(aObject as Hub); 
-
-        //Debug.Log(Newtonsoft.Json.Linq.JObject.FromObject(aObject,opt));
-        //throw new System.NotImplementedException();
-    }
-
-    void FillChoices(Hub choices)
-    {
-        foreach(var pin in choices.OutputPins)
-        {
-            Debug.Log($"id> {pin.Id}");
+        if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
+        else if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
+        else { 
+            // close UI
+            ToggleUI();
+            state = NarrationState.CLOSED;
         }
     }
 
-    void FillUI(DialogueFragment dialog)
+    void ToggleUI(bool enabled = false)
     {
+        ToggleDialogUI(enabled);
+        ToggleChoiceUI(enabled);
+    }
+
+    void ToggleDialogUI(bool enabled = false) {
+        dialogContainer.SetActive(enabled);
+    }
+
+    void ToggleChoiceUI(bool enabled = false) {
+        choicesContainer.SetActive(enabled);
+    }
+
+    void DisplayChoices(Hub choice)
+    {
+        ToggleChoiceUI(true);
+        state = NarrationState.CHOICE;
+        List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
+        for(int i = 0; i < connections.Count; i++)
+        {
+            choiceTexts[i].text = connections[i].Label;
+        }
+    }
+
+    void DisplayDialog(DialogueFragment dialog)
+    {
+        ToggleDialogUI(true);
+        state = NarrationState.DIALOG;
         uiTextDisplayName.text = dialog.Speaker.name;
         uiTextDialog.text = dialog.Text;
+    }
+
+    void UpdateCharacter3D()
+    {
+
     }
 
 }
