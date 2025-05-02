@@ -13,6 +13,7 @@ enum NarrationState{
 
 public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
+    [ArticyTypeConstraint(typeof(Hub))]
     [SerializeField] ArticyRef refTestOnStart;
 
     [Header("References")]
@@ -31,17 +32,16 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     private void Start()
     {
         state = NarrationState.CLOSED;
-        if(refTestOnStart.HasReference) StartWith(refTestOnStart);
+        if(refTestOnStart.HasReference) StartWith(refTestOnStart); 
     }
 
     public void StartWith(ArticyRef node)
     {
-        var a = node.GetObject<DialogueFragment>();
+        var a = node.GetObject<Hub>();
         if (a != null)
         {
             var list = ArticyFlowPlayer.GetBranchesOfNode(a);
-            flowPlayer.Play(list[0].BranchId);
-            Next();
+            flowPlayer.Play(list[0]);
         }
     }
 
