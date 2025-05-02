@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    [SerializeField] Dictionary<GameItemObject, int> inventory;
+    [SerializeField] internal Dictionary<GameItemObject, int> inventory = new();
 
     public void ModifyQuantity(GameItemObject item, int quantity = 1, bool markInfinite = false)
     {
