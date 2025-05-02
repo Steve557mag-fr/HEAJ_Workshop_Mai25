@@ -20,6 +20,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     [Header("UI References")]
     [SerializeField] List<TextMeshProUGUI> choiceTexts;
+    [SerializeField] List<GameObject> choiceButtons;
     [SerializeField] GameObject choicesContainer, dialogContainer;
     [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
 
@@ -30,7 +31,18 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     private void Start()
     {
         state = NarrationState.CLOSED;
-        NextDialog();
+        if(refTestOnStart.HasReference) StartWith(refTestOnStart);
+    }
+
+    public void StartWith(ArticyRef node)
+    {
+        var a = node.GetObject<DialogueFragment>();
+        if (a != null)
+        {
+            var list = ArticyFlowPlayer.GetBranchesOfNode(a);
+            flowPlayer.Play(list[0].BranchId);
+            Next();
+        }
     }
 
     public void NextDialog()
@@ -93,9 +105,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         state = NarrationState.CHOICE;
         List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
 
-        for(int i = 0; i < connections.Count; i++)
+        for(int i = 0; i < choiceButtons.Count; i++)
         {
-            choiceTexts[i].text = connections[i].Label;
+            bool b = i < connections.Count;
+            choiceButtons[i].SetActive(b);
+            choiceTexts[i].text = b ? connections[i].Label : "";
         }
     }
 
