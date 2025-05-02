@@ -6,7 +6,7 @@ public class CickableInteraction : BaseInteraction
 
     private void OnMouseDown()
     {
-        Debug.Log("OnMouseDown Triggered");
+        Debug.Log("ClickableInteraction :: OnMouseDown Triggered");
         Trigger();
     }
 
