@@ -9,7 +9,8 @@ public class CraftSystem : MonoBehaviour
     [SerializeField] GameObject craftingUI;
     [SerializeField] PlayerState playerState;
     [SerializeField] GameObject ItemSpritePrefab;
-    [SerializeField] Transform container;
+    [SerializeField] Transform gameItemContainer;
+    [SerializeField] Transform recipeListContainer;
     [SerializeField] GameItemObject poutre;
 
     private void Start()
@@ -41,7 +42,7 @@ public class CraftSystem : MonoBehaviour
             Debug.Log($"Qquantity = {quantity}, name = {name}, ");
 
             GameObject prefab = Instantiate(ItemSpritePrefab);
-            prefab.transform.parent = container;
+            prefab.transform.parent = gameItemContainer;
             prefab.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = name;
             
             prefab.transform.Find("Quantity").GetComponent<TextMeshProUGUI>().text = (quantity == -1) ? " " : quantity.ToString();
@@ -55,12 +56,17 @@ public class CraftSystem : MonoBehaviour
 
     public void SwitchItemDisplay(bool state)
     {
-        for(int i = 0; i < container.childCount; i++)
+        for(int i = 0; i < gameItemContainer.childCount; i++)
         {
-            Transform child = container.GetChild(i);
+            Transform child = gameItemContainer.GetChild(i);
             child.Find("ItemIcon").gameObject.SetActive(state);
             child.Find("PuzzleIcon").gameObject.SetActive(!state);
 
         }
+    }
+
+    public void SelectCraft(int index)
+    {
+
     }
 }
