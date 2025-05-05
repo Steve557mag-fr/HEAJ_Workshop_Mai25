@@ -52,7 +52,12 @@ MonoBehaviour:
     parent: 72057594037927937
     technicalName: Flow
     articyType: Flow
-    childCount: 7
+    childCount: 8
+  - id: 72057594037928327
+    parent: 216172783251375095
+    technicalName: Hub_872D08BF
+    articyType: Hub
+    childCount: 0
   - id: 72057594037928241
     parent: 216172783251375095
     technicalName: DFr_97A5C83E
@@ -197,6 +202,11 @@ MonoBehaviour:
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
+    childCount: 1
+  - id: 72057594037928320
+    parent: 216172782164859599
+    technicalName: EntryPoint
+    articyType: Template
     childCount: 0
   - id: 216172784493379826
     parent: 216172784713633229
@@ -328,7 +338,19 @@ MonoBehaviour:
     technicalName: Ufo_2C95B91B
     articyType: AssetsUserFolder
     childCount: 0
---- !u!114 &-8763391671368464852
+--- !u!114 &-6949203553075550094
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
+  m_Name: ArticyScriptFragments
+  m_EditorClassIdentifier: 
+--- !u!114 &-4938922720425435206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,18 +369,6 @@ MonoBehaviour:
   mLiveIntVariableCache: []
   mLiveStringVariableCache: []
   mIsInitialized: 1
---- !u!114 &-7411052223603752618
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
-  m_Name: ArticyScriptFragments
-  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,8 +390,8 @@ MonoBehaviour:
     mId: 02d29ce4-559d-4ed1-8a03-c737a006d522
     mTechnicalName: Test_Project
   mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: -8763391671368464852}
-  mScriptFragments: {fileID: -7411052223603752618}
+  mDefaultGlobalVariables: {fileID: -4938922720425435206}
+  mScriptFragments: {fileID: -6949203553075550094}
   mPackages:
   - PackageId: 72057594037928208
     PackageName: All objects
