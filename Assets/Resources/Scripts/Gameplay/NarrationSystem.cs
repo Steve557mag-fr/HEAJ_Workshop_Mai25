@@ -10,12 +10,9 @@ enum NarrationState{
     CLOSED
 }
 
-
+[RequireComponent(typeof(ArticyFlowPlayer))]
 public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
-    [ArticyTypeConstraint(typeof(Hub))]
-    [SerializeField] ArticyRef refTestOnStart;
-
     [Header("References")]
     [SerializeField] ArticyFlowPlayer flowPlayer;
 
@@ -32,7 +29,6 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     private void Start()
     {
         state = NarrationState.CLOSED;
-        if(refTestOnStart.HasReference) StartWith(refTestOnStart); 
     }
 
     public void StartWith(ArticyRef node)
@@ -124,6 +120,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     void UpdateCharacter3D()
     {
 
+    }
+
+    internal static NarrationSystem Get()
+    {
+        return FindFirstObjectByType<NarrationSystem>();
     }
 
 }
