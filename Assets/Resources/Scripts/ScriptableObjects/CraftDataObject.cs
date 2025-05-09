@@ -5,6 +5,6 @@ public class CraftDataObject : ScriptableObject
 {
     
     public GameObject pattern;
-    public GameObject craftResult;
+    public GameItemObject craftResult;
 
 }
