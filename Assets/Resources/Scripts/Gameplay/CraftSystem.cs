@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,16 @@ public class CraftSystem : MonoBehaviour
 {
     [SerializeField] GameObject craftingUI;
     [SerializeField] PlayerState playerState;
-    [SerializeField] GameObject ItemSpritePrefab;
+    [SerializeField] GameObject itemSpritePrefab;
+    [SerializeField] GameObject recipeButtonPrefab;
     [SerializeField] Transform gameItemContainer;
     [SerializeField] Transform recipeListContainer;
     [SerializeField] GameItemObject poutre;
+    [SerializeField] CraftDataObject clayPowder;
+    [SerializeField] CraftDataObject poutreCraft;
+
+    CraftDataObject selectedCraft;
+    List<CraftDataObject> craftList;
 
     private void Start()
     {
@@ -27,7 +34,23 @@ public class CraftSystem : MonoBehaviour
 
     public void RefreshCraftList()
     {
-        //List<CraftDataObject> craftList = GameManager.Get().QueryAvailableCrafts();
+        craftList = GameManager.Get().QueryAvailableCrafts();
+
+        craftList.Add(clayPowder);
+        craftList.Add(poutreCraft);
+
+        for (int i = 0; i < craftList.Count; i++)
+        {
+            string name = craftList[i].name;
+            GameItemObject result = craftList[i].craftResult;
+            GameObject pattern = craftList[i].pattern;
+            int j = i;
+            Debug.Log($"name = {name}, result = {result.name}");
+
+            GameObject prefab = Instantiate(recipeButtonPrefab, parent: recipeListContainer); 
+            prefab.transform.Find("Button").Find("Name").GetComponent<TextMeshProUGUI>().text = name;
+            prefab.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => { SelectCraft(j); }); 
+        }
     }
 
     public void RefrehGameItemList()
@@ -39,10 +62,9 @@ public class CraftSystem : MonoBehaviour
             Sprite itemIcon = k.itemIcon;
             Sprite puzzleIcon = k.puzzleIcon;
 
-            Debug.Log($"Qquantity = {quantity}, name = {name}, ");
+            Debug.Log($"Quantity = {quantity}, name = {name}, ");
 
-            GameObject prefab = Instantiate(ItemSpritePrefab);
-            prefab.transform.parent = gameItemContainer;
+            GameObject prefab = Instantiate(itemSpritePrefab, parent: gameItemContainer);
             prefab.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = name;
             
             prefab.transform.Find("Quantity").GetComponent<TextMeshProUGUI>().text = (quantity == -1) ? " " : quantity.ToString();
@@ -67,6 +89,14 @@ public class CraftSystem : MonoBehaviour
 
     public void SelectCraft(int index)
     {
+        Debug.Log($"{index}");
 
+        selectedCraft = craftList[index];
+        DisplayCraft();
+    }
+
+    public void DisplayCraft()
+    {
+        GameObject Pattern = Instantiate(selectedCraft.pattern);
     }
 }
