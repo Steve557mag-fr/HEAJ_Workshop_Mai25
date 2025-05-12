@@ -53,8 +53,11 @@ Material:
     - _GradientSize: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Remap_YIN: 0.68
+    - _Remap_YOut: 1.11
     - _ScalePaper: 0.4
     - _Value: 0.355
+    - _test: -0.47
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _ColorGradient1: {r: 1, g: 1, b: 1, a: 0}
