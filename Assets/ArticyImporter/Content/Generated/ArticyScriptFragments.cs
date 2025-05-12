@@ -20,7 +20,7 @@ namespace Articy.Test_Project.GlobalVariables
 {
     
     
-    [Articy.Unity.ArticyCodeGenerationHashAttribute(638813497726603712)]
+    [Articy.Unity.ArticyCodeGenerationHashAttribute(638818220951782304)]
     public partial class ArticyScriptFragments : BaseScriptFragments, ISerializationCallbackReceiver
     {
         

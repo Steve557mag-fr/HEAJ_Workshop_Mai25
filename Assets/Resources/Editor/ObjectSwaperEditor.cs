@@ -28,7 +28,6 @@ public class ObjectSwaperEditor : EditorWindow
     {
         if(g.transform.childCount == 0)
         {
-
             switch (source)
             {
                 case ObjectSwap.BY_NAME:
@@ -45,8 +44,14 @@ public class ObjectSwaperEditor : EditorWindow
                 default:
                     break;
             }
-
             return;
+        }
+        else
+        {
+            for(int i = 0; i < g.transform.childCount; i++)
+            {
+                TrySwap(g.transform.GetChild(i).gameObject);
+            }
         }
     }
 

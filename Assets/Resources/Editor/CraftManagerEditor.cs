@@ -62,8 +62,11 @@ public class CraftManagerEditor : EditorWindow
         currentCraftData = crafts[currentCraftIdx];
 
         //Display of the craft
-        pattern = (GameObject) EditorGUILayout.ObjectField("craft pattern: ", pattern, typeof(GameObject), false);
-        resultCraft = (GameObject) EditorGUILayout.ObjectField("craft result: ", resultCraft, typeof(GameObject), false);
+        currentCraftData.pattern = 
+            (GameObject) EditorGUILayout.ObjectField("craft pattern: ", currentCraftData.pattern, typeof(GameObject), false);
+
+        currentCraftData.craftResult = 
+            (GameItemObject) EditorGUILayout.ObjectField("craft result: ", currentCraftData.craftResult, typeof(GameItemObject), false);
 
     }
 
