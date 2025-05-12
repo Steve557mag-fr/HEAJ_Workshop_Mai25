@@ -1,9 +1,12 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 
@@ -16,6 +19,7 @@ public class CraftSystem : MonoBehaviour
     [SerializeField] Transform gameItemContainer;
     [SerializeField] Transform recipeListContainer;
     [SerializeField] Transform patternContainer;
+    [SerializeField] Transform craftingUICanva;
     [SerializeField] GameItemObject poutre;
     [SerializeField] CraftDataObject clayPowder;
     [SerializeField] CraftDataObject poutreCraft;
@@ -23,13 +27,23 @@ public class CraftSystem : MonoBehaviour
 
     CraftDataObject selectedCraft;
     List<CraftDataObject> craftList;
+    List<GameObject> pieceList = new List<GameObject>();
     GameObject pattern;
- 
+    GameObject currentPiece;
+
+
     private void Start()
     {
         playerState.ModifyQuantity(poutre, 2);
         RefreshCraftList();
         RefrehGameItemList();
+
+
+    }
+
+    private void Update()
+    {
+        if (currentPiece) currentPiece.transform.position = Input.mousePosition;
     }
 
     internal static CraftSystem Get()
@@ -65,12 +79,18 @@ public class CraftSystem : MonoBehaviour
 
     public void RefrehGameItemList()
     {
-        foreach (var k in playerState.inventory.Keys)
+        var key = playerState.inventory.Keys.ToList();
+
+        for (int i = 0; i < playerState.inventory.Keys.Count; i++)
         {
-            int quantity = playerState.inventory[k];
-            string name = k.name;
-            Sprite itemIcon = k.itemIcon;
-            Sprite puzzleIcon = k.puzzleIcon;
+            var gi = key[i];
+
+            int j = i;
+
+            int quantity = playerState.inventory[gi];
+            string name = gi.name;
+            Sprite itemIcon = gi.itemIcon;
+            Sprite puzzleIcon = gi.puzzleIcon;
 
             Debug.Log($"Quantity = {quantity}, name = {name}, ");
 
@@ -82,6 +102,17 @@ public class CraftSystem : MonoBehaviour
             prefab.transform.Find("ItemIcon").GetComponent<Image>().sprite = itemIcon;
             prefab.transform.Find("PuzzleIcon").GetComponent<Image>().sprite = puzzleIcon;
 
+            EventTrigger eventTrigger = prefab.transform.GetComponent<EventTrigger>();
+
+            EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+            pointerDownEntry.eventID = EventTriggerType.PointerDown;
+            pointerDownEntry.callback.AddListener((data) => { BeginDrag(j); });
+            eventTrigger.triggers.Add(pointerDownEntry);
+
+            EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+            pointerUpEntry.eventID = EventTriggerType.PointerUp;
+            pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
+            eventTrigger.triggers.Add(pointerUpEntry);
         }
         SwitchItemDisplay(true);
     }
@@ -126,11 +157,17 @@ public class CraftSystem : MonoBehaviour
     public void BeginDrag(int index)
     {
 
+        Debug.Log($"Begun Drag");
+        currentPiece = Instantiate(playerState.inventory.Keys.ToList()[index].piece, parent:craftingUICanva);
+
+        pieceList.Add(currentPiece);
+        
     }
 
     public void EndDrag()
     {
-        
+        Debug.Log($"Ended Drag");
+        if (currentPiece) pieceList.Remove(currentPiece); Destroy(currentPiece);
     }
 
     public Vector3 GetNearestJoint(Transform part)
