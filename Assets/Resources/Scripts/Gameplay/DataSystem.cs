@@ -156,5 +156,9 @@ public class DataSystem : MonoBehaviour
         return $"{Application.persistentDataPath}/{dataname}.dat";
     }
 
+    public static DataSystem Get()
+    {
+        return FindAnyObjectByType<DataSystem>();
+    }
 
 }

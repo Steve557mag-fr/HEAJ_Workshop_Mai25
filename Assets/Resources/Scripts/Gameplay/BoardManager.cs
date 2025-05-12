@@ -1,7 +1,8 @@
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BoardManager : MonoBehaviour
+public class BoardManager : MonoBehaviour, IDataHandle
 {
     [Header("References")]
     [SerializeField] CanvasGroup fadingGroup;
@@ -16,8 +17,8 @@ public class BoardManager : MonoBehaviour
     public delegate void OnBoardLoaded(string boardLoaded);
     internal OnBoardLoaded boardLoaded;
 
+    internal string currentBoardName = "";
     bool isLock = false;
-    string currentBoardName = "";
 
     private void Start()
     {
@@ -68,4 +69,21 @@ public class BoardManager : MonoBehaviour
         return FindFirstObjectByType<BoardManager>();
     }
 
+    public JObject toJObject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void fromJObject(JObject jo)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public JObject getDefaultJObject()
+    {
+        return new()
+        {
+            {"board", ""}
+        };
+    }
 }
