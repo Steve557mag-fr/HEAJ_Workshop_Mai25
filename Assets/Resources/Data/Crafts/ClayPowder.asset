@@ -9,8 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Resources/Data/Crafts/ClayPowder.asset
   m_Script: {fileID: 11500000, guid: 4e704b5b0c7974f45b1c93f74a586ad4, type: 3}
   m_Name: ClayPowder
   m_EditorClassIdentifier: 
   pattern: {fileID: 0}
   craftResult: {fileID: 0}
+========
+  m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
+  m_Name: ClayPowder
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
+  puzzleIcon: {fileID: 0}
+>>>>>>>> origin/workspace_Ethan:Assets/Resources/Data/GameItem/ClayPowder.asset
+=======
+  m_Script: {fileID: 11500000, guid: 4e704b5b0c7974f45b1c93f74a586ad4, type: 3}
+  m_Name: ClayPowder
+  m_EditorClassIdentifier: 
+  pattern: {fileID: 8599090786545478849, guid: 0504b35ff784e594bb8e84fc306c9f5a, type: 3}
+  craftResult: {fileID: 11400000, guid: 1ffc863acb4d46643a388dc6af086723, type: 2}
+>>>>>>> origin/workspace_Ethan

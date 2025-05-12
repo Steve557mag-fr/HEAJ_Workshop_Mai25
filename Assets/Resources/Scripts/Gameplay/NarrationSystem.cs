@@ -33,7 +33,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void StartWith(ArticyRef node)
     {
-        var a = node.GetObject<Hub>();
+        var a = node.GetObject<Dialogue>();
         if (a != null)
         {
             var list = ArticyFlowPlayer.GetBranchesOfNode(a);
