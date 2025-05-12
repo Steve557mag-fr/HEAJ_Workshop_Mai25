@@ -16,7 +16,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+<<<<<<< HEAD
 namespace Articy.Test_Project
+=======
+namespace Articy.Test
+>>>>>>> origin/workspace_Ethan
 {
     
     

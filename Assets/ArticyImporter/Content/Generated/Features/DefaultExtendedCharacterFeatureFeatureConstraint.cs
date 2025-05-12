@@ -8,7 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 using Articy.Test_Project;
+=======
+using Articy.Test;
+>>>>>>> origin/workspace_Ethan
 using Articy.Unity;
 using Articy.Unity.Constraints;
 using Articy.Unity.Interfaces;
@@ -18,7 +22,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+<<<<<<< HEAD
 namespace Articy.Test_Project.Features
+=======
+namespace Articy.Test.Features
+>>>>>>> origin/workspace_Ethan
 {
     
     

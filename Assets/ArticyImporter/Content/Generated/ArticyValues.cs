@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -25,7 +25,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -34,7 +34,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -43,7 +43,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -52,7 +52,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -61,7 +61,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -70,7 +70,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -79,7 +79,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -88,7 +88,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -97,7 +97,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -106,7 +106,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -115,7 +115,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -124,7 +124,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -133,7 +133,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -142,7 +142,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -151,25 +151,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
-{
-    
-    
-    [Serializable()]
-    public class ArticyValueEntryPointTemplate : ArticyValue<Articy.Test_Project.Templates.EntryPointTemplate>
-    {
-    }
-}
-namespace Articy.Test_Project
-{
-    
-    
-    [Serializable()]
-    public class ArticyValueEntryPoint : ArticyValue<EntryPoint>
-    {
-    }
-}
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -178,7 +160,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -187,7 +169,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -196,7 +178,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -205,25 +187,25 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
     [Serializable()]
-    public class ArticyValueDefaultSupportingCharacterTemplateTemplate : ArticyValue<Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate>
+    public class ArticyValueDefaultSupportingCharacterTemplateTemplate : ArticyValue<Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate>
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
     [Serializable()]
-    public class ArticyValueDefaultBasicCharacterFeatureFeature : ArticyValue<Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature>
+    public class ArticyValueDefaultBasicCharacterFeatureFeature : ArticyValue<Articy.Test.Features.DefaultBasicCharacterFeatureFeature>
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -232,25 +214,25 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
     [Serializable()]
-    public class ArticyValueDefaultMainCharacterTemplateTemplate : ArticyValue<Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate>
+    public class ArticyValueDefaultMainCharacterTemplateTemplate : ArticyValue<Articy.Test.Templates.DefaultMainCharacterTemplateTemplate>
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
     [Serializable()]
-    public class ArticyValueDefaultExtendedCharacterFeatureFeature : ArticyValue<Articy.Test_Project.Features.DefaultExtendedCharacterFeatureFeature>
+    public class ArticyValueDefaultExtendedCharacterFeatureFeature : ArticyValue<Articy.Test.Features.DefaultExtendedCharacterFeatureFeature>
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -259,7 +241,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -268,7 +250,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -277,7 +259,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -286,7 +268,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -295,7 +277,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -304,7 +286,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -313,7 +295,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -322,7 +304,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -331,7 +313,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -340,7 +322,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -349,7 +331,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -358,7 +340,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -367,7 +349,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -376,7 +358,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -385,7 +367,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -394,7 +376,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -403,7 +385,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -412,7 +394,7 @@ namespace Articy.Test_Project
     {
     }
 }
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     

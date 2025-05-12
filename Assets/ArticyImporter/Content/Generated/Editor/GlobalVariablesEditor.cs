@@ -8,7 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 using Articy.Test_Project.GlobalVariables;
+=======
+using Articy.Test.GlobalVariables;
+>>>>>>> origin/workspace_Ethan
 using Articy.Unity.Editor.PropertyDrawer;
 using System;
 using System.Collections;
@@ -16,11 +20,19 @@ using UnityEditor;
 using UnityEngine;
 
 
+<<<<<<< HEAD
 namespace Articy.Test_Project
 {
     
     
     [CustomEditor(typeof(Articy.Test_Project.GlobalVariables.ArticyGlobalVariables))]
+=======
+namespace Articy.Test
+{
+    
+    
+    [CustomEditor(typeof(Articy.Test.GlobalVariables.ArticyGlobalVariables))]
+>>>>>>> origin/workspace_Ethan
     public class GlobalVariablesDrawer : GlobalVariablesEditor
     {
     }
@@ -31,7 +43,11 @@ namespace Articy.Test_Project
         [UnityEditor.MenuItem("Tools/articy:draft Importer/Advanced/Create GlobalVariables")]
         public static void CreateNewGlobalVariables()
         {
+<<<<<<< HEAD
 Articy.Unity.Editor.Utils.ArticyEditorUtility.CreateGlobalVariablesClone<Articy.Test_Project.GlobalVariables.ArticyGlobalVariables>();
+=======
+Articy.Unity.Editor.Utils.ArticyEditorUtility.CreateGlobalVariablesClone<Articy.Test.GlobalVariables.ArticyGlobalVariables>();
+>>>>>>> origin/workspace_Ethan
         }
     }
 }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/ArticyImporter/Content/Generated/Resources/loc_0x100000000000110_127.asset.meta
 guid: e940392ec9f985944b114d3c223741b5
+========
+guid: 1a1c8d523c51c744c84ab62dd14b878b
+>>>>>>>> origin/workspace_Ethan:Assets/ArticyImporter/Content/Resources/ArticyRuntimeSettings.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

@@ -15,7 +15,11 @@ MonoBehaviour:
   serializedNodes:
   - id: 72057594037927937
     parent: 0
+<<<<<<< HEAD
     technicalName: Test_Project
+=======
+    technicalName: Test
+>>>>>>> origin/workspace_Ethan
     articyType: Project
     childCount: 10
   - id: 216172786292838683
@@ -33,16 +37,27 @@ MonoBehaviour:
     technicalName: 
     articyType: ProjectSettingsGeneral
     childCount: 0
+<<<<<<< HEAD
   - id: 72057594037927946
     parent: 216172786292838683
     technicalName: 
     articyType: ProjectSettingsJourneys
     childCount: 0
+=======
+>>>>>>> origin/workspace_Ethan
   - id: 72057594037927947
     parent: 216172786292838683
     technicalName: 
     articyType: ProjectSettingsLocation
     childCount: 0
+<<<<<<< HEAD
+=======
+  - id: 72057594037927946
+    parent: 216172786292838683
+    technicalName: 
+    articyType: ProjectSettingsJourneys
+    childCount: 0
+>>>>>>> origin/workspace_Ethan
   - id: 216172782840400980
     parent: 72057594037927937
     technicalName: GlobalVariables
@@ -52,6 +67,7 @@ MonoBehaviour:
     parent: 72057594037927937
     technicalName: Flow
     articyType: Flow
+<<<<<<< HEAD
     childCount: 8
   - id: 72057594037928327
     parent: 216172783251375095
@@ -91,32 +107,72 @@ MonoBehaviour:
   - id: 72057594037928283
     parent: 216172783251375095
     technicalName: DFr_FEFAB425
+=======
+    childCount: 1
+  - id: 72057594037928246
+    parent: 216172783251375095
+    technicalName: Dlg_60FD99A1
+    articyType: Dialogue
+    childCount: 1
+  - id: 72057594037928252
+    parent: 72057594037928246
+    technicalName: DFr_CAB40DBF
+>>>>>>> origin/workspace_Ethan
     articyType: DialogueFragment
     childCount: 0
   - id: 216172785005863603
     parent: 72057594037927937
     technicalName: Entities
     articyType: Entities
+<<<<<<< HEAD
     childCount: 2
   - id: 72057594037928221
     parent: 216172785005863603
     technicalName: Ntt_8BECDE25
+=======
+    childCount: 5
+  - id: 72057594037928233
+    parent: 216172785005863603
+    technicalName: Ntt_B05BC6C5
+    articyType: Entity
+    childCount: 0
+  - id: 72057594037928237
+    parent: 216172785005863603
+    technicalName: Ntt_652FC7D9
+    articyType: Entity
+    childCount: 0
+  - id: 72057594037928229
+    parent: 216172785005863603
+    technicalName: Ntt_CB2166A1
+>>>>>>> origin/workspace_Ethan
     articyType: Entity
     childCount: 0
   - id: 72057594037928225
     parent: 216172785005863603
+<<<<<<< HEAD
     technicalName: Ntt_BC5323A2
+=======
+    technicalName: Ntt_794E87FA
+    articyType: Entity
+    childCount: 0
+  - id: 72057594037928221
+    parent: 216172785005863603
+    technicalName: Ntt_913B1908
+>>>>>>> origin/workspace_Ethan
     articyType: Entity
     childCount: 0
   - id: 216172782940115884
     parent: 72057594037927937
     technicalName: Locations
     articyType: Locations
+<<<<<<< HEAD
     childCount: 1
   - id: 72057594037928229
     parent: 216172782940115884
     technicalName: Loc_EC2521D0
     articyType: Location
+=======
+>>>>>>> origin/workspace_Ethan
     childCount: 0
   - id: 216172782386062064
     parent: 72057594037927937
@@ -133,6 +189,7 @@ MonoBehaviour:
     technicalName: TemplateDesign
     articyType: TemplateDesign
     childCount: 3
+<<<<<<< HEAD
   - id: 216172785641213376
     parent: 216172782815217020
     technicalName: Features
@@ -148,6 +205,8 @@ MonoBehaviour:
     technicalName: DefaultExtendedCharacterFeature
     articyType: Feature
     childCount: 0
+=======
+>>>>>>> origin/workspace_Ethan
   - id: 216172782852592046
     parent: 216172782815217020
     technicalName: PropertyTemplates
@@ -168,12 +227,20 @@ MonoBehaviour:
     technicalName: 
     articyType: TypedPropertyTemplates
     childCount: 0
+<<<<<<< HEAD
   - id: 216172785725457481
+=======
+  - id: 216172783022940736
+>>>>>>> origin/workspace_Ethan
     parent: 216172782852592046
     technicalName: 
     articyType: TypedPropertyTemplates
     childCount: 0
+<<<<<<< HEAD
   - id: 216172783022940736
+=======
+  - id: 216172785725457481
+>>>>>>> origin/workspace_Ethan
     parent: 216172782852592046
     technicalName: 
     articyType: TypedPropertyTemplates
@@ -183,6 +250,24 @@ MonoBehaviour:
     technicalName: 
     articyType: TypedPropertyTemplates
     childCount: 0
+<<<<<<< HEAD
+=======
+  - id: 216172785641213376
+    parent: 216172782815217020
+    technicalName: Features
+    articyType: Features
+    childCount: 2
+  - id: 72057594037927951
+    parent: 216172785641213376
+    technicalName: DefaultBasicCharacterFeature
+    articyType: Feature
+    childCount: 0
+  - id: 72057594037928016
+    parent: 216172785641213376
+    technicalName: DefaultExtendedCharacterFeature
+    articyType: Feature
+    childCount: 0
+>>>>>>> origin/workspace_Ethan
   - id: 216172784713633229
     parent: 216172782815217020
     technicalName: Templates
@@ -193,11 +278,16 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
+<<<<<<< HEAD
   - id: 216172785817780125
+=======
+  - id: 216172783507662867
+>>>>>>> origin/workspace_Ethan
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
+<<<<<<< HEAD
   - id: 216172782164859599
     parent: 216172784713633229
     technicalName: 
@@ -207,6 +297,12 @@ MonoBehaviour:
     parent: 216172782164859599
     technicalName: EntryPoint
     articyType: Template
+=======
+  - id: 216172785817780125
+    parent: 216172784713633229
+    technicalName: 
+    articyType: TemplateTypeFolder
+>>>>>>> origin/workspace_Ethan
     childCount: 0
   - id: 216172784493379826
     parent: 216172784713633229
@@ -218,6 +314,14 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
+<<<<<<< HEAD
+=======
+  - id: 216172783227679388
+    parent: 216172784713633229
+    technicalName: 
+    articyType: TemplateTypeFolder
+    childCount: 0
+>>>>>>> origin/workspace_Ethan
   - id: 216172784138869361
     parent: 216172784713633229
     technicalName: 
@@ -233,6 +337,14 @@ MonoBehaviour:
     technicalName: DefaultSupportingCharacterTemplate
     articyType: Template
     childCount: 0
+<<<<<<< HEAD
+=======
+  - id: 216172782164859599
+    parent: 216172784713633229
+    technicalName: 
+    articyType: TemplateTypeFolder
+    childCount: 0
+>>>>>>> origin/workspace_Ethan
   - id: 216172783944319605
     parent: 216172784713633229
     technicalName: 
@@ -253,11 +365,14 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
+<<<<<<< HEAD
   - id: 216172785027381783
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
+=======
+>>>>>>> origin/workspace_Ethan
   - id: 216172786328477020
     parent: 216172784713633229
     technicalName: 
@@ -268,12 +383,16 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
+<<<<<<< HEAD
   - id: 216172783507662867
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
   - id: 216172783227679388
+=======
+  - id: 216172785027381783
+>>>>>>> origin/workspace_Ethan
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
@@ -315,6 +434,7 @@ MonoBehaviour:
     childCount: 5
   - id: 72057594037928215
     parent: 216172783392894804
+<<<<<<< HEAD
     technicalName: Ufo_273DA3F6
     articyType: AssetsUserFolder
     childCount: 0
@@ -326,16 +446,37 @@ MonoBehaviour:
   - id: 72057594037928211
     parent: 216172783392894804
     technicalName: Ufo_B405E814
+=======
+    technicalName: Ufo_AA0BA2D5
+>>>>>>> origin/workspace_Ethan
     articyType: AssetsUserFolder
     childCount: 0
   - id: 72057594037928219
     parent: 216172783392894804
+<<<<<<< HEAD
     technicalName: Ufo_703011B2
+=======
+    technicalName: Ufo_B6A03C90
+    articyType: AssetsUserFolder
+    childCount: 0
+  - id: 72057594037928217
+    parent: 216172783392894804
+    technicalName: Ufo_6D7E38C7
+    articyType: AssetsUserFolder
+    childCount: 0
+  - id: 72057594037928211
+    parent: 216172783392894804
+    technicalName: Ufo_A8AAE444
+>>>>>>> origin/workspace_Ethan
     articyType: AssetsUserFolder
     childCount: 0
   - id: 72057594037928213
     parent: 216172783392894804
+<<<<<<< HEAD
     technicalName: Ufo_2C95B91B
+=======
+    technicalName: Ufo_D0C132A8
+>>>>>>> origin/workspace_Ethan
     articyType: AssetsUserFolder
     childCount: 0
 --- !u!114 &-6949203553075550094
@@ -385,6 +526,7 @@ MonoBehaviour:
   mLocalization: {fileID: 5738627198712827957}
   mRuleSetId: 269
   mInternalProject:
+<<<<<<< HEAD
     mName: Test Project
     mDetailName: 
     mId: 02d29ce4-559d-4ed1-8a03-c737a006d522
@@ -397,6 +539,16 @@ MonoBehaviour:
     PackageName: All objects
     PackagePath: package_0x100000000000110
     mIsDefaultPackage: 1
+=======
+    mName: Test
+    mDetailName: 
+    mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
+    mTechnicalName: Test
+  mImportedAssets: []
+  mDefaultGlobalVariables: {fileID: -4938922720425435206}
+  mScriptFragments: {fileID: -6949203553075550094}
+  mPackages: []
+>>>>>>> origin/workspace_Ethan
 --- !u!114 &5738627198712827957
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -413,8 +565,13 @@ MonoBehaviour:
   mLanguageId: 127
   mLanguages:
   - mArticyLanguageId: 127
+<<<<<<< HEAD
     mCultureName: 
     mLanguageName: Invariant Language (Invariant Country)
+=======
+    mCultureName: fr
+    mLanguageName: French
+>>>>>>> origin/workspace_Ethan
     mIsVoiceOver: 0
   mThrowOnMissingText: 0
   mClearOnLanguageSwitch: 1

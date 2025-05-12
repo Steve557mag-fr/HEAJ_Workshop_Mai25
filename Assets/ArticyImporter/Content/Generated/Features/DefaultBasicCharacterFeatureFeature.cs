@@ -8,7 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 using Articy.Test_Project;
+=======
+using Articy.Test;
+>>>>>>> origin/workspace_Ethan
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -17,7 +21,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+<<<<<<< HEAD
 namespace Articy.Test_Project.Features
+=======
+namespace Articy.Test.Features
+>>>>>>> origin/workspace_Ethan
 {
     
     
@@ -181,7 +189,11 @@ namespace Articy.Test_Project.Features
         
         private void CloneProperties(object aClone, Articy.Unity.ArticyObject aFirstClassParent)
         {
+<<<<<<< HEAD
             Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature newClone = ((Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature)(aClone));
+=======
+            Articy.Test.Features.DefaultBasicCharacterFeatureFeature newClone = ((Articy.Test.Features.DefaultBasicCharacterFeatureFeature)(aClone));
+>>>>>>> origin/workspace_Ethan
             newClone.Age = Age;
             if ((mSpecies != null))
             {
@@ -213,7 +225,11 @@ namespace Articy.Test_Project.Features
         
         public object CloneObject(object aParent, Articy.Unity.ArticyObject aFirstClassParent)
         {
+<<<<<<< HEAD
             Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature clone = new Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature();
+=======
+            Articy.Test.Features.DefaultBasicCharacterFeatureFeature clone = new Articy.Test.Features.DefaultBasicCharacterFeatureFeature();
+>>>>>>> origin/workspace_Ethan
             CloneProperties(clone, aFirstClassParent);
             return clone;
         }

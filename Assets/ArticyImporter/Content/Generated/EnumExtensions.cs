@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 namespace Articy.Test_Project
+=======
+namespace Articy.Test
+>>>>>>> origin/workspace_Ethan
 {
 	public static class EnumExtensionMethods
 	{
