@@ -17,8 +17,9 @@ public class SoundManager : MonoBehaviour
     }
     public void SetAmbience(AudioClip clip = null)
     {
+        sourceAmbience.Stop();
         sourceAmbience.clip = clip;
-        sourceAmbience.Pla
+        sourceAmbience.Play();
     }
 
 
