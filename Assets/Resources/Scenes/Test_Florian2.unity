@@ -2633,6 +2633,7 @@ MonoBehaviour:
   recipeButtonPrefab: {fileID: 3921361219203279298, guid: 43986e35df0fba14f8d39a4dd6576ea2, type: 3}
   gameItemContainer: {fileID: 90034801}
   recipeListContainer: {fileID: 201663603}
+  patternContainer: {fileID: 1756253866}
   poutre: {fileID: 11400000, guid: 21bde200efef1764490b82fd5cdea512, type: 2}
   clayPowder: {fileID: 11400000, guid: 94d65351b801f41419fb1c4acef740ad, type: 2}
   poutreCraft: {fileID: 11400000, guid: 6e1a60de62d1d8645964d088af5a944c, type: 2}

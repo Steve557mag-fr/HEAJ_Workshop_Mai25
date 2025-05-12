@@ -1,8 +1,10 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class CraftSystem : MonoBehaviour
@@ -13,18 +15,26 @@ public class CraftSystem : MonoBehaviour
     [SerializeField] GameObject recipeButtonPrefab;
     [SerializeField] Transform gameItemContainer;
     [SerializeField] Transform recipeListContainer;
+    [SerializeField] Transform patternContainer;
     [SerializeField] GameItemObject poutre;
     [SerializeField] CraftDataObject clayPowder;
     [SerializeField] CraftDataObject poutreCraft;
 
+
     CraftDataObject selectedCraft;
     List<CraftDataObject> craftList;
+    GameObject pattern;
 
     private void Start()
     {
         playerState.ModifyQuantity(poutre, 2);
         RefreshCraftList();
         RefrehGameItemList();
+    }
+
+    internal static CraftSystem Get()
+    {
+        return FindFirstObjectByType<CraftSystem>();
     }
 
     public void SetUIActive(bool state)
@@ -91,12 +101,76 @@ public class CraftSystem : MonoBehaviour
     {
         Debug.Log($"{index}");
 
+
         selectedCraft = craftList[index];
         DisplayCraft();
     }
 
     public void DisplayCraft()
     {
-        GameObject Pattern = Instantiate(selectedCraft.pattern);
+        //if(patternContainer.childCount > 0)
+        //{
+        //    Destroy(patternContainer.GetChild(0));
+        //}
+
+        if (pattern) { Destroy(pattern); }
+
+        pattern = Instantiate(selectedCraft.pattern, parent:patternContainer);
+    }
+
+    public void RemoveAllParts()
+    {
+
+    }
+
+    public void Craft()
+    {
+
+    }
+
+    public void BeginDrag(int index)
+    {
+
+    }
+
+    public void EndDrag()
+    {
+        
+    }
+
+    public Vector3 GetNearestJoint(Transform part)
+    {
+        float distance;
+        float nearestDistance = math.INFINITY;
+        Vector3 nearestJoint = part.position;
+
+        for (int i = 0; i < pattern.transform.childCount; i++)
+        {
+            distance = (pattern.transform.GetChild(i).position - part.position).magnitude;
+            if (nearestDistance < distance)
+            {
+                nearestDistance = distance;
+                nearestJoint = pattern.transform.GetChild(i).position;
+            }
+        }
+
+        return nearestJoint;
+    }
+
+    public bool PatternIsValid(List<Sprite> parts)
+    {
+        for (int i = 0; i < pattern.transform.childCount; i++)
+        {
+
+        }
+
+
+
+        return true;
+    }
+
+    public void Place(Sprite part, Transform at)
+    {
+
     }
 }

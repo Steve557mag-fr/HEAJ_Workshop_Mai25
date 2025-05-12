@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e704b5b0c7974f45b1c93f74a586ad4, type: 3}
   m_Name: ClayPowder
   m_EditorClassIdentifier: 
-  pattern: {fileID: 8599090786545478849, guid: 32edecfaba93696449a6b49b11e61355, type: 3}
+  pattern: {fileID: 8599090786545478849, guid: 0504b35ff784e594bb8e84fc306c9f5a, type: 3}
   craftResult: {fileID: 11400000, guid: 1ffc863acb4d46643a388dc6af086723, type: 2}
