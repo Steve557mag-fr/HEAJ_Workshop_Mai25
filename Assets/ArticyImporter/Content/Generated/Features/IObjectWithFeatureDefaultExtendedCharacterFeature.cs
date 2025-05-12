@@ -8,22 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 using Articy.Test_Project.Features;
-=======
-using Articy.Test.Features;
->>>>>>> origin/workspace_Ethan
 using Articy.Unity;
 using System;
 using System.Collections;
 using UnityEngine;
 
 
-<<<<<<< HEAD
 namespace Articy.Test_Project
-=======
-namespace Articy.Test
->>>>>>> origin/workspace_Ethan
 {
     
     

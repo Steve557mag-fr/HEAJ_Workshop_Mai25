@@ -15,11 +15,7 @@ using System.Collections;
 using UnityEngine;
 
 
-<<<<<<< HEAD
 namespace Articy.Test_Project
-=======
-namespace Articy.Test
->>>>>>> origin/workspace_Ethan
 {
     
     

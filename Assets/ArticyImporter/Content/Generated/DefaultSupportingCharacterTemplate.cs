@@ -8,11 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 using Articy.Test_Project.Features;
-=======
-using Articy.Test.Features;
->>>>>>> origin/workspace_Ethan
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -21,11 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-<<<<<<< HEAD
 namespace Articy.Test_Project
-=======
-namespace Articy.Test
->>>>>>> origin/workspace_Ethan
 {
     
     
@@ -35,15 +27,9 @@ namespace Articy.Test
         [SerializeField()]
         private ArticyValueDefaultSupportingCharacterTemplateTemplate mTemplate = new ArticyValueDefaultSupportingCharacterTemplateTemplate();
         
-<<<<<<< HEAD
         private static Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint mConstraints = new Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint();
         
         public Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate Template
-=======
-        private static Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplateConstraint mConstraints = new Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplateConstraint();
-        
-        public Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate Template
->>>>>>> origin/workspace_Ethan
         {
             get
             {
@@ -55,11 +41,7 @@ namespace Articy.Test
             }
         }
         
-<<<<<<< HEAD
         public static Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint Constraints
-=======
-        public static Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplateConstraint Constraints
->>>>>>> origin/workspace_Ethan
         {
             get
             {
@@ -77,11 +59,7 @@ namespace Articy.Test
             DefaultSupportingCharacterTemplate newClone = ((DefaultSupportingCharacterTemplate)(aClone));
             if ((Template != null))
             {
-<<<<<<< HEAD
                 newClone.Template = ((Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
-=======
-                newClone.Template = ((Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
->>>>>>> origin/workspace_Ethan
             }
             base.CloneProperties(newClone, aFirstClassParent);
         }

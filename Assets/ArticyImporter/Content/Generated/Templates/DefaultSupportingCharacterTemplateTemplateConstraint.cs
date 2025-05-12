@@ -8,13 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 using Articy.Test_Project;
 using Articy.Test_Project.Features;
-=======
-using Articy.Test;
-using Articy.Test.Features;
->>>>>>> origin/workspace_Ethan
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -23,11 +18,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-<<<<<<< HEAD
 namespace Articy.Test_Project.Templates
-=======
-namespace Articy.Test.Templates
->>>>>>> origin/workspace_Ethan
 {
     
     
