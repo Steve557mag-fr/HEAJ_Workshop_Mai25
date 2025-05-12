@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   puzzleIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  piece: {fileID: 8599090786545478849, guid: 0504b35ff784e594bb8e84fc306c9f5a, type: 3}

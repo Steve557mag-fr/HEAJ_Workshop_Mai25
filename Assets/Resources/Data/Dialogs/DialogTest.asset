@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
-  m_Name: ClayPowder
+  m_Script: {fileID: 11500000, guid: bf34a6da8f54ba949a4d4f736e2df1df, type: 3}
+  m_Name: DialogTest
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
-  puzzleIcon: {fileID: 0}
-  piece: {fileID: 8599090786545478849, guid: 0504b35ff784e594bb8e84fc306c9f5a, type: 3}
+  entryPoint:
+    instanceId: 0
+    referencingMode: 0
+    lowId: 391
+    highId: 16777216
