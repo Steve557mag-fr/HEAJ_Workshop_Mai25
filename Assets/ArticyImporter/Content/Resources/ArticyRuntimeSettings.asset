@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<<< HEAD:Assets/ArticyImporter/Content/Resources/ArticyRuntimeSettings.asset
   m_Script: {fileID: -959837014, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
   m_Name: ArticyRuntimeSettings
   m_EditorClassIdentifier: 
@@ -18,9 +17,3 @@ MonoBehaviour:
   mAutomaticallyResolveStrings: 1
   mLogVerbositiesMapKeys: 
   mLogVerbositiesMapValues: 
-========
-  m_Script: {fileID: 11500000, guid: ee642528c64e8cd4185837b12b38c9b7, type: 3}
-  m_Name: BoardTest
-  m_EditorClassIdentifier: 
-  boardName: TestBoard
->>>>>>>> Workspace-Col1:Assets/Resources/Data/BoardChanges/BoardTest.asset
