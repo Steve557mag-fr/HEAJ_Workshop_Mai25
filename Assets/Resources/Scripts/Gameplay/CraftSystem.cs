@@ -24,7 +24,7 @@ public class CraftSystem : MonoBehaviour
     CraftDataObject selectedCraft;
     List<CraftDataObject> craftList;
     GameObject pattern;
-
+ 
     private void Start()
     {
         playerState.ModifyQuantity(poutre, 2);
@@ -108,11 +108,6 @@ public class CraftSystem : MonoBehaviour
 
     public void DisplayCraft()
     {
-        //if(patternContainer.childCount > 0)
-        //{
-        //    Destroy(patternContainer.GetChild(0));
-        //}
-
         if (pattern) { Destroy(pattern); }
 
         pattern = Instantiate(selectedCraft.pattern, parent:patternContainer);
