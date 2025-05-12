@@ -678,7 +678,7 @@ MonoBehaviour:
   onTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 56abfc105071181488124d3e04859e21, type: 2}
+      - m_Target: {fileID: 11400000, guid: 2af089e1978d74e4aae7eda875b6ebfe, type: 2}
         m_TargetAssemblyTypeName: DialogPointObject, Assembly-CSharp
         m_MethodName: Run
         m_Mode: 1
