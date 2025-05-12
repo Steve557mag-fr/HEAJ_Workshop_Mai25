@@ -6,12 +6,12 @@ public class DraggableScriptableObject : ScriptableObject
     
     public void BeginDrag(int i)
     {
-
+        CraftSystem.Get().BeginDrag(i);
     }
 
     public void EndDrag()
     {
-
+        CraftSystem.Get().EndDrag();
     }
 
 }

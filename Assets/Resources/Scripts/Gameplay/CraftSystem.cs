@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -23,6 +24,7 @@ public class CraftSystem : MonoBehaviour
 
     CraftDataObject selectedCraft;
     List<CraftDataObject> craftList;
+    List<GameObject> pieceList;
     GameObject pattern;
  
     private void Start()
@@ -125,11 +127,14 @@ public class CraftSystem : MonoBehaviour
 
     public void BeginDrag(int index)
     {
+        GameObject piece = Instantiate(playerState.inventory.Keys.ToList()[index].piece, parent: patternContainer);
 
+        pieceList.Add(piece);
+        
     }
 
     public void EndDrag()
-    {
+    { 
         
     }
 
