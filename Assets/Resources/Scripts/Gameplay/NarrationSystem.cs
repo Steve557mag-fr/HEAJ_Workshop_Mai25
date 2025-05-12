@@ -10,25 +10,35 @@ enum NarrationState{
     CLOSED
 }
 
-
+[RequireComponent(typeof(ArticyFlowPlayer))]
 public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
-    [SerializeField] ArticyRef refTestOnStart;
-
     [Header("References")]
     [SerializeField] ArticyFlowPlayer flowPlayer;
 
     [Header("UI References")]
     [SerializeField] List<TextMeshProUGUI> choiceTexts;
+    [SerializeField] List<GameObject> choiceButtons;
     [SerializeField] GameObject choicesContainer, dialogContainer;
     [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
+
+    int[] branchindex;
 
     NarrationState state;
 
     private void Start()
     {
         state = NarrationState.CLOSED;
-        NextDialog();
+    }
+
+    public void StartWith(ArticyRef node)
+    {
+        var a = node.GetObject<Dialogue>();
+        if (a != null)
+        {
+            var list = ArticyFlowPlayer.GetBranchesOfNode(a);
+            flowPlayer.Play(list[0]);
+        }
     }
 
     public void NextDialog()
@@ -40,23 +50,23 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     public void ChooseBranch(int index)
     {
         if (state == NarrationState.DIALOG) return;
-        ToggleChoiceUI();
         state = NarrationState.DIALOG;
+        ToggleChoiceUI();
         Next(index);
     }
 
-    void Next(int index = 0)
+    void Next(int index = -1)
     {
-        flowPlayer.Play(index);
+        flowPlayer.Play(index == -1 ? 0 : branchindex[index]);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
-        Debug.Log(aBranches.Count);
-        if (aBranches.Count == 0) return;
-
-        Debug.Log(aBranches[0]);
-        Debug.Log(aBranches[0].IsValid);
+        branchindex = new int[aBranches.Count];
+        for(int i = 0; i < branchindex.Length;i++) {
+            Branch aBranch = aBranches[i];
+            branchindex[i] = aBranch.BranchId;
+        }
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
@@ -90,9 +100,12 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         ToggleChoiceUI(true);
         state = NarrationState.CHOICE;
         List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
-        for(int i = 0; i < connections.Count; i++)
+
+        for(int i = 0; i < choiceButtons.Count; i++)
         {
-            choiceTexts[i].text = connections[i].Label;
+            bool b = i < connections.Count;
+            choiceButtons[i].SetActive(b);
+            choiceTexts[i].text = b ? connections[i].Label : "";
         }
     }
 
@@ -107,6 +120,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     void UpdateCharacter3D()
     {
 
+    }
+
+    internal static NarrationSystem Get()
+    {
+        return FindFirstObjectByType<NarrationSystem>();
     }
 
 }

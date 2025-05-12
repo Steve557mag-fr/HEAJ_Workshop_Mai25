@@ -15,28 +15,13 @@ MonoBehaviour:
   mIsImporting: 0
   mAwaitingModelImport: 0
   mAwaitingFragmentsImport: 0
-  mFileHashesKeys:
-  - script_methods.json
-  - hierarchy.json
-  - global_variables.json
-  - object_definitions.json
-  - object_definitions_localization.json
-  - package_0100000000000110_objects.json
-  - package_0100000000000110_localization.json
-  mFileHashesValues:
-  - +Hc7CrqwO4HgaJLz4pXA58UKo/0PYZLVIzK1n03xTOY=
-  - 341Yst1s/Dv6lNfG4MqKq8zvl2ERroBSSCyBYiaucv8=
-  - M1b/3JU6v0NPotsj9dBYcxJLdEtegyN6GMOkKjgvsZ8=
-  - eB7XQiUyWGdZPoZzHzNCbv4IiTzTosuwqeStOr/fJYc=
-  - RBNvo1WzZ4oRRq0W9+hknpT7T8If536DEMBg9hyq/4o=
-  - fA5wBM3yytR9ib07D6akftu+wDErOpHLffmjQO1Tpu0=
-  - 6zQ1RqE2uNbWsY/102RSVNnkSuKNr/fYZNSS+PiMGZM=
-  mScriptFragmentHashesKeys: 1001000000000001
-  mScriptFragmentHashesValues:
-  - r1Vw9aGBC3r3jK9LxwpmDw31HkK6+R1N5bIyjeDoPfw=
-  mLastBuildCode: 1
-  mLastEditorStartupTimeTicks: 638816021270838123
-  mUseModelPickerHierarchyView: 1
+  mFileHashesKeys: []
+  mFileHashesValues: []
+  mScriptFragmentHashesKeys: 
+  mScriptFragmentHashesValues: []
+  mLastBuildCode: 0
+  mLastEditorStartupTimeTicks: 638826321003546457
+  mUseModelPickerHierarchyView: 0
   mNewVersionAvailable: 0
   mLastSelectedCustomGvPath: 
   mLastAttachedFlowPlayerValue: 0

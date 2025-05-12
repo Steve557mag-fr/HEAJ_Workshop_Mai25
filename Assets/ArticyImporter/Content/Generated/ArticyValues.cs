@@ -156,6 +156,24 @@ namespace Articy.Test_Project
     
     
     [Serializable()]
+    public class ArticyValueEntryPointTemplate : ArticyValue<Articy.Test_Project.Templates.EntryPointTemplate>
+    {
+    }
+}
+namespace Articy.Test_Project
+{
+    
+    
+    [Serializable()]
+    public class ArticyValueEntryPoint : ArticyValue<EntryPoint>
+    {
+    }
+}
+namespace Articy.Test_Project
+{
+    
+    
+    [Serializable()]
     public class ArticyValueHub : ArticyValue<Hub>
     {
     }
