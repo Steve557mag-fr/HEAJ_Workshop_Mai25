@@ -15,7 +15,7 @@ using System.Collections;
 using UnityEngine;
 
 
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
