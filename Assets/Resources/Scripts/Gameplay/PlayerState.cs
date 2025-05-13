@@ -12,7 +12,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
         if (inventory.ContainsKey(item))
         {
             int prevQ = inventory[item];
-            inventory.Add(item, markInfinite ? -1 : prevQ + quantity);
+            inventory[item] = (markInfinite ? -1 : prevQ + quantity);
         }
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }
@@ -22,6 +22,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
     {
         return FindAnyObjectByType<PlayerState>();
     }
+
     public JObject toJObject()
     {
         // parse inventory
@@ -37,10 +38,12 @@ public class PlayerState : MonoBehaviour, IDataHandle
             {"inventory", data}
         };
     }
+
     public void fromJObject(JObject data)
     {
 
     }
+
     public JObject getDefaultJObject()
     {
         return new()
