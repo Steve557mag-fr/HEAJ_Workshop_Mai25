@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1080164415, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: loc_0x100000000000110_127
+  m_EditorClassIdentifier: 
+  mLocalizedStringsKeys:
+  - DFr_97A5C83E.Text
+  - DFr_2C870468.Text
+  - DFr_9C137161.Text
+  - DFr_0888A8CF.Text
+  - DFr_97B6E1FC.Text
+  - DFr_FEFAB425.Text
+  - Ntt_8BECDE25.DisplayName
+  - Ntt_BC5323A2.DisplayName
+  mLocalizedStringsValues:
+  - "mais .. qu'est ce que je fous l\xE0 ptn ?"
+  - wassup !
+  - PTDRRR t'es qui ???
+  - "ta m\xE8re"
+  - bah voyons ... comment je sors d'ici
+  - "c'est d\xE9j\xE0 fini trql\nbon gar\xE7on"
+  - Me
+  - Other
+  mLocalizedAudioAssetsKeys: []
+  mLocalizedAudioAssetsValues: 
