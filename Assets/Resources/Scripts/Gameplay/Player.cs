@@ -1,13 +1,17 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
 
-    void test()
-    {
+    bool inNavigation = false;
 
+    public void ToggleUINavigation()
+    {
+        inNavigation = !inNavigation;   
     }
+
+    
+
 
 }

@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test;
-using Articy.Test.Features;
+using Articy.Test_Project;
+using Articy.Test_Project.Features;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test.Templates
+namespace Articy.Test_Project.Templates
 {
     
     
@@ -35,7 +35,7 @@ namespace Articy.Test.Templates
         [SerializeField()]
         private UInt32 mOwnerInstanceId;
         
-        public Articy.Test.Features.DefaultBasicCharacterFeatureFeature DefaultBasicCharacterFeature
+        public Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature DefaultBasicCharacterFeature
         {
             get
             {
@@ -75,17 +75,17 @@ namespace Articy.Test.Templates
         
         private void CloneProperties(object aClone, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate newClone = ((Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate)(aClone));
+            Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate newClone = ((Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate)(aClone));
             if ((DefaultBasicCharacterFeature != null))
             {
-                newClone.DefaultBasicCharacterFeature = ((Articy.Test.Features.DefaultBasicCharacterFeatureFeature)(DefaultBasicCharacterFeature.CloneObject(newClone, aFirstClassParent)));
+                newClone.DefaultBasicCharacterFeature = ((Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature)(DefaultBasicCharacterFeature.CloneObject(newClone, aFirstClassParent)));
             }
             newClone.OwnerId = OwnerId;
         }
         
         public object CloneObject(object aParent, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate clone = new Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate();
+            Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate clone = new Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate();
             CloneProperties(clone, aFirstClassParent);
             return clone;
         }

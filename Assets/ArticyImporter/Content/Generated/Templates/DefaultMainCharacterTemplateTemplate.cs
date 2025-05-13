@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test;
-using Articy.Test.Features;
+using Articy.Test_Project;
+using Articy.Test_Project.Features;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test.Templates
+namespace Articy.Test_Project.Templates
 {
     
     
@@ -38,7 +38,7 @@ namespace Articy.Test.Templates
         [SerializeField()]
         private UInt32 mOwnerInstanceId;
         
-        public Articy.Test.Features.DefaultExtendedCharacterFeatureFeature DefaultExtendedCharacterFeature
+        public Articy.Test_Project.Features.DefaultExtendedCharacterFeatureFeature DefaultExtendedCharacterFeature
         {
             get
             {
@@ -50,7 +50,7 @@ namespace Articy.Test.Templates
             }
         }
         
-        public Articy.Test.Features.DefaultBasicCharacterFeatureFeature DefaultBasicCharacterFeature
+        public Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature DefaultBasicCharacterFeature
         {
             get
             {
@@ -92,21 +92,21 @@ namespace Articy.Test.Templates
         
         private void CloneProperties(object aClone, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            Articy.Test.Templates.DefaultMainCharacterTemplateTemplate newClone = ((Articy.Test.Templates.DefaultMainCharacterTemplateTemplate)(aClone));
+            Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate newClone = ((Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate)(aClone));
             if ((DefaultExtendedCharacterFeature != null))
             {
-                newClone.DefaultExtendedCharacterFeature = ((Articy.Test.Features.DefaultExtendedCharacterFeatureFeature)(DefaultExtendedCharacterFeature.CloneObject(newClone, aFirstClassParent)));
+                newClone.DefaultExtendedCharacterFeature = ((Articy.Test_Project.Features.DefaultExtendedCharacterFeatureFeature)(DefaultExtendedCharacterFeature.CloneObject(newClone, aFirstClassParent)));
             }
             if ((DefaultBasicCharacterFeature != null))
             {
-                newClone.DefaultBasicCharacterFeature = ((Articy.Test.Features.DefaultBasicCharacterFeatureFeature)(DefaultBasicCharacterFeature.CloneObject(newClone, aFirstClassParent)));
+                newClone.DefaultBasicCharacterFeature = ((Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature)(DefaultBasicCharacterFeature.CloneObject(newClone, aFirstClassParent)));
             }
             newClone.OwnerId = OwnerId;
         }
         
         public object CloneObject(object aParent, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            Articy.Test.Templates.DefaultMainCharacterTemplateTemplate clone = new Articy.Test.Templates.DefaultMainCharacterTemplateTemplate();
+            Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate clone = new Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate();
             CloneProperties(clone, aFirstClassParent);
             return clone;
         }
