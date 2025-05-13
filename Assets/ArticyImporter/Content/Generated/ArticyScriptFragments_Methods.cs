@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test.GlobalVariables
+namespace Articy.Test_Project.GlobalVariables
 {
     
     

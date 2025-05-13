@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test;
+using Articy.Test_Project;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test.Features
+namespace Articy.Test_Project.Features
 {
     
     
@@ -181,7 +181,7 @@ namespace Articy.Test.Features
         
         private void CloneProperties(object aClone, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            Articy.Test.Features.DefaultBasicCharacterFeatureFeature newClone = ((Articy.Test.Features.DefaultBasicCharacterFeatureFeature)(aClone));
+            Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature newClone = ((Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature)(aClone));
             newClone.Age = Age;
             if ((mSpecies != null))
             {
@@ -213,7 +213,7 @@ namespace Articy.Test.Features
         
         public object CloneObject(object aParent, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            Articy.Test.Features.DefaultBasicCharacterFeatureFeature clone = new Articy.Test.Features.DefaultBasicCharacterFeatureFeature();
+            Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature clone = new Articy.Test_Project.Features.DefaultBasicCharacterFeatureFeature();
             CloneProperties(clone, aFirstClassParent);
             return clone;
         }

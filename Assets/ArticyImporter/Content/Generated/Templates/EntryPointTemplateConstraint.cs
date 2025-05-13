@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Articy.Test_Project;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -16,15 +17,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test_Project
+namespace Articy.Test_Project.Templates
 {
     
     
-    public enum SelectabilityModes
+    public class EntryPointTemplateConstraint
     {
-        
-        Unselectable = 0,
-        
-        Selectable = 1,
     }
 }

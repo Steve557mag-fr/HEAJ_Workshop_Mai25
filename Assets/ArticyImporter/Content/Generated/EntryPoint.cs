@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test_Project.Features;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -21,15 +20,15 @@ namespace Articy.Test_Project
 {
     
     
-    public class DefaultSupportingCharacterTemplate : Entity, IEntity, IPropertyProvider, IObjectWithFeatureDefaultBasicCharacterFeature
+    public class EntryPoint : DialogueFragment, IDialogueFragment, IPropertyProvider
     {
         
         [SerializeField()]
-        private ArticyValueDefaultSupportingCharacterTemplateTemplate mTemplate = new ArticyValueDefaultSupportingCharacterTemplateTemplate();
+        private ArticyValueEntryPointTemplate mTemplate = new ArticyValueEntryPointTemplate();
         
-        private static Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint mConstraints = new Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint();
+        private static Articy.Test_Project.Templates.EntryPointTemplateConstraint mConstraints = new Articy.Test_Project.Templates.EntryPointTemplateConstraint();
         
-        public Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate Template
+        public Articy.Test_Project.Templates.EntryPointTemplate Template
         {
             get
             {
@@ -41,7 +40,7 @@ namespace Articy.Test_Project
             }
         }
         
-        public static Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint Constraints
+        public static Articy.Test_Project.Templates.EntryPointTemplateConstraint Constraints
         {
             get
             {
@@ -49,17 +48,12 @@ namespace Articy.Test_Project
             }
         }
         
-        public DefaultBasicCharacterFeatureFeature GetFeatureDefaultBasicCharacterFeature()
-        {
-            return Template.DefaultBasicCharacterFeature;
-        }
-        
         protected override void CloneProperties(object aClone, Articy.Unity.ArticyObject aFirstClassParent)
         {
-            DefaultSupportingCharacterTemplate newClone = ((DefaultSupportingCharacterTemplate)(aClone));
+            EntryPoint newClone = ((EntryPoint)(aClone));
             if ((Template != null))
             {
-                newClone.Template = ((Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
+                newClone.Template = ((Articy.Test_Project.Templates.EntryPointTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
             }
             base.CloneProperties(newClone, aFirstClassParent);
         }

@@ -1,11 +1,9 @@
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -14,54 +12,38 @@ using UnityEngine.UI;
 
 public class CraftSystem : MonoBehaviour
 {
-    [Header("PlayerState Reference")]
+    [SerializeField] GameObject craftingUI;
     [SerializeField] PlayerState playerState;
-
-    [Header("Prefabs")]
     [SerializeField] GameObject itemSpritePrefab;
     [SerializeField] GameObject recipeButtonPrefab;
-
-    [Header("UI References")]
-    [SerializeField] GameObject craftingUI;
     [SerializeField] Transform gameItemContainer;
     [SerializeField] Transform recipeListContainer;
     [SerializeField] Transform patternContainer;
     [SerializeField] Transform craftingUICanva;
-    [SerializeField] Button removePartsButton;
-
-    [Header("Scriptable Object References")]
     [SerializeField] GameItemObject poutre;
     [SerializeField] CraftDataObject clayPowder;
     [SerializeField] CraftDataObject poutreCraft;
 
 
-    List<GameObject> pieceList = new List<GameObject>();
-    List<CraftDataObject> craftList;
-    List<GameObject> gameItemList = new List<GameObject>();
     CraftDataObject selectedCraft;
-    GameItemObject draggedGI;
-    GameObject currentPiece = null;
-    GameObject piece;
-    GameObject activePattern = null;
-    bool displayState = true;
+    List<CraftDataObject> craftList;
+    List<GameObject> pieceList = new List<GameObject>();
+    GameObject pattern;
+    GameObject currentPiece;
 
 
     private void Start()
     {
         playerState.ModifyQuantity(poutre, 2);
         RefreshCraftList();
-        RefreshGameItemList();
-        SwitchItemDisplay(displayState);
-        removePartsButton.GetComponent<Button>().onClick.AddListener(() => { RemoveAllParts(); });
+        RefrehGameItemList();
+
+
     }
 
     private void Update()
     {
-        if (currentPiece)
-        {
-            currentPiece.transform.position = Input.mousePosition;
-            //Debug.Log(Input.mousePosition);
-        }
+        if (currentPiece) currentPiece.transform.position = Input.mousePosition;
     }
 
     internal static CraftSystem Get()
@@ -95,17 +77,8 @@ public class CraftSystem : MonoBehaviour
         }
     }
 
-    public void RefreshGameItemList()
+    public void RefrehGameItemList()
     {
-        if (gameItemList.Count != 0)
-        {
-            foreach (var gi in gameItemList)
-            {
-                Destroy(gi);
-            }
-            gameItemList.Clear();
-        }
-
         var key = playerState.inventory.Keys.ToList();
 
         for (int i = 0; i < playerState.inventory.Keys.Count; i++)
@@ -129,8 +102,6 @@ public class CraftSystem : MonoBehaviour
             prefab.transform.Find("ItemIcon").GetComponent<Image>().sprite = itemIcon;
             prefab.transform.Find("PuzzleIcon").GetComponent<Image>().sprite = puzzleIcon;
 
-            #region Adding Event Triggers
-
             EventTrigger eventTrigger = prefab.transform.GetComponent<EventTrigger>();
 
             EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
@@ -142,12 +113,8 @@ public class CraftSystem : MonoBehaviour
             pointerUpEntry.eventID = EventTriggerType.PointerUp;
             pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
             eventTrigger.triggers.Add(pointerUpEntry);
-
-            #endregion
-
-            gameItemList.Add(prefab);
         }
-        SwitchItemDisplay(displayState);
+        SwitchItemDisplay(true);
     }
 
     public void SwitchItemDisplay(bool state)
@@ -159,13 +126,12 @@ public class CraftSystem : MonoBehaviour
             child.Find("PuzzleIcon").gameObject.SetActive(!state);
 
         }
-
-        displayState = !displayState;
     }
 
     public void SelectCraft(int index)
     {
-        //Debug.Log($"{index}");
+        Debug.Log($"{index}");
+
 
         selectedCraft = craftList[index];
         DisplayCraft();
@@ -173,106 +139,59 @@ public class CraftSystem : MonoBehaviour
 
     public void DisplayCraft()
     {
-        if (activePattern) { Destroy(activePattern); }
+        if (pattern) { Destroy(pattern); }
 
-        activePattern = Instantiate(selectedCraft.pattern, parent:patternContainer);
-    }
-
-    public void BeginDrag(int index)
-    {
-        gameItemContainer.GetComponentInParent<ScrollRect>().enabled = false;
-
-        draggedGI = playerState.inventory.Keys.ToList()[index];
-
-        int quant = playerState.inventory[draggedGI];
-
-        if (quant != 0)
-        {
-            piece = Instantiate(draggedGI.piece, parent: craftingUICanva);
-            piece.name = draggedGI.name;
-            currentPiece = piece;
-            pieceList.Add(piece);
-        }
-        else
-        {
-            Debug.Log($"Not Enough {draggedGI.name}");
-        }
-    }
-
-    public void EndDrag()
-    {
-        if (currentPiece)
-        {
-            //check for position
-            if (IsInRange(currentPiece, 255, 815, 100, 475))
-            {
-                playerState.ModifyQuantity(draggedGI, -1);
-                RefreshGameItemList();
-
-                Transform nearestJoint = GetNearestJoint(currentPiece.transform);
-                Debug.Log(nearestJoint);
-                if (nearestJoint == null) currentPiece = null;
-                else Place(currentPiece.transform, nearestJoint);
-            }
-            else Destroy(piece);
-        }
-        gameItemContainer.GetComponentInParent<ScrollRect>().enabled = true;
-    }
-
-    public bool IsInRange(GameObject piece, float minX, float maxX, float minY, float maxY)
-    {
-        return piece.transform.position.x > minX
-           && piece.transform.position.x < maxX
-           && piece.transform.position.y > minY
-           && piece.transform.position.y < maxY;
-    }
-
-    public Transform GetNearestJoint(Transform piece)
-    {
-        float distance;
-        float nearestDistance = math.INFINITY;
-        Transform nearestJoint = piece;
-
-        if (activePattern)
-        {
-            for (int i = 0; i < activePattern.transform.childCount; i++)
-            {
-                distance = (activePattern.transform.GetChild(i).position - piece.position).magnitude;
-                if (nearestDistance < distance)
-                {
-                    nearestDistance = distance;
-                    nearestJoint = activePattern.transform.GetChild(i);
-                }
-            }
-        }
-        else nearestJoint = null;
-
-        if (nearestJoint != null && (nearestJoint.position - piece.position).magnitude < 10f) return nearestJoint;
-        else return null;
-
-    }
-
-    public void Place(Transform piece, Transform at)
-    {
-        piece.transform.position = at.position;
+        pattern = Instantiate(selectedCraft.pattern, parent:patternContainer);
     }
 
     public void RemoveAllParts()
     {
-        Debug.Log($"Remove Parts Triggered");
 
-        foreach (var p in pieceList)
-        {
-            playerState.ModifyQuantity(playerState.FromString(piece.name), 1); 
-            Destroy(p);
-        }
-        pieceList.Clear();
-        RefreshGameItemList();
     }
 
-    public bool PatternIsValid(List<Sprite> pieces)
+    public void Craft()
     {
-        for (int i = 0; i < activePattern.transform.childCount; i++)
+
+    }
+
+    public void BeginDrag(int index)
+    {
+
+        Debug.Log($"Begun Drag");
+        currentPiece = Instantiate(playerState.inventory.Keys.ToList()[index].piece, parent:craftingUICanva);
+
+        pieceList.Add(currentPiece);
+        
+    }
+
+    public void EndDrag()
+    {
+        Debug.Log($"Ended Drag");
+        if (currentPiece) pieceList.Remove(currentPiece); Destroy(currentPiece);
+    }
+
+    public Vector3 GetNearestJoint(Transform part)
+    {
+        float distance;
+        float nearestDistance = math.INFINITY;
+        Vector3 nearestJoint = part.position;
+
+        for (int i = 0; i < pattern.transform.childCount; i++)
+        {
+            distance = (pattern.transform.GetChild(i).position - part.position).magnitude;
+            if (nearestDistance < distance)
+            {
+                nearestDistance = distance;
+                nearestJoint = pattern.transform.GetChild(i).position;
+            }
+        }
+
+        return nearestJoint;
+    }
+
+    public bool PatternIsValid(List<Sprite> parts)
+    {
+        for (int i = 0; i < pattern.transform.childCount; i++)
         {
 
         }
@@ -282,10 +201,8 @@ public class CraftSystem : MonoBehaviour
         return true;
     }
 
-    public void Craft()
+    public void Place(Sprite part, Transform at)
     {
 
     }
-
-
 }

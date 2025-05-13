@@ -17,7 +17,7 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace Articy.Test
+namespace Articy.Test_Project
 {
     
     

@@ -13,40 +13,22 @@ MonoBehaviour:
   m_Name: loc_0x100000000000110_127
   m_EditorClassIdentifier: 
   mLocalizedStringsKeys:
-  - FFr_D401B36C.DisplayName
-  - FFr_D401B36C.Text
-  - Dlg_60FD99A1.DisplayName
-  - Dlg_60FD99A1.Text
-  - Dlg_C493E846.DisplayName
-  - DFr_CAB40DBF.Text
-  - DFr_D9072EB9.Text
-  - DFr_4058F53C.Text
-  - Ntt_913B1908.DisplayName
-  - Ntt_794E87FA.DisplayName
-  - Ntt_CB2166A1.DisplayName
-  - Ntt_B05BC6C5.DisplayName
-  - Ntt_652FC7D9.DisplayName
+  - DFr_97A5C83E.Text
+  - DFr_2C870468.Text
+  - DFr_9C137161.Text
+  - DFr_0888A8CF.Text
+  - DFr_97B6E1FC.Text
+  - DFr_FEFAB425.Text
+  - Ntt_8BECDE25.DisplayName
+  - Ntt_BC5323A2.DisplayName
   mLocalizedStringsValues:
-  - EVENT
-  - 'event_test
-
-    
-
-    1
-
-    
-
-    CHICKEN JOKEY'
-  - Dialog_Test_01
-  - Yukiko says "Hello".
-  - Dialogue_Test_02
-  - Hello.
-  - Popipopipo
-  - On est sur le State 02
-  - Yukiko
-  - Souma
-  - Moriyama
-  - Aoyama
-  - Fukuro
+  - "mais .. qu'est ce que je fous l\xE0 ptn ?"
+  - wassup !
+  - PTDRRR t'es qui ???
+  - "ta m\xE8re"
+  - bah voyons ... comment je sors d'ici
+  - "c'est d\xE9j\xE0 fini trql\nbon gar\xE7on"
+  - Me
+  - Other
   mLocalizedAudioAssetsKeys: []
   mLocalizedAudioAssetsValues: 

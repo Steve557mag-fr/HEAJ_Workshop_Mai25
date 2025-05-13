@@ -12,19 +12,11 @@ public class PlayerState : MonoBehaviour, IDataHandle
         if (inventory.ContainsKey(item))
         {
             int prevQ = inventory[item];
-            inventory[item] = ( markInfinite ? -1 : prevQ + quantity);
+            inventory.Add(item, markInfinite ? -1 : prevQ + quantity);
         }
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }
 
-    public GameItemObject? FromString(string s)
-    {
-        foreach(var p in inventory.ToList())
-        {
-            if (p.Key.name == s) return p.Key;
-        }
-        return null;
-    }
 
     public static PlayerState Get()
     {
