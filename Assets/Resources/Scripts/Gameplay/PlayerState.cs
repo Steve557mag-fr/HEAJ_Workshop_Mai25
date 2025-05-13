@@ -12,7 +12,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
         if (inventory.ContainsKey(item))
         {
             int prevQ = inventory[item];
-            inventory.Add(item, markInfinite ? -1 : prevQ + quantity);
+            inventory[item] = ( markInfinite ? -1 : prevQ + quantity);
         }
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }

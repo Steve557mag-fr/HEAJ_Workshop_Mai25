@@ -313,7 +313,7 @@ MonoBehaviour:
     technicalName: Ufo_D0C132A8
     articyType: AssetsUserFolder
     childCount: 0
---- !u!114 &-6949203553075550094
+--- !u!114 &-5254879430497824046
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,25 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
   m_Name: ArticyScriptFragments
   m_EditorClassIdentifier: 
---- !u!114 &-4938922720425435206
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01189f442d0e44b4c9e16ce8ef2e99b3, type: 3}
-  m_Name: DefaultGlobalVariables
-  m_EditorClassIdentifier: 
-  mBoolVariableCache: []
-  mIntVariableCache: []
-  mStringVariableCache: []
-  mLiveBoolVariableCache: []
-  mLiveIntVariableCache: []
-  mLiveStringVariableCache: []
-  mIsInitialized: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,9 +346,13 @@ MonoBehaviour:
     mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
     mTechnicalName: Test
   mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: -4938922720425435206}
-  mScriptFragments: {fileID: -6949203553075550094}
-  mPackages: []
+  mDefaultGlobalVariables: {fileID: 9094243076434308641}
+  mScriptFragments: {fileID: -5254879430497824046}
+  mPackages:
+  - PackageId: 72057594037928208
+    PackageName: Tous objets
+    PackagePath: package_0x100000000000110
+    mIsDefaultPackage: 1
 --- !u!114 &5738627198712827957
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -389,3 +374,22 @@ MonoBehaviour:
     mIsVoiceOver: 0
   mThrowOnMissingText: 0
   mClearOnLanguageSwitch: 1
+--- !u!114 &9094243076434308641
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01189f442d0e44b4c9e16ce8ef2e99b3, type: 3}
+  m_Name: DefaultGlobalVariables
+  m_EditorClassIdentifier: 
+  mBoolVariableCache: []
+  mIntVariableCache: []
+  mStringVariableCache: []
+  mLiveBoolVariableCache: []
+  mLiveIntVariableCache: []
+  mLiveStringVariableCache: []
+  mIsInitialized: 1

@@ -33,12 +33,9 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void StartWith(ArticyRef node)
     {
-        var a = node.GetObject<Dialogue>();
-        if (a != null)
-        {
-            var list = ArticyFlowPlayer.GetBranchesOfNode(a);
-            flowPlayer.Play(list[0]);
-        }
+        var list = ArticyFlowPlayer.GetBranchesOfNode(node.GetObject());
+        flowPlayer.Play(list[0]);
+        print(list.Count);
     }
 
     public void NextDialog()

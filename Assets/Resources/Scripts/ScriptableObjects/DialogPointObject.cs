@@ -6,7 +6,7 @@ using UnityEngine;
 public class DialogPointObject : ScriptableObject
 {
 
-    [ArticyTypeConstraint(typeof(Dialogue))]
+    [ArticyTypeConstraint(typeof(Dialogue), typeof(Hub))]
     public ArticyRef entryPoint;
 
     public void Run()
