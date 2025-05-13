@@ -1,4 +1,4 @@
-namespace Articy.Test_Project
+namespace Articy.Test
 {
 	public static class EnumExtensionMethods
 	{

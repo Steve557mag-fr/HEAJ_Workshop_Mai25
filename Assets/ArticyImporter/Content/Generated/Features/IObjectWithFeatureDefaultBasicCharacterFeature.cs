@@ -8,14 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test_Project.Features;
+using Articy.Test.Features;
 using Articy.Unity;
 using System;
 using System.Collections;
 using UnityEngine;
 
 
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
