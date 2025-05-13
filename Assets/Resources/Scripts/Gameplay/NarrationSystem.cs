@@ -110,8 +110,9 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         ToggleDialogUI(true);
         state = NarrationState.DIALOG;
-        uiTextDisplayName.text = dialog.Speaker.name;
         uiTextDialog.text = dialog.Text;
+        uiTextDisplayName.text = dialog.Speaker.Id != 0 ? dialog.Speaker.name : "??";
+
     }
 
     void UpdateCharacter3D()
