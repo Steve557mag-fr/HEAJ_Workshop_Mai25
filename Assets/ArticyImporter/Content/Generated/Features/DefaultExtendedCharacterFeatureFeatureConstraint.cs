@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test_Project;
+using Articy.Test;
 using Articy.Unity;
 using Articy.Unity.Constraints;
 using Articy.Unity.Interfaces;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test_Project.Features
+namespace Articy.Test.Features
 {
     
     
