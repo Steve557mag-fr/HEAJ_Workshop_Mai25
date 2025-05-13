@@ -17,6 +17,14 @@ public class PlayerState : MonoBehaviour, IDataHandle
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }
 
+    public GameItemObject? fromString(string s)
+    {
+        foreach(var p in inventory.ToList())
+        {
+            if (p.Key.name == s) return p.Key;
+        }
+        return null;
+    }
 
     public static PlayerState Get()
     {
