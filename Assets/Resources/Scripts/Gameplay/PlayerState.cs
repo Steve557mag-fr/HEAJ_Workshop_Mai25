@@ -47,7 +47,11 @@ public class PlayerState : MonoBehaviour, IDataHandle
     }
     public void fromJObject(JObject data)
     {
-
+        var inv = data["inventory"];
+        foreach(var p in inv)
+        {
+            print(p);
+        }
     }
     public JObject getDefaultJObject()
     {

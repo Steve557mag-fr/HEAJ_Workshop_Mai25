@@ -3,7 +3,9 @@ using Articy.Test;
 using Articy.Unity;
 using UnityEngine;
 using TMPro;
-using NUnit.Framework;
+using System.Text.RegularExpressions;
+using System;
+using System.Linq;
 
 enum NarrationState{
     DIALOG,
@@ -17,6 +19,10 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [Header("References")]
     [SerializeField] ArticyFlowPlayer flowPlayer;
 
+    [Header("Characters")]
+    [ArticyTypeConstraint(typeof(Hub))]
+    [SerializeField] ArticyRef[] characters;
+
     [Header("UI References")]
     [SerializeField] List<TextMeshProUGUI> choiceTexts;
     [SerializeField] List<GameObject> choiceButtons;
@@ -24,12 +30,14 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
 
     int[] branchindex;
-
     NarrationState state;
+    Dictionary<string, Action<string[]>> actionsFlowFragement = new();
 
     private void Start()
     {
         state = NarrationState.CLOSED;
+        actionsFlowFragement.Add("event_test", (args) => { Debug.Log("event!!"); });
+
     }
 
     public void StartWith(ArticyRef node)
@@ -39,6 +47,21 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         print($"branches : {list.Count}");
 
     }
+
+    public void StartWith(string character)
+    {
+        for(int i = 0; i < characters.Length; i++)
+        {
+            if (characters[i].GetObject().name != character) continue;
+            var output = characters[i].GetObject<Hub>().OutputPins;
+            for(int j = 0; j < output.Count; j++)
+            {
+                print($"conx: {output[j].ToString()}");
+            }
+
+        }
+    }
+
 
     public void NextDialog()
     {
@@ -72,12 +95,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
-        if(aObject == null)
-        {
-            print("the end!");
-            return;
-        }
-        if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
+        if (aObject == null) return;
+        else if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
+        else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
+        else if (aObject.GetType() == typeof(FlowFragment)) DispatchEvent(aObject as FlowFragment);
+        else if (aObject.GetType() == typeof(OutputPin)) ToggleUI(false);
 
         print(aObject.GetType());
 
@@ -115,20 +137,35 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         ToggleDialogUI(true);
         state = NarrationState.DIALOG;
+
         uiTextDialog.text = dialog.Text;
-
-        uiTextDisplayName.text = dialog.Speaker != null ? dialog.Speaker.name : "??";
+        uiTextDisplayName.text = dialog.Speaker != null ? dialog.Speaker.name : "? ? ?";
 
     }
 
-    void UpdateCharacter3D()
+    void DispatchEvent(FlowFragment flow)
     {
+        string stringAuto = Regex.Replace(flow.Text, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
+        var args = stringAuto.Split('\n').ToList();
+        string method = args[0];
+        args.RemoveAt(0);
 
+        if (actionsFlowFragement.ContainsKey(method))
+        {
+            actionsFlowFragement[method].Invoke(args.ToArray());
+        }
+        Next();
     }
+
 
     internal static NarrationSystem Get()
     {
         return FindFirstObjectByType<NarrationSystem>();
+    }
+
+    internal static NarrationState GetNarrationState()
+    {
+        return Get().state;
     }
 
 }
