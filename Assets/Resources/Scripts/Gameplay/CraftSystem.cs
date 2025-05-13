@@ -189,7 +189,7 @@ public class CraftSystem : MonoBehaviour
         if (quant != 0)
         {
             piece = Instantiate(draggedGI.piece, parent: craftingUICanva);
-            
+            piece.name = draggedGI.name;
             currentPiece = piece;
             pieceList.Add(piece);
         }
@@ -263,10 +263,11 @@ public class CraftSystem : MonoBehaviour
 
         foreach (var p in pieceList)
         {
-            playerState.ModifyQuantity(, 1);
+            playerState.ModifyQuantity(playerState.FromString(piece.name), 1); 
             Destroy(p);
         }
         pieceList.Clear();
+        RefreshGameItemList();
     }
 
     public bool PatternIsValid(List<Sprite> pieces)

@@ -389,10 +389,6 @@ MonoBehaviour:
   mLiveIntVariableCache: []
   mLiveStringVariableCache: []
   mIsInitialized: 1
-  mDay1_Hints:
-    _VariableStorage: {fileID: -8420766971255238775}
-  mTest_Var:
-    _VariableStorage: {fileID: -8420766971255238775}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

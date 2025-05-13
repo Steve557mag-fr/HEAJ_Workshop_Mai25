@@ -17,7 +17,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }
 
-    public GameItemObject? fromString(string s)
+    public GameItemObject? FromString(string s)
     {
         foreach(var p in inventory.ToList())
         {
