@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test_Project.Features;
+using Articy.Test.Features;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test_Project
+namespace Articy.Test
 {
     
     
@@ -27,9 +27,9 @@ namespace Articy.Test_Project
         [SerializeField()]
         private ArticyValueDefaultSupportingCharacterTemplateTemplate mTemplate = new ArticyValueDefaultSupportingCharacterTemplateTemplate();
         
-        private static Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint mConstraints = new Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint();
+        private static Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplateConstraint mConstraints = new Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplateConstraint();
         
-        public Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate Template
+        public Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate Template
         {
             get
             {
@@ -41,7 +41,7 @@ namespace Articy.Test_Project
             }
         }
         
-        public static Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplateConstraint Constraints
+        public static Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplateConstraint Constraints
         {
             get
             {
@@ -59,7 +59,7 @@ namespace Articy.Test_Project
             DefaultSupportingCharacterTemplate newClone = ((DefaultSupportingCharacterTemplate)(aClone));
             if ((Template != null))
             {
-                newClone.Template = ((Articy.Test_Project.Templates.DefaultSupportingCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
+                newClone.Template = ((Articy.Test.Templates.DefaultSupportingCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
             }
             base.CloneProperties(newClone, aFirstClassParent);
         }

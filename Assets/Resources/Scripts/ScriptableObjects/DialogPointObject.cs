@@ -1,4 +1,4 @@
-using Articy.Test_Project;
+using Articy.Test;
 using Articy.Unity;
 using UnityEngine;
 

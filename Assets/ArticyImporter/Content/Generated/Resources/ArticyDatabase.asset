@@ -1,46 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4777221829990571131
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
-  m_Name: ArticyScriptFragments
-  m_EditorClassIdentifier: 
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1676762633, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
-  m_Name: ArticyDatabase
-  m_EditorClassIdentifier: 
-  mHierarchy: {fileID: 2755046513257120908}
-  mLocalization: {fileID: 6097238584611608393}
-  mRuleSetId: 269
-  mInternalProject:
-    mName: Test Project
-    mDetailName: 
-    mId: 02d29ce4-559d-4ed1-8a03-c737a006d522
-    mTechnicalName: Test_Project
-  mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: 7576601431204088714}
-  mScriptFragments: {fileID: -4777221829990571131}
-  mPackages:
-  - PackageId: 72057594037928208
-    PackageName: All objects
-    PackagePath: package_0x100000000000110
-    mIsDefaultPackage: 1
---- !u!114 &2755046513257120908
+--- !u!114 &-8925722783878386097
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +15,7 @@ MonoBehaviour:
   serializedNodes:
   - id: 72057594037927937
     parent: 0
-    technicalName: Test_Project
+    technicalName: Test
     articyType: Project
     childCount: 10
   - id: 216172786292838683
@@ -73,90 +33,115 @@ MonoBehaviour:
     technicalName: 
     articyType: ProjectSettingsGeneral
     childCount: 0
-  - id: 72057594037927946
-    parent: 216172786292838683
-    technicalName: 
-    articyType: ProjectSettingsJourneys
-    childCount: 0
   - id: 72057594037927947
     parent: 216172786292838683
     technicalName: 
     articyType: ProjectSettingsLocation
     childCount: 0
+  - id: 72057594037927946
+    parent: 216172786292838683
+    technicalName: 
+    articyType: ProjectSettingsJourneys
+    childCount: 0
   - id: 216172782840400980
     parent: 72057594037927937
     technicalName: GlobalVariables
     articyType: GlobalVariables
+    childCount: 3
+  - id: 72057594037928266
+    parent: 216172782840400980
+    technicalName: 
+    articyType: VariableSet
+    childCount: 0
+  - id: 72057594037928267
+    parent: 216172782840400980
+    technicalName: 
+    articyType: VariableSet
+    childCount: 0
+  - id: 72057594037928307
+    parent: 216172782840400980
+    technicalName: 
+    articyType: VariableSet
     childCount: 0
   - id: 216172783251375095
     parent: 72057594037927937
     technicalName: Flow
     articyType: Flow
-    childCount: 8
-  - id: 72057594037928327
+    childCount: 6
+  - id: 72057594037928291
     parent: 216172783251375095
-    technicalName: Hub_872D08BF
+    technicalName: Hub_C93FD44A
     articyType: Hub
     childCount: 0
-  - id: 72057594037928241
+  - id: 72057594037928335
     parent: 216172783251375095
-    technicalName: DFr_97A5C83E
+    technicalName: Dlg_C493E846
+    articyType: Dialogue
+    childCount: 1
+  - id: 72057594037928342
+    parent: 72057594037928335
+    technicalName: DFr_4058F53C
     articyType: DialogueFragment
     childCount: 0
-  - id: 72057594037928247
+  - id: 72057594037928319
     parent: 216172783251375095
-    technicalName: DFr_2C870468
+    technicalName: DFr_D9072EB9
     articyType: DialogueFragment
     childCount: 0
-  - id: 72057594037928254
+  - id: 72057594037928246
     parent: 216172783251375095
-    technicalName: Hub_CFCB7B6D
-    articyType: Hub
-    childCount: 0
-  - id: 72057594037928260
-    parent: 216172783251375095
-    technicalName: DFr_9C137161
+    technicalName: Dlg_60FD99A1
+    articyType: Dialogue
+    childCount: 1
+  - id: 72057594037928252
+    parent: 72057594037928246
+    technicalName: DFr_CAB40DBF
     articyType: DialogueFragment
     childCount: 0
-  - id: 72057594037928275
+  - id: 72057594037928285
     parent: 216172783251375095
-    technicalName: DFr_97B6E1FC
-    articyType: DialogueFragment
+    technicalName: FFr_D401B36C
+    articyType: FlowFragment
     childCount: 0
-  - id: 72057594037928268
+  - id: 72057594037928301
     parent: 216172783251375095
-    technicalName: DFr_0888A8CF
-    articyType: DialogueFragment
-    childCount: 0
-  - id: 72057594037928283
-    parent: 216172783251375095
-    technicalName: DFr_FEFAB425
-    articyType: DialogueFragment
+    technicalName: Cnd_4298019E
+    articyType: Condition
     childCount: 0
   - id: 216172785005863603
     parent: 72057594037927937
     technicalName: Entities
     articyType: Entities
-    childCount: 2
-  - id: 72057594037928221
+    childCount: 5
+  - id: 72057594037928233
     parent: 216172785005863603
-    technicalName: Ntt_8BECDE25
+    technicalName: Ntt_B05BC6C5
+    articyType: Entity
+    childCount: 0
+  - id: 72057594037928237
+    parent: 216172785005863603
+    technicalName: Ntt_652FC7D9
+    articyType: Entity
+    childCount: 0
+  - id: 72057594037928229
+    parent: 216172785005863603
+    technicalName: Ntt_CB2166A1
     articyType: Entity
     childCount: 0
   - id: 72057594037928225
     parent: 216172785005863603
-    technicalName: Ntt_BC5323A2
+    technicalName: Ntt_794E87FA
+    articyType: Entity
+    childCount: 0
+  - id: 72057594037928221
+    parent: 216172785005863603
+    technicalName: Ntt_913B1908
     articyType: Entity
     childCount: 0
   - id: 216172782940115884
     parent: 72057594037927937
     technicalName: Locations
     articyType: Locations
-    childCount: 1
-  - id: 72057594037928229
-    parent: 216172782940115884
-    technicalName: Loc_EC2521D0
-    articyType: Location
     childCount: 0
   - id: 216172782386062064
     parent: 72057594037927937
@@ -173,21 +158,6 @@ MonoBehaviour:
     technicalName: TemplateDesign
     articyType: TemplateDesign
     childCount: 3
-  - id: 216172785641213376
-    parent: 216172782815217020
-    technicalName: Features
-    articyType: Features
-    childCount: 2
-  - id: 72057594037927951
-    parent: 216172785641213376
-    technicalName: DefaultBasicCharacterFeature
-    articyType: Feature
-    childCount: 0
-  - id: 72057594037928016
-    parent: 216172785641213376
-    technicalName: DefaultExtendedCharacterFeature
-    articyType: Feature
-    childCount: 0
   - id: 216172782852592046
     parent: 216172782815217020
     technicalName: PropertyTemplates
@@ -208,12 +178,12 @@ MonoBehaviour:
     technicalName: 
     articyType: TypedPropertyTemplates
     childCount: 0
-  - id: 216172785725457481
+  - id: 216172783022940736
     parent: 216172782852592046
     technicalName: 
     articyType: TypedPropertyTemplates
     childCount: 0
-  - id: 216172783022940736
+  - id: 216172785725457481
     parent: 216172782852592046
     technicalName: 
     articyType: TypedPropertyTemplates
@@ -222,6 +192,21 @@ MonoBehaviour:
     parent: 216172782852592046
     technicalName: 
     articyType: TypedPropertyTemplates
+    childCount: 0
+  - id: 216172785641213376
+    parent: 216172782815217020
+    technicalName: Features
+    articyType: Features
+    childCount: 2
+  - id: 72057594037927951
+    parent: 216172785641213376
+    technicalName: DefaultBasicCharacterFeature
+    articyType: Feature
+    childCount: 0
+  - id: 72057594037928016
+    parent: 216172785641213376
+    technicalName: DefaultExtendedCharacterFeature
+    articyType: Feature
     childCount: 0
   - id: 216172784713633229
     parent: 216172782815217020
@@ -233,20 +218,15 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
-  - id: 216172785817780125
+  - id: 216172783507662867
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
-  - id: 216172782164859599
+  - id: 216172785817780125
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
-    childCount: 1
-  - id: 72057594037928320
-    parent: 216172782164859599
-    technicalName: EntryPoint
-    articyType: Template
     childCount: 0
   - id: 216172784493379826
     parent: 216172784713633229
@@ -254,6 +234,11 @@ MonoBehaviour:
     articyType: TemplateTypeFolder
     childCount: 0
   - id: 216172786085793667
+    parent: 216172784713633229
+    technicalName: 
+    articyType: TemplateTypeFolder
+    childCount: 0
+  - id: 216172783227679388
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
@@ -272,6 +257,11 @@ MonoBehaviour:
     parent: 216172784138869361
     technicalName: DefaultSupportingCharacterTemplate
     articyType: Template
+    childCount: 0
+  - id: 216172782164859599
+    parent: 216172784713633229
+    technicalName: 
+    articyType: TemplateTypeFolder
     childCount: 0
   - id: 216172783944319605
     parent: 216172784713633229
@@ -293,11 +283,6 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
-  - id: 216172785027381783
-    parent: 216172784713633229
-    technicalName: 
-    articyType: TemplateTypeFolder
-    childCount: 0
   - id: 216172786328477020
     parent: 216172784713633229
     technicalName: 
@@ -308,12 +293,7 @@ MonoBehaviour:
     technicalName: 
     articyType: TemplateTypeFolder
     childCount: 0
-  - id: 216172783507662867
-    parent: 216172784713633229
-    technicalName: 
-    articyType: TemplateTypeFolder
-    childCount: 0
-  - id: 216172783227679388
+  - id: 216172785027381783
     parent: 216172784713633229
     technicalName: 
     articyType: TemplateTypeFolder
@@ -355,30 +335,93 @@ MonoBehaviour:
     childCount: 5
   - id: 72057594037928215
     parent: 216172783392894804
-    technicalName: Ufo_273DA3F6
-    articyType: AssetsUserFolder
-    childCount: 0
-  - id: 72057594037928217
-    parent: 216172783392894804
-    technicalName: Ufo_8FBFA327
-    articyType: AssetsUserFolder
-    childCount: 0
-  - id: 72057594037928211
-    parent: 216172783392894804
-    technicalName: Ufo_B405E814
+    technicalName: Ufo_AA0BA2D5
     articyType: AssetsUserFolder
     childCount: 0
   - id: 72057594037928219
     parent: 216172783392894804
-    technicalName: Ufo_703011B2
+    technicalName: Ufo_B6A03C90
+    articyType: AssetsUserFolder
+    childCount: 0
+  - id: 72057594037928217
+    parent: 216172783392894804
+    technicalName: Ufo_6D7E38C7
+    articyType: AssetsUserFolder
+    childCount: 0
+  - id: 72057594037928211
+    parent: 216172783392894804
+    technicalName: Ufo_A8AAE444
     articyType: AssetsUserFolder
     childCount: 0
   - id: 72057594037928213
     parent: 216172783392894804
-    technicalName: Ufo_2C95B91B
+    technicalName: Ufo_D0C132A8
     articyType: AssetsUserFolder
     childCount: 0
---- !u!114 &6097238584611608393
+--- !u!114 &-8420766971255238775
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01189f442d0e44b4c9e16ce8ef2e99b3, type: 3}
+  m_Name: DefaultGlobalVariables
+  m_EditorClassIdentifier: 
+  mBoolVariableCache:
+  - mFullQualifiedName: Day1_Hints.Knows_Jade
+    mVar:
+      values: 00
+  - mFullQualifiedName: Day1_Hints.Knows_Momiji
+    mVar:
+      values: 00
+  - mFullQualifiedName: Day1_Hints.NewVariable
+    mVar:
+      values: 00
+  - mFullQualifiedName: Test_Var.var_test
+    mVar:
+      values: 00
+  mIntVariableCache: []
+  mStringVariableCache: []
+  mLiveBoolVariableCache: []
+  mLiveIntVariableCache: []
+  mLiveStringVariableCache: []
+  mIsInitialized: 1
+  mDay1_Hints:
+    _VariableStorage: {fileID: -8420766971255238775}
+  mTest_Var:
+    _VariableStorage: {fileID: -8420766971255238775}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1676762633, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: ArticyDatabase
+  m_EditorClassIdentifier: 
+  mHierarchy: {fileID: -8925722783878386097}
+  mLocalization: {fileID: 5738627198712827957}
+  mRuleSetId: 269
+  mInternalProject:
+    mName: Test
+    mDetailName: 
+    mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
+    mTechnicalName: Test
+  mImportedAssets: []
+  mDefaultGlobalVariables: {fileID: -8420766971255238775}
+  mScriptFragments: {fileID: 9114377082902407301}
+  mPackages:
+  - PackageId: 72057594037928208
+    PackageName: Tous objets
+    PackagePath: package_0x100000000000110
+    mIsDefaultPackage: 1
+--- !u!114 &5738627198712827957
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,27 +437,20 @@ MonoBehaviour:
   mLanguageId: 127
   mLanguages:
   - mArticyLanguageId: 127
-    mCultureName: 
-    mLanguageName: Invariant Language (Invariant Country)
+    mCultureName: fr
+    mLanguageName: French
     mIsVoiceOver: 0
   mThrowOnMissingText: 0
   mClearOnLanguageSwitch: 1
---- !u!114 &7576601431204088714
+--- !u!114 &9114377082902407301
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01189f442d0e44b4c9e16ce8ef2e99b3, type: 3}
-  m_Name: DefaultGlobalVariables
+  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
+  m_Name: ArticyScriptFragments
   m_EditorClassIdentifier: 
-  mBoolVariableCache: []
-  mIntVariableCache: []
-  mStringVariableCache: []
-  mLiveBoolVariableCache: []
-  mLiveIntVariableCache: []
-  mLiveStringVariableCache: []
-  mIsInitialized: 1
