@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/SceneTemplateAssets.meta
 guid: c2e08cf5db35d6c4a95cd1e7fced2c6e
+========
+guid: 72c1ccaa1dca0844f84570132e28eee4
+>>>>>>>> Workshop-Col1:Assets/Resources/Fonts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
