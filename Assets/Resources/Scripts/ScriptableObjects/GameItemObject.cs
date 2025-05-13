@@ -6,6 +6,6 @@ public class GameItemObject : ScriptableObject
 
     public Sprite itemIcon;
     public Sprite puzzleIcon;
-    
+    public GameObject piece;
 
 }
