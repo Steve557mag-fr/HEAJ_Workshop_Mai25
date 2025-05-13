@@ -47,47 +47,12 @@ MonoBehaviour:
     parent: 72057594037927937
     technicalName: GlobalVariables
     articyType: GlobalVariables
-    childCount: 3
-  - id: 72057594037928266
-    parent: 216172782840400980
-    technicalName: 
-    articyType: VariableSet
-    childCount: 0
-  - id: 72057594037928267
-    parent: 216172782840400980
-    technicalName: 
-    articyType: VariableSet
-    childCount: 0
-  - id: 72057594037928307
-    parent: 216172782840400980
-    technicalName: 
-    articyType: VariableSet
     childCount: 0
   - id: 216172783251375095
     parent: 72057594037927937
     technicalName: Flow
     articyType: Flow
-    childCount: 6
-  - id: 72057594037928291
-    parent: 216172783251375095
-    technicalName: Hub_C93FD44A
-    articyType: Hub
-    childCount: 0
-  - id: 72057594037928335
-    parent: 216172783251375095
-    technicalName: Dlg_C493E846
-    articyType: Dialogue
     childCount: 1
-  - id: 72057594037928342
-    parent: 72057594037928335
-    technicalName: DFr_4058F53C
-    articyType: DialogueFragment
-    childCount: 0
-  - id: 72057594037928319
-    parent: 216172783251375095
-    technicalName: DFr_D9072EB9
-    articyType: DialogueFragment
-    childCount: 0
   - id: 72057594037928246
     parent: 216172783251375095
     technicalName: Dlg_60FD99A1
@@ -97,16 +62,6 @@ MonoBehaviour:
     parent: 72057594037928246
     technicalName: DFr_CAB40DBF
     articyType: DialogueFragment
-    childCount: 0
-  - id: 72057594037928285
-    parent: 216172783251375095
-    technicalName: FFr_D401B36C
-    articyType: FlowFragment
-    childCount: 0
-  - id: 72057594037928301
-    parent: 216172783251375095
-    technicalName: Cnd_4298019E
-    articyType: Condition
     childCount: 0
   - id: 216172785005863603
     parent: 72057594037927937
@@ -414,7 +369,7 @@ MonoBehaviour:
     mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
     mTechnicalName: Test
   mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: -8420766971255238775}
+  mDefaultGlobalVariables: {fileID: 0}
   mScriptFragments: {fileID: 9114377082902407301}
   mPackages:
   - PackageId: 72057594037928208
