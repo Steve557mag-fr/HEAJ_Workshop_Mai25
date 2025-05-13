@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using Articy.Test_Project;
+using Articy.Test;
 using Articy.Unity;
 using UnityEngine;
 using TMPro;
+using NUnit.Framework;
 
 enum NarrationState{
     DIALOG,
@@ -33,12 +34,10 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void StartWith(ArticyRef node)
     {
-        var a = node.GetObject<Dialogue>();
-        if (a != null)
-        {
-            var list = ArticyFlowPlayer.GetBranchesOfNode(a);
-            flowPlayer.Play(list[0]);
-        }
+        var list = ArticyFlowPlayer.GetBranchesOfNode(node.GetObject());
+        flowPlayer.Play(list[0]);
+        print($"branches : {list.Count}");
+
     }
 
     public void NextDialog()
@@ -55,9 +54,9 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         Next(index);
     }
 
-    void Next(int index = -1)
+    void Next(int index = 0)
     {
-        flowPlayer.Play(index == -1 ? 0 : branchindex[index]);
+        flowPlayer.Play(branchindex[index]);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
@@ -67,18 +66,21 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             Branch aBranch = aBranches[i];
             branchindex[i] = aBranch.BranchId;
         }
+
+        print($"branches availables: {branchindex.Length}");
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
-        if(aObject == null) return;
-        if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
-        else if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
-        else { 
-            // close UI
-            ToggleUI();
-            state = NarrationState.CLOSED;
+        if(aObject == null)
+        {
+            print("the end!");
+            return;
         }
+        if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
+
+        print(aObject.GetType());
+
     }
 
     void ToggleUI(bool enabled = false)
@@ -113,8 +115,10 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         ToggleDialogUI(true);
         state = NarrationState.DIALOG;
-        uiTextDisplayName.text = dialog.Speaker.name;
         uiTextDialog.text = dialog.Text;
+
+        uiTextDisplayName.text = dialog.Speaker != null ? dialog.Speaker.name : "??";
+
     }
 
     void UpdateCharacter3D()
