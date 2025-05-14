@@ -36,7 +36,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     private void Start()
     {
         state = NarrationState.CLOSED;
-        actionsFlowFragement.Add("event_test", (args) => { Debug.Log("event!!"); });
+        actionsFlowFragement.Add("board_load", (args) => { BoardManager.Get().LoadBoard(args[0]); });
+        actionsFlowFragement.Add("play_audio", (args) => { /*SoundManager.Get().Play(args[0]);*/ });
+        actionsFlowFragement.Add("show_ui", (args) => { /* [0]=> name_ui ; ... */ });
+        actionsFlowFragement.Add("add_item", (args) => { /* [0]=> name_item ; ... */ });
+        actionsFlowFragement.Add("add_hint", (args) => { /* [0]=> name_hint ; ... */ });
 
     }
 
