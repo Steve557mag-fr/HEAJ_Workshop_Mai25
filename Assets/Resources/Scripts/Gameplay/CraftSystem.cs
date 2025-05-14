@@ -215,10 +215,6 @@ public class CraftSystem : MonoBehaviour
             activePattern = Instantiate(selectedCraft.pattern, parent: patternContainer);
             activePattern.name = selectedCraft.name;
 
-            for (int i = 0; i < activePattern.transform.childCount; i++)
-            {
-                pieceInstances name = new pieceInstances(activePattern.transform.GetChild(i).gameObject, false);
-            }
         }
     }
 
@@ -334,11 +330,10 @@ public class CraftSystem : MonoBehaviour
                 }
             }
             //print($"Distance between closest child and dragged piece is {(nearestJoint.position - piece.position).magnitude} and accepted distance is {Screen.width / 150}");
-            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150 && isOccupied[nearestDistanceIndex] == false)
+            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150)
             {
                 //print($"Closest child's name is {nearestJoint.name}, and dragged piece name is {piece.name} and they are {(nearestJoint.position - piece.position).magnitude}f appart");
                 //print((nearestJoint.position - piece.position).magnitude);
-                isOccupied[nearestDistanceIndex] = true;
                 return nearestJoint;
             }
             else return null;
@@ -372,23 +367,22 @@ public class CraftSystem : MonoBehaviour
 
     public bool PatternIsValid()
     {
-        //bool allCheckedTooFar = false;
+        bool allCheckedTooFar = false;
 
         for (int i = 0; i < activePattern.transform.childCount; i++)
         {
-            //if (allCheckedTooFar) return false;
+            if (allCheckedTooFar) return false;
 
-            //for(int j = 0; j < activePieceList.Count; i++)
-            //{
-            //    if ((activePieceList[j].transform.position - activePattern.transform.GetChild(i).position).magnitude < 0.1)
-            //    {
-            //        allCheckedTooFar = false;
-            //        break;
-            //    }
-            //    allCheckedTooFar = true;
-            //}
+            for (int j = 0; j < activePieceList.Count; i++)
+            {
+                if ((activePieceList[j].transform.position - activePattern.transform.GetChild(i).position).magnitude < 0.1)
+                {
+                    allCheckedTooFar = false;
+                    break;
+                }
+                allCheckedTooFar = true;
+            }
 
-            if (isOccupied[i] == false) return false;
 
         }
         return true;
@@ -402,11 +396,6 @@ public class CraftSystem : MonoBehaviour
             playerState.ModifyQuantity(selectedCraft.craftResult, 1);
             RefreshGameItemList();
 
-            for(int i = 0; i < activePattern.transform.childCount; i++)
-            {
-                pieceInstances = true;
-            }
-
             SelectCraft(-1);
 
             craftButton.gameObject.SetActive(false);
@@ -418,16 +407,5 @@ public class CraftSystem : MonoBehaviour
 
     }
 
-    struct pieceInstances
-    {
-        public GameObject piece;
-        public bool isOccupied;
-
-        public pieceInstances(GameObject piece, bool isOccupied)
-        {
-            this.piece = piece;
-            this.isOccupied = isOccupied;
-        }
-    }
 
 }
