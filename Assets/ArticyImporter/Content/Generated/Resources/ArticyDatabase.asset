@@ -390,13 +390,9 @@ MonoBehaviour:
     mId: 02d29ce4-559d-4ed1-8a03-c737a006d522
     mTechnicalName: Test_Project
   mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: -4938922720425435206}
+  mDefaultGlobalVariables: {fileID: 0}
   mScriptFragments: {fileID: -6949203553075550094}
-  mPackages:
-  - PackageId: 72057594037928208
-    PackageName: All objects
-    PackagePath: package_0x100000000000110
-    mIsDefaultPackage: 1
+  mPackages: []
 --- !u!114 &5738627198712827957
 MonoBehaviour:
   m_ObjectHideFlags: 3
