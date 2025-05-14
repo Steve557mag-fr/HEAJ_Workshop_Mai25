@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SealOfTruth
   m_EditorClassIdentifier: 
   pattern: {fileID: 8599090786545478849, guid: 47eadcd08851c3b4a886fe3a278b75e6, type: 3}
-  craftResult: {fileID: 11400000, guid: 21bde200efef1764490b82fd5cdea512, type: 2}
+  craftResult: {fileID: 11400000, guid: 50e91056c86de3b478413d51ac02506a, type: 2}

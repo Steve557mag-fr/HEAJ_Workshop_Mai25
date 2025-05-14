@@ -396,7 +396,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 165, y: 100}
-  m_Spacing: {x: 0, y: 5}
+  m_Spacing: {x: 0, y: 30}
   m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!1 &151339126
@@ -570,7 +570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0005493164}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &201663604
@@ -942,6 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowPlayer: {fileID: 426742863}
+  characters: []
   choiceTexts:
   - {fileID: 1966424266}
   - {fileID: 496837286}
@@ -2357,7 +2358,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 640257538}
   m_HandleRect: {fileID: 640257537}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3208,11 +3209,13 @@ MonoBehaviour:
   craftingUICanva: {fileID: 1671282412}
   removePartsButton: {fileID: 31853126}
   craftButton: {fileID: 1398086797}
-  poutre: {fileID: 11400000, guid: 21bde200efef1764490b82fd5cdea512, type: 2}
-  clay: {fileID: 11400000, guid: 32d95a9dc6c172244a9397b86af08027, type: 2}
-  gravel: {fileID: 11400000, guid: b3da5003559ce654881adc68f54961a7, type: 2}
-  clayPowder: {fileID: 11400000, guid: 94d65351b801f41419fb1c4acef740ad, type: 2}
-  poutreCraft: {fileID: 11400000, guid: 6e1a60de62d1d8645964d088af5a944c, type: 2}
+  blackInk: {fileID: 11400000, guid: 3762b03fb4d7a664fa771959a9ee6839, type: 2}
+  stringc: {fileID: 11400000, guid: 3d2d83e708c85f14dba0bf8ead1d8e92, type: 2}
+  wax: {fileID: 11400000, guid: 32d95a9dc6c172244a9397b86af08027, type: 2}
+  blade: {fileID: 11400000, guid: b3da5003559ce654881adc68f54961a7, type: 2}
+  wood: {fileID: 11400000, guid: 1ffc863acb4d46643a388dc6af086723, type: 2}
+  scissors: {fileID: 11400000, guid: 94d65351b801f41419fb1c4acef740ad, type: 2}
+  candle: {fileID: 11400000, guid: fc28442ef47bf054090bfbbdac88b1d3, type: 2}
   baseIconState: 0
 --- !u!1 &1561009424
 GameObject:

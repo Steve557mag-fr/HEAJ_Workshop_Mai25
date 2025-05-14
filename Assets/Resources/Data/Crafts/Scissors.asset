@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Scissors
   m_EditorClassIdentifier: 
   pattern: {fileID: 8599090786545478849, guid: 336cde598b147474cbc6384a99dc5710, type: 3}
-  craftResult: {fileID: 0}
+  craftResult: {fileID: 11400000, guid: d06bbade30f653946a674ced1e0a0ddc, type: 2}
