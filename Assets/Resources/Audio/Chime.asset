@@ -1,43 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1233149941 &-7762522373234142851
+--- !u!1233149941 &-7353209327654484015
 AudioContainerElement:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SFX_wind-006_{-7762522373234142851}
-  m_AudioClip: {fileID: 8300000, guid: 839d18d014656904a9f880ac30eef5a0, type: 3}
+  m_Name: SFX_wind_chime-005_{-7353209327654484015}
+  m_AudioClip: {fileID: 8300000, guid: 6dda4c8c84c40434bacf954a67d85def, type: 3}
   m_Volume: 0
   m_Enabled: 1
---- !u!1233149941 &-2560924299122681687
+--- !u!1233149941 &-2589941927817839939
 AudioContainerElement:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SFX_wind-002_{-2560924299122681687}
-  m_AudioClip: {fileID: 8300000, guid: ee066d39576136f40abb07200cc74cc3, type: 3}
+  m_Name: SFX_wind_chime-003_{-2589941927817839939}
+  m_AudioClip: {fileID: 8300000, guid: 869903fa07b4d974b996a8c7616fb621, type: 3}
   m_Volume: 0
   m_Enabled: 1
---- !u!1233149941 &2069957774815639928
+--- !u!1233149941 &3337066923589642251
 AudioContainerElement:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SFX_wind-005_{2069957774815639928}
-  m_AudioClip: {fileID: 8300000, guid: e7a7cf8f2c74cd549afe9e412e8034d7, type: 3}
+  m_Name: SFX_wind_chime-002_{3337066923589642251}
+  m_AudioClip: {fileID: 8300000, guid: 57dfb77469e7bdd4f856f5dd772bea7f, type: 3}
   m_Volume: 0
   m_Enabled: 1
---- !u!1233149941 &5857930290526853478
+--- !u!1233149941 &4067074274615648027
 AudioContainerElement:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SFX_wind-004_{5857930290526853478}
-  m_AudioClip: {fileID: 8300000, guid: 86a5ad2d685177d41a7326f77e5eb4e3, type: 3}
+  m_Name: SFX_wind_chime-004_{4067074274615648027}
+  m_AudioClip: {fileID: 8300000, guid: 77b30569077206c40812375cae423090, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4695050164700558361
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX_wind_chime-001_{4695050164700558361}
+  m_AudioClip: {fileID: 8300000, guid: d0ce584c32bff304f8a4343c3444444a, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
@@ -46,7 +56,7 @@ AudioRandomContainer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wind
+  m_Name: Chime
   m_Volume: 0
   m_Pitch: 0
   m_AutomaticTriggerTime: 5
@@ -56,13 +66,13 @@ AudioRandomContainer:
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
-  - {fileID: -2560924299122681687}
-  - {fileID: 6724124270935007087}
-  - {fileID: 5857930290526853478}
-  - {fileID: 2069957774815639928}
-  - {fileID: -7762522373234142851}
+  - {fileID: 4695050164700558361}
+  - {fileID: 3337066923589642251}
+  - {fileID: -2589941927817839939}
+  - {fileID: 4067074274615648027}
+  - {fileID: -7353209327654484015}
   m_AvoidRepeatingLast: 0
-  m_PlaybackMode: 1
+  m_PlaybackMode: 2
   m_TriggerMode: 1
   m_AutomaticTriggerMode: 0
   m_LoopMode: 0
@@ -70,13 +80,3 @@ AudioRandomContainer:
   m_PitchRandomizationEnabled: 0
   m_AutomaticTriggerTimeRandomizationEnabled: 0
   m_LoopCountRandomizationEnabled: 0
---- !u!1233149941 &6724124270935007087
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SFX_wind-003_{6724124270935007087}
-  m_AudioClip: {fileID: 8300000, guid: 47ca7f0af86b6a94eb65bd914a87c237, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
