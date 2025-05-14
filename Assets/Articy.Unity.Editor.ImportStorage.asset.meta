@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Articy.Unity.Editor.ImportStorage.asset.meta
 guid: 8e35ea5633df7c442bdf0731a51c5ea3
+========
+guid: 893a0964506fb4446b9cd662455103ae
+>>>>>>>> origin/Workspace-Loic:Assets/ArticyImporter/Content/Generated/Resources/loc_0x100000000000110_127.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
