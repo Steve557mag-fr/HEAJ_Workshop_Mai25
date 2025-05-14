@@ -7,5 +7,4 @@ public class GameItemObject : InventoryItemObject
     public Sprite itemIcon;
     public Sprite puzzleIcon;
     public GameObject piece;
-
 }

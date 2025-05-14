@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3024414513737524082}
   - component: {fileID: 4352855353444404068}
   m_Layer: 5
-  m_Name: Clay1
+  m_Name: Clay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
