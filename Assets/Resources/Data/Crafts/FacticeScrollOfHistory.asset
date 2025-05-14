@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FacticeScrollOfHistory
   m_EditorClassIdentifier: 
   pattern: {fileID: 8599090786545478849, guid: 0504b35ff784e594bb8e84fc306c9f5a, type: 3}
-  craftResult: {fileID: 11400000, guid: 0ede6c615f01b414195f1179edba0517, type: 2}
+  craftResult: {fileID: 0}

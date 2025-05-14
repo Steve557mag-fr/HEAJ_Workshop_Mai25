@@ -83,6 +83,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void Next(int index = 0)
     {
+        if (index < 0 && index >= branchindex.Length) return;
         flowPlayer.Play(branchindex[index]);
     }
 
@@ -103,7 +104,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         else if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
         else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
         else if (aObject.GetType() == typeof(FlowFragment)) DispatchEvent(aObject as FlowFragment);
-        else if (aObject.GetType() == typeof(OutputPin)) ToggleUI(false);
+        else if (aObject.GetType() == typeof(OutputPin))
+        {
+            state = NarrationState.CLOSED;
+            ToggleUI(false);
+        }
 
         print(aObject.GetType());
 
@@ -162,6 +167,13 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     }
 
 
+    internal void SetCharacterState(string character, string characterState)
+    {
+        ArticyDatabase.DefaultGlobalVariables.SetVariableByString(
+            $"{character}", characterState
+        );
+    }
+
     internal static NarrationSystem Get()
     {
         return FindFirstObjectByType<NarrationSystem>();
@@ -171,5 +183,4 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         return Get().state;
     }
-
 }

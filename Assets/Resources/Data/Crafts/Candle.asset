@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Candle
   m_EditorClassIdentifier: 
   pattern: {fileID: 8599090786545478849, guid: 32edecfaba93696449a6b49b11e61355, type: 3}
-  craftResult: {fileID: 11400000, guid: c8e8ef9e2fdb328428bacd72df27494d, type: 2}
+  craftResult: {fileID: 11400000, guid: 1ffc863acb4d46643a388dc6af086723, type: 2}
