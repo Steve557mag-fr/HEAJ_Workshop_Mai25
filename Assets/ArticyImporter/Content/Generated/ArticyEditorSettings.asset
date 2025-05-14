@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 704907223, guid: 538242286e35fb84f8e90dd86ba08b80, type: 3}
   m_Name: ArticyEditorSettings
   m_EditorClassIdentifier: 
-  mIsImporting: 1
-  mAwaitingModelImport: 1
+  mIsImporting: 0
+  mAwaitingModelImport: 0
   mAwaitingFragmentsImport: 0
   mFileHashesKeys:
   - script_methods.json
@@ -23,14 +23,14 @@ MonoBehaviour:
   - object_definitions_localization.json
   mFileHashesValues:
   - +Hc7CrqwO4HgaJLz4pXA58UKo/0PYZLVIzK1n03xTOY=
-  - eWWhwsJoafYrJTsMCB7XZOSPCmIHcMtGmyHi3EF2eY8=
-  - M1b/3JU6v0NPotsj9dBYcxJLdEtegyN6GMOkKjgvsZ8=
-  - r4kpQBl5zxlbWh2nTjksIzpXMSh2yA3aKy7bUgp746s=
+  - OjfIOGq2y3XxwX4uRHWFS12U1B3mV+afIxolpBDVLGs=
+  - 769UfgU1s2KLbzPAZra8HL1K5SRyQuHSKNYgXuPYXK8=
+  - QKGUwQc2m8XXGzeJq//CMkVzpI7Sy5obhmaBSlYU+gE=
   - RBNvo1WzZ4oRRq0W9+hknpT7T8If536DEMBg9hyq/4o=
   mScriptFragmentHashesKeys: 
   mScriptFragmentHashesValues: []
   mLastBuildCode: -100
-  mLastEditorStartupTimeTicks: 0
+  mLastEditorStartupTimeTicks: 638827163431892581
   mUseModelPickerHierarchyView: 0
   mNewVersionAvailable: 0
   mLastSelectedCustomGvPath: 

@@ -1,1 +1,1 @@
-namespace Articy.Test_Project.GlobalVariables {public partial class ArticyScriptFragments : Articy.Unity.Interfaces.BaseScriptFragments {}}
+namespace Articy.Test.GlobalVariables {public partial class ArticyScriptFragments : Articy.Unity.Interfaces.BaseScriptFragments {}}
