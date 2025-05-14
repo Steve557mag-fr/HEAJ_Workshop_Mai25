@@ -16,11 +16,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test_Project.GlobalVariables
+namespace Articy.Test.GlobalVariables
 {
     
     
-    [Articy.Unity.ArticyCodeGenerationHashAttribute(638826602280070040)]
+    [Articy.Unity.ArticyCodeGenerationHashAttribute(638827277452559049)]
     public partial class ArticyScriptFragments : BaseScriptFragments, ISerializationCallbackReceiver
     {
         
