@@ -50,6 +50,7 @@ public class CraftSystem : MonoBehaviour
     CraftDataObject selectedCraft;
     GameItemObject draggedGI;
     GameObject piece;
+    Vector3 mouseDistance;
     bool iconState;
     bool giExisted;
 
@@ -68,9 +69,15 @@ public class CraftSystem : MonoBehaviour
     {
         if (currentPiece)
         {
-            currentPiece.transform.position = Input.mousePosition;
+            FollowMouse();
             //Debug.Log(Input.mousePosition);
         }
+    }
+
+    private void FollowMouse()
+    {
+        currentPiece.gameObject.transform.position = new Vector3(Input.mousePosition.x + mouseDistance.x, Input.mousePosition.y + mouseDistance.y, 0);
+        //print(currentPiece.gameObject.transform.position);
     }
 
     internal static CraftSystem Get()
@@ -193,6 +200,7 @@ public class CraftSystem : MonoBehaviour
         {
             RemoveAllParts();
             selectedCraft = null;
+            DisplayCraft();
         }
     }
 
@@ -219,6 +227,7 @@ public class CraftSystem : MonoBehaviour
         if (quant != 0)
         {
             piece = Instantiate(draggedGI.piece, parent: craftingUICanva);
+            piece.transform.position = gameItemList[index].transform.position;
 
             #region Adding Event Triggers To Make It Draggable
 
@@ -241,6 +250,9 @@ public class CraftSystem : MonoBehaviour
             piece.name = draggedGI.name;
             print($"Dragged piece is {draggedGI.name}");
             currentPiece = piece;
+            mouseDistance.x = currentPiece.gameObject.transform.position.x - Input.mousePosition.x;
+            mouseDistance.y = currentPiece.gameObject.transform.position.y - Input.mousePosition.y;
+            print(mouseDistance);
             activePieceList.Add(piece);
         }
         else
@@ -253,6 +265,8 @@ public class CraftSystem : MonoBehaviour
     {
         giExisted = true;
         currentPiece = piece;
+        mouseDistance.x = currentPiece.gameObject.transform.position.x - Input.mousePosition.x;
+        mouseDistance.y = currentPiece.gameObject.transform.position.y - Input.mousePosition.y;
     }
 
     public void EndDrag()
@@ -345,32 +359,44 @@ public class CraftSystem : MonoBehaviour
 
     public bool PatternIsValid()
     {
-        //for (int i = 0; i < activePattern.transform.childCount; i++)
-        //{
+        bool allCheckedTooFar = false;
 
-        //}
+        for (int i = 0; i < activePattern.transform.childCount; i++)
+        {
+            if (allCheckedTooFar) return false;
 
-        
+            for(int j = 0; j < activePieceList.Count; i++)
+            {
+                if ((activePieceList[j].transform.position - activePattern.transform.GetChild(i).position).magnitude < 0.1)
+                {
+                    allCheckedTooFar = false;
+                    break;
+                }
+                allCheckedTooFar = true;
+            }
 
+        }
         return true;
     }
 
     public void Craft()
     {
-        if (!PatternIsValid())
-        {
-            print("Pattern is not valid. try again :)");
-        }
-        else
-        {
-            GameItemObject item = playerState.FromString(activePattern.name);
-            print($"Pattern Name is {activePattern.name}, playerState.FromString Results : {item.name}");
-            playerState.ModifyQuantity(item, 1);
-            SelectCraft(-1);
+        //if (!PatternIsValid())
+        //{
+        //    print("Pattern is not valid. try again :)");
+        //}
+        //else
+        //{
+        //    GameItemObject item = playerState.FromString(activePattern.name);
+        //    print($"Pattern Name is {activePattern.name}, playerState.FromString Results : {item.name}");
+        //    playerState.ModifyQuantity(item, 1);
+        //    SelectCraft(-1);
 
-            craftButton.gameObject.SetActive(false);
-        }
-        
+        //    craftButton.gameObject.SetActive(false);
+        //}
+        SelectCraft(-1);
+
+        craftButton.gameObject.SetActive(false);
     }
 
 }
