@@ -31,11 +31,13 @@ public class CraftSystem : MonoBehaviour
     [SerializeField] Button craftButton;
 
     [Header("Scriptable Object References")]
-    [SerializeField] GameItemObject poutre;
-    [SerializeField] GameItemObject clay;
-    [SerializeField] GameItemObject gravel;
-    [SerializeField] CraftDataObject clayPowder;
-    [SerializeField] CraftDataObject poutreCraft;
+    [SerializeField] GameItemObject blackInk;
+    [SerializeField] GameItemObject stringc;
+    [SerializeField] GameItemObject wax;
+    [SerializeField] GameItemObject blade;
+    [SerializeField] GameItemObject wood;
+    [SerializeField] CraftDataObject scissors;
+    [SerializeField] CraftDataObject candle;
 
     [Header("Icon Display State")]
     [SerializeField] bool baseIconState = true;
@@ -57,9 +59,11 @@ public class CraftSystem : MonoBehaviour
     private void Start()
     {
         iconState = baseIconState;
-        playerState.ModifyQuantity(poutre, 10);
-        playerState.ModifyQuantity(clay, 10);
-        playerState.ModifyQuantity(gravel, 10);
+        playerState.ModifyQuantity(blackInk, 10);
+        playerState.ModifyQuantity(wax, 10);
+        playerState.ModifyQuantity(stringc, 10);
+        playerState.ModifyQuantity(blade, 10);
+        playerState.ModifyQuantity(wood, 10);
         RefreshCraftList();
         RefreshGameItemList();
         removePartsButton.GetComponent<Button>().onClick.AddListener(() => { RemoveAllParts(); });
@@ -94,8 +98,8 @@ public class CraftSystem : MonoBehaviour
     {
         craftList = GameManager.Get().QueryAvailableCrafts();
 
-        craftList.Add(clayPowder);
-        craftList.Add(poutreCraft);
+        craftList.Add(candle);
+        craftList.Add(scissors);
 
         for (int i = 0; i < craftList.Count; i++)
         {
@@ -238,7 +242,7 @@ public class CraftSystem : MonoBehaviour
 
             EventTrigger eventTrigger = piece.transform.GetComponent<EventTrigger>();
 
-            print(eventTrigger);
+            //print(eventTrigger);
 
             EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
             pointerDownEntry.eventID = EventTriggerType.PointerDown;
@@ -253,11 +257,11 @@ public class CraftSystem : MonoBehaviour
             #endregion
 
             piece.name = draggedGI.name;
-            print($"Dragged piece is {draggedGI.name}");
+            //print($"Dragged piece is {draggedGI.name}");
             currentPiece = piece;
             mouseDistance.x = currentPiece.gameObject.transform.position.x - Input.mousePosition.x;
             mouseDistance.y = currentPiece.gameObject.transform.position.y - Input.mousePosition.y;
-            print(mouseDistance);
+            //print(mouseDistance);
             activePieceList.Add(piece);
         }
         else
@@ -285,11 +289,12 @@ public class CraftSystem : MonoBehaviour
                 RefreshGameItemList();
 
                 Transform nearestJoint = GetNearestJoint(currentPiece.transform);
-                Debug.Log(nearestJoint);
+                //Debug.Log(nearestJoint);
                 if (nearestJoint == null) currentPiece = null;
                 else
                 {
                     Place(currentPiece.transform, nearestJoint);
+                    validPieceList.Remove(currentPiece);
                     currentPiece = null;
                 }
             }
@@ -304,10 +309,10 @@ public class CraftSystem : MonoBehaviour
 
     public bool IsInRange(GameObject piece)
     {
-        return piece.transform.position.x > Screen.width/5
-           && piece.transform.position.x < Screen.width/5*4
-           && piece.transform.position.y > Screen.height/10*2
-           && piece.transform.position.y < Screen.height/10*9;
+        return piece.transform.position.x / Screen.width > 0.10
+           && piece.transform.position.x / Screen.width < 0.80
+           && piece.transform.position.y / Screen.width > 0.20
+           && piece.transform.position.y / Screen.width < 0.90;
     }
 
     public Transform GetNearestJoint(Transform piece)
@@ -346,6 +351,7 @@ public class CraftSystem : MonoBehaviour
     {
         piece.transform.position = at.position;
         validPieceList.Add(piece.gameObject);
+        print($"Placed {piece.transform.name} and added it to validPieceList as {validPieceList.First()}");
 
     }
 
@@ -355,35 +361,27 @@ public class CraftSystem : MonoBehaviour
         {
             foreach (var p in activePieceList)
             {
-                print(p.name);
+                //print(p.name);
                 playerState.ModifyQuantity((GameItemObject)playerState.fromString(p.name), 1);
                 Destroy(p);
             }
             activePieceList.Clear();
             RefreshGameItemList();
-            print("Removed all Parts");
+            //print("Removed all Parts");
         }
     }
 
     public bool PatternIsValid()
     {
-        bool allCheckedTooFar = false;
-
         for (int i = 0; i < activePattern.transform.childCount; i++)
         {
-            if (allCheckedTooFar) return false;
-
-            for (int j = 0; j < activePieceList.Count; i++)
+            if (validPieceList.Count > 0)
             {
-                if ((activePieceList[j].transform.position - activePattern.transform.GetChild(i).position).magnitude < 0.1)
-                {
-                    allCheckedTooFar = false;
-                    break;
-                }
-                allCheckedTooFar = true;
+                print(i);
+                print(validPieceList[i + 1]);
+                if (!validPieceList[i + 1]) return false;
             }
-
-
+            else print("nothing in valiPieceList");
         }
         return true;
     }
