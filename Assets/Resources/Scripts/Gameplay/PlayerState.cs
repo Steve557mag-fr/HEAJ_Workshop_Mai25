@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour, IDataHandle
 {
-    [SerializeField] internal Dictionary<GameItemObject, int> inventory = new();
+    [SerializeField] internal Dictionary<InventoryItemObject, int> inventory = new();
 
     public void ModifyQuantity(GameItemObject item, int quantity = 1, bool markInfinite = false)
     {
@@ -16,8 +17,21 @@ public class PlayerState : MonoBehaviour, IDataHandle
         }
         else inventory.Add(item, markInfinite ? -1 : quantity);
     }
+    public List<InventoryItemObject> GetFilteredBy<T>()
+    {
+        List<InventoryItemObject> result = new();
+        foreach(KeyValuePair<InventoryItemObject, int> pair in inventory.ToList())
+        {
+            if(pair.Key.GetType() == typeof(T))
+            {
+                result.Add(pair.Key);
+            }
+        }
 
-    public GameItemObject? FromString(string s)
+        return result;
+    }
+
+    public InventoryItemObject? fromString(string s)
     {
         foreach(var p in inventory.ToList())
         {
@@ -25,6 +39,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
         }
         return null;
     }
+    
 
     public static PlayerState Get()
     {
@@ -47,7 +62,11 @@ public class PlayerState : MonoBehaviour, IDataHandle
     }
     public void fromJObject(JObject data)
     {
-
+        var inv = data["inventory"];
+        foreach(var p in inv)
+        {
+            print(p);
+        }
     }
     public JObject getDefaultJObject()
     {
@@ -60,4 +79,5 @@ public class PlayerState : MonoBehaviour, IDataHandle
 
         };
     }
+
 }
