@@ -223,7 +223,7 @@ public class CraftSystem : MonoBehaviour
         giExisted = false;
         gameItemContainer.GetComponentInParent<ScrollRect>().enabled = false;
 
-        draggedGI = playerState.inventory.Keys.ToList()[index];
+        draggedGI = (GameItemObject)playerState.GetFilteredBy<GameItemObject>()[index];
 
         int quant = playerState.inventory[draggedGI];
 
@@ -356,7 +356,7 @@ public class CraftSystem : MonoBehaviour
             foreach (var p in activePieceList)
             {
                 print(p.name);
-                playerState.ModifyQuantity(playerState.FromString(p.name), 1);
+                playerState.ModifyQuantity((GameItemObject)playerState.fromString(p.name), 1);
                 Destroy(p);
             }
             activePieceList.Clear();
