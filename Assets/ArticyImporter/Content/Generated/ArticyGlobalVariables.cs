@@ -15,7 +15,7 @@ using System.Collections;
 using UnityEngine;
 
 
-namespace Articy.Test.GlobalVariables
+namespace Articy.Test_Project.GlobalVariables
 {
     
     
@@ -24,39 +24,11 @@ namespace Articy.Test.GlobalVariables
     public class ArticyGlobalVariables : BaseGlobalVariables
     {
         
-        [SerializeField()]
-        [HideInInspector()]
-        private Day1_Hints mDay1_Hints = new Day1_Hints();
-        
-        [SerializeField()]
-        [HideInInspector()]
-        private Test_Var mTest_Var = new Test_Var();
-        
         #region Initialize static VariableName set
         static ArticyGlobalVariables()
         {
-            variableNames.Add("Day1_Hints.Knows_Jade");
-            variableNames.Add("Day1_Hints.Knows_Momiji");
-            variableNames.Add("Day1_Hints.NewVariable");
-            variableNames.Add("Test_Var.var_test");
         }
         #endregion
-        
-        public Day1_Hints Day1_Hints
-        {
-            get
-            {
-                return mDay1_Hints;
-            }
-        }
-        
-        public Test_Var Test_Var
-        {
-            get
-            {
-                return mTest_Var;
-            }
-        }
         
         public static ArticyGlobalVariables Default
         {
@@ -68,8 +40,6 @@ namespace Articy.Test.GlobalVariables
         
         public override void Init()
         {
-            Day1_Hints.RegisterVariables(this);
-            Test_Var.RegisterVariables(this);
         }
         
         public static ArticyGlobalVariables CreateGlobalVariablesClone()

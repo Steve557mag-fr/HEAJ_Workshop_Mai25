@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 1760449090, guid: 538242286e35fb84f8e90dd86ba08b80, type: 3}
   m_Name: ArticyPluginSettings
   m_EditorClassIdentifier: 
-  mUsedImportFile: Assets/Resources/Scenes/Boards/Export/WorkshopMay.articyu3d
+  mUsedImportFile: Assets/Resources/Data/Articy/TestProjectArticy.articyu3d
   mUsedLocalizationPath: 
   mSCMIgnoreState: 0
   mShowObjectsInDatabaseView: 1
-  mLastPluginVersion: 1.2.0.41909
+  mLastPluginVersion: 
   mAutomaticallyTriggerImport: 1
   mUseAssemblyDefinitions: 0
   mGenerateStringInterpolationCode: 1

@@ -17,12 +17,12 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace Articy.Test
+namespace Articy.Test_Project
 {
     
     
     [Serializable()]
-    [Articy.Unity.ArticyCodeGenerationHashAttribute(638827277208005893)]
+    [Articy.Unity.ArticyCodeGenerationHashAttribute(638828299682038189)]
     public class InputPin : ArticyPrimitive, IInputPin
     {
         

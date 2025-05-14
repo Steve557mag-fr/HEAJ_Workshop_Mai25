@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test.Features;
+using Articy.Test_Project.Features;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test
+namespace Articy.Test_Project
 {
     
     
@@ -27,9 +27,9 @@ namespace Articy.Test
         [SerializeField()]
         private ArticyValueDefaultMainCharacterTemplateTemplate mTemplate = new ArticyValueDefaultMainCharacterTemplateTemplate();
         
-        private static Articy.Test.Templates.DefaultMainCharacterTemplateTemplateConstraint mConstraints = new Articy.Test.Templates.DefaultMainCharacterTemplateTemplateConstraint();
+        private static Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplateConstraint mConstraints = new Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplateConstraint();
         
-        public Articy.Test.Templates.DefaultMainCharacterTemplateTemplate Template
+        public Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate Template
         {
             get
             {
@@ -41,7 +41,7 @@ namespace Articy.Test
             }
         }
         
-        public static Articy.Test.Templates.DefaultMainCharacterTemplateTemplateConstraint Constraints
+        public static Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplateConstraint Constraints
         {
             get
             {
@@ -64,7 +64,7 @@ namespace Articy.Test
             DefaultMainCharacterTemplate newClone = ((DefaultMainCharacterTemplate)(aClone));
             if ((Template != null))
             {
-                newClone.Template = ((Articy.Test.Templates.DefaultMainCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
+                newClone.Template = ((Articy.Test_Project.Templates.DefaultMainCharacterTemplateTemplate)(Template.CloneObject(newClone, aFirstClassParent)));
             }
             base.CloneProperties(newClone, aFirstClassParent);
         }
