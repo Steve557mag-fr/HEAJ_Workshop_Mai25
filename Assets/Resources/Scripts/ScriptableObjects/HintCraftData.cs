@@ -8,7 +8,7 @@ public class HintCraftData : ScriptableObject
     public HintObject[] hints;
 
     [ArticyTypeConstraint(typeof(Hub))]
-    public ArticyRef refCharacterDialogResult;
+    public ArticyRef dialogResult;
 
     public string characterResult;
     public string characterStateResult;
