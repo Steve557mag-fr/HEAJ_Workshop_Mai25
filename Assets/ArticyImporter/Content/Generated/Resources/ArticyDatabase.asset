@@ -21,9 +21,48 @@ MonoBehaviour:
     mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
     mTechnicalName: Test
   mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: 0}
-  mScriptFragments: {fileID: 0}
-  mPackages: []
+  mDefaultGlobalVariables: {fileID: 2630515253820435108}
+  mScriptFragments: {fileID: 7698164941798852062}
+  mPackages:
+  - PackageId: 72057594037928208
+    PackageName: Tous objets
+    PackagePath: package_0x100000000000110
+    mIsDefaultPackage: 1
+--- !u!114 &2630515253820435108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01189f442d0e44b4c9e16ce8ef2e99b3, type: 3}
+  m_Name: DefaultGlobalVariables
+  m_EditorClassIdentifier: 
+  mBoolVariableCache:
+  - mFullQualifiedName: Day1_Hints.Knows_Jade
+    mVar:
+      values: 00
+  - mFullQualifiedName: Day1_Hints.Knows_Momiji
+    mVar:
+      values: 00
+  - mFullQualifiedName: Day1_Hints.NewVariable
+    mVar:
+      values: 00
+  - mFullQualifiedName: Test_Var.var_test
+    mVar:
+      values: 00
+  mIntVariableCache: []
+  mStringVariableCache: []
+  mLiveBoolVariableCache: []
+  mLiveIntVariableCache: []
+  mLiveStringVariableCache: []
+  mIsInitialized: 1
+  mDay1_Hints:
+    _VariableStorage: {fileID: 2630515253820435108}
+  mTest_Var:
+    _VariableStorage: {fileID: 2630515253820435108}
 --- !u!114 &3688163913840984955
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -45,6 +84,18 @@ MonoBehaviour:
     mIsVoiceOver: 0
   mThrowOnMissingText: 0
   mClearOnLanguageSwitch: 1
+--- !u!114 &7698164941798852062
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
+  m_Name: ArticyScriptFragments
+  m_EditorClassIdentifier: 
 --- !u!114 &8493974781575338910
 MonoBehaviour:
   m_ObjectHideFlags: 3

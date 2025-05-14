@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1080164415, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: loc_0x100000000000110_127
+  m_EditorClassIdentifier: 
+  mLocalizedStringsKeys:
+  - FFr_D401B36C.DisplayName
+  - FFr_D401B36C.Text
+  - Dlg_60FD99A1.DisplayName
+  - Dlg_60FD99A1.Text
+  - Dlg_C493E846.DisplayName
+  - DFr_CAB40DBF.Text
+  - DFr_D9072EB9.Text
+  - DFr_4058F53C.Text
+  - Ntt_913B1908.DisplayName
+  - Ntt_794E87FA.DisplayName
+  - Ntt_CB2166A1.DisplayName
+  - Ntt_B05BC6C5.DisplayName
+  - Ntt_652FC7D9.DisplayName
+  mLocalizedStringsValues:
+  - EVENT
+  - 'event_test
+
+    
+
+    1
+
+    
+
+    CHICKEN JOKEY'
+  - Dialog_Test_01
+  - Yukiko says "Hello".
+  - Dialogue_Test_02
+  - Hello.
+  - Popipopipo
+  - On est sur le State 02
+  - Yukiko
+  - Souma
+  - Moriyama
+  - Aoyama
+  - Fukuro
+  mLocalizedAudioAssetsKeys: []
+  mLocalizedAudioAssetsValues: 
