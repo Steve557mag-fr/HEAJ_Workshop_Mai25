@@ -44,11 +44,11 @@ public class CraftSystem : MonoBehaviour
     List<GameObject> gameItemList = new();
     List<GameObject> activePieceList = new();
     List<GameObject> validPieceList = new();
-    GameObject activePattern = null;
     List<CraftDataObject> craftList;
-    GameObject currentPiece = null;
     CraftDataObject selectedCraft;
     GameItemObject draggedGI;
+    GameObject activePattern = null;
+    GameObject currentPiece = null;
     GameObject piece;
     Vector3 mouseDistance;
     bool iconState;
@@ -126,7 +126,7 @@ public class CraftSystem : MonoBehaviour
 
         for (int i = 0; i < playerState.inventory.Keys.Count; i++)
         {
-            var gi = key[i];
+            var gi = (GameItemObject)key[i];
 
             int j = i;
 
@@ -195,6 +195,8 @@ public class CraftSystem : MonoBehaviour
             selectedCraft = craftList[index];
             craftButton.gameObject.SetActive(true);
             DisplayCraft();
+
+
         }
         else
         {
@@ -212,6 +214,11 @@ public class CraftSystem : MonoBehaviour
         {
             activePattern = Instantiate(selectedCraft.pattern, parent: patternContainer);
             activePattern.name = selectedCraft.name;
+
+            for (int i = 0; i < activePattern.transform.childCount; i++)
+            {
+                pieceInstances name = new pieceInstances(activePattern.transform.GetChild(i).gameObject, false);
+            }
         }
     }
 
@@ -229,6 +236,8 @@ public class CraftSystem : MonoBehaviour
             piece = Instantiate(draggedGI.piece, parent: craftingUICanva);
             piece.transform.position = gameItemList[index].transform.position;
 
+            GameObject tempPiece = piece;
+
             #region Adding Event Triggers To Make It Draggable
 
             EventTrigger eventTrigger = piece.transform.GetComponent<EventTrigger>();
@@ -237,7 +246,7 @@ public class CraftSystem : MonoBehaviour
 
             EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
             pointerDownEntry.eventID = EventTriggerType.PointerDown;
-            pointerDownEntry.callback.AddListener((data) => { BeginDragInstance(piece); });
+            pointerDownEntry.callback.AddListener((data) => { BeginDragInstance(tempPiece); });
             eventTrigger.triggers.Add(pointerDownEntry);
 
             EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
@@ -284,8 +293,8 @@ public class CraftSystem : MonoBehaviour
                 if (nearestJoint == null) currentPiece = null;
                 else
                 {
+                    Place(currentPiece.transform, nearestJoint);
                     currentPiece = null;
-                    Place(piece.transform, nearestJoint);
                 }
             }
             else
@@ -308,6 +317,7 @@ public class CraftSystem : MonoBehaviour
     public Transform GetNearestJoint(Transform piece)
     {
         float distance;
+        int nearestDistanceIndex = 0;
         float nearestDistance = math.INFINITY;
         Transform nearestJoint = piece;
 
@@ -319,14 +329,16 @@ public class CraftSystem : MonoBehaviour
                 if (distance < nearestDistance && activePattern.transform.GetChild(i).name == piece.name)
                 {
                     nearestDistance = distance;
+                    nearestDistanceIndex = i;
                     nearestJoint = activePattern.transform.GetChild(i);
                 }
             }
-            print($"Distance between closest child and dragged piece is {(nearestJoint.position - piece.position).magnitude} and accepted distance is {Screen.width / 150}");
-            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150)
+            //print($"Distance between closest child and dragged piece is {(nearestJoint.position - piece.position).magnitude} and accepted distance is {Screen.width / 150}");
+            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150 && isOccupied[nearestDistanceIndex] == false)
             {
-                print($"Closest child's name is {nearestJoint.name}, and dragged piece name is {piece.name} and they are {(nearestJoint.position - piece.position).magnitude}f appart");
+                //print($"Closest child's name is {nearestJoint.name}, and dragged piece name is {piece.name} and they are {(nearestJoint.position - piece.position).magnitude}f appart");
                 //print((nearestJoint.position - piece.position).magnitude);
+                isOccupied[nearestDistanceIndex] = true;
                 return nearestJoint;
             }
             else return null;
@@ -339,6 +351,7 @@ public class CraftSystem : MonoBehaviour
     {
         piece.transform.position = at.position;
         validPieceList.Add(piece.gameObject);
+
     }
 
     public void RemoveAllParts()
@@ -359,21 +372,23 @@ public class CraftSystem : MonoBehaviour
 
     public bool PatternIsValid()
     {
-        bool allCheckedTooFar = false;
+        //bool allCheckedTooFar = false;
 
         for (int i = 0; i < activePattern.transform.childCount; i++)
         {
-            if (allCheckedTooFar) return false;
+            //if (allCheckedTooFar) return false;
 
-            for(int j = 0; j < activePieceList.Count; i++)
-            {
-                if ((activePieceList[j].transform.position - activePattern.transform.GetChild(i).position).magnitude < 0.1)
-                {
-                    allCheckedTooFar = false;
-                    break;
-                }
-                allCheckedTooFar = true;
-            }
+            //for(int j = 0; j < activePieceList.Count; i++)
+            //{
+            //    if ((activePieceList[j].transform.position - activePattern.transform.GetChild(i).position).magnitude < 0.1)
+            //    {
+            //        allCheckedTooFar = false;
+            //        break;
+            //    }
+            //    allCheckedTooFar = true;
+            //}
+
+            if (isOccupied[i] == false) return false;
 
         }
         return true;
@@ -381,22 +396,38 @@ public class CraftSystem : MonoBehaviour
 
     public void Craft()
     {
-        //if (!PatternIsValid())
-        //{
-        //    print("Pattern is not valid. try again :)");
-        //}
-        //else
-        //{
-        //    GameItemObject item = playerState.FromString(activePattern.name);
-        //    print($"Pattern Name is {activePattern.name}, playerState.FromString Results : {item.name}");
-        //    playerState.ModifyQuantity(item, 1);
-        //    SelectCraft(-1);
+        if (PatternIsValid() && selectedCraft)
+        {
+            //print($"Pattern Name is {activePattern.name}, playerState.FromString Results : {item.name}");
+            playerState.ModifyQuantity(selectedCraft.craftResult, 1);
+            RefreshGameItemList();
 
-        //    craftButton.gameObject.SetActive(false);
-        //}
-        SelectCraft(-1);
+            for(int i = 0; i < activePattern.transform.childCount; i++)
+            {
+                pieceInstances = true;
+            }
 
-        craftButton.gameObject.SetActive(false);
+            SelectCraft(-1);
+
+            craftButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            print("Pattern is not valid. try again :)");
+        }
+
+    }
+
+    struct pieceInstances
+    {
+        public GameObject piece;
+        public bool isOccupied;
+
+        public pieceInstances(GameObject piece, bool isOccupied)
+        {
+            this.piece = piece;
+            this.isOccupied = isOccupied;
+        }
     }
 
 }
