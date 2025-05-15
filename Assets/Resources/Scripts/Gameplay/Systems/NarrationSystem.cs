@@ -48,21 +48,19 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         var list = ArticyFlowPlayer.GetBranchesOfNode(node.GetObject());
         flowPlayer.Play(list[0]);
-        print($"branches : {list.Count}");
-
     }
 
     public void StartWith(string character)
     {
         for(int i = 0; i < characters.Length; i++)
         {
+            print($"[ARTICY]: character_name >> {characters[i]}");
             if (characters[i].GetObject().name != character) continue;
             var output = characters[i].GetObject<Hub>().OutputPins;
             for(int j = 0; j < output.Count; j++)
             {
                 print($"conx: {output[j].ToString()}");
             }
-
         }
     }
 
@@ -84,22 +82,26 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     void Next(int index = 0)
     {
         if (index < 0 && index >= branchindex.Length) return;
+        print("[ARTICY]: next node");
         flowPlayer.Play(branchindex[index]);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
+        print($"[ARTICY]: branches availables: {aBranches.Count}");
+
         branchindex = new int[aBranches.Count];
         for(int i = 0; i < branchindex.Length;i++) {
             Branch aBranch = aBranches[i];
             branchindex[i] = aBranch.BranchId;
         }
 
-        print($"branches availables: {branchindex.Length}");
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
+        print($"[ARTICY]: new node: {aObject.GetType()}");
+
         if (aObject == null) return;
         else if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
         else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
@@ -109,8 +111,6 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             state = NarrationState.CLOSED;
             ToggleUI(false);
         }
-
-        print(aObject.GetType());
 
     }
 
