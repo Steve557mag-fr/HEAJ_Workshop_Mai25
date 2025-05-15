@@ -471,7 +471,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowPlayer: {fileID: 426742863}
-  characters: []
+  characters:
+  - instanceId: 0
+    referencingMode: 0
+    lowId: 355
+    highId: 16777216
   choiceTexts:
   - {fileID: 1966424266}
   - {fileID: 496837286}
@@ -2231,7 +2235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1939141012}
   - component: {fileID: 1939141014}
-  - component: {fileID: 1939141013}
+  - component: {fileID: 1939141015}
   m_Layer: 0
   m_Name: == GAME & BOARDS ==
   m_TagString: Untagged
@@ -2254,22 +2258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1939141013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939141009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07909b1f0a731bd4cbfe24e07e1774ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadingGroup: {fileID: 1373482279}
-  fadingTime: 1
-  easeMode: 1
-  entryBoard: TestBoard
 --- !u!114 &1939141014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2282,6 +2270,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6fe347438a670408bed774638ef13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1939141015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939141009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef4034a6d0ff414983f09a615670bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingGroup: {fileID: 1373482279}
+  fadingTime: 1
+  easeMode: 1
+  entryBoard: TestBoard
 --- !u!1 &1966424264
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf34a6da8f54ba949a4d4f736e2df1df, type: 3}
   m_Name: DialogTest
   m_EditorClassIdentifier: 
+  startType: 1
+  characterName: TEST
   entryPoint:
     instanceId: 0
     referencingMode: 0
