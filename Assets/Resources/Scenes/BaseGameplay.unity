@@ -470,6 +470,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53a8dda18306d5429d5c0e9bfad7602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flowPlayer: {fileID: 426742863}
+  characters: []
+  choiceTexts: []
+  choiceButtons: []
+  choicesContainer: {fileID: 212092519}
+  dialogContainer: {fileID: 603274003}
+  uiTextDialog: {fileID: 1247507369}
+  uiTextDisplayName: {fileID: 2126295840}
 --- !u!114 &426742863
 MonoBehaviour:
   m_ObjectHideFlags: 0
