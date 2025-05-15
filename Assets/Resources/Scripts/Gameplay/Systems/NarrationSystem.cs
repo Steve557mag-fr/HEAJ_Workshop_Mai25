@@ -9,7 +9,7 @@ using System;
 
 enum NarrationState{
     DIALOG,
-    CHOICE,
+    CHOICE, 
     CLOSED
 }
 
