@@ -15,3 +15,368 @@ using System.Collections;
 using UnityEngine;
 
 
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class Day1_Hints : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool Knows_Jade
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(0);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(0, value);
+            }
+        }
+        
+        // 
+        public bool Knows_Momiji
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(1);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(1, value);
+            }
+        }
+        
+        // 
+        public bool NewVariable
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(2);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(2, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("Day1_Hints.Knows_Jade", false);
+            aStorage.RegisterVariable("Day1_Hints.Knows_Momiji", false);
+            aStorage.RegisterVariable("Day1_Hints.NewVariable", false);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class Test_Var : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool var_test
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(3);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(3, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("Test_Var.var_test", false);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class GameItemCheck : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public int intro_items
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueInt32(0);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueInt32(0, value);
+            }
+        }
+        
+        // 
+        public int moriyama_picture
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueInt32(1);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueInt32(1, value);
+            }
+        }
+        
+        // 
+        public int aoyama_seal_uncharged
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueInt32(2);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueInt32(2, value);
+            }
+        }
+        
+        // 
+        public int aoyama_seal_charged
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueInt32(3);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueInt32(3, value);
+            }
+        }
+        
+        // 
+        public int recipe_seal
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueInt32(4);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueInt32(4, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("GameItemCheck.intro_items", 3);
+            aStorage.RegisterVariable("GameItemCheck.moriyama_picture", 0);
+            aStorage.RegisterVariable("GameItemCheck.aoyama_seal_uncharged", 0);
+            aStorage.RegisterVariable("GameItemCheck.aoyama_seal_charged", 0);
+            aStorage.RegisterVariable("GameItemCheck.recipe_seal", 0);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class FTT : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool F_enigma_scroll_standby
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(4);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(4, value);
+            }
+        }
+        
+        // 
+        public bool R_K_enigma_scroll
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(5);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(5, value);
+            }
+        }
+        
+        // 
+        public bool S_enigma_scroll_standby
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(6);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(6, value);
+            }
+        }
+        
+        // 
+        public bool F_enigma_scroll_achieved
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(7);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(7, value);
+            }
+        }
+        
+        // 
+        public bool S_enigma_locals
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(8);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(8, value);
+            }
+        }
+        
+        // 
+        public bool M_enigma_picture_standby
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(9);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(9, value);
+            }
+        }
+        
+        // 
+        public bool A_enigma_seal_standby
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(10);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(10, value);
+            }
+        }
+        
+        // 
+        public bool F_enigma_seal
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(11);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(11, value);
+            }
+        }
+        
+        // 
+        public bool S_enigma_seal
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(12);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(12, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("FTT.F_enigma_scroll_standby", true);
+            aStorage.RegisterVariable("FTT.R_K_enigma_scroll", true);
+            aStorage.RegisterVariable("FTT.S_enigma_scroll_standby", true);
+            aStorage.RegisterVariable("FTT.F_enigma_scroll_achieved", true);
+            aStorage.RegisterVariable("FTT.S_enigma_locals", false);
+            aStorage.RegisterVariable("FTT.M_enigma_picture_standby", true);
+            aStorage.RegisterVariable("FTT.A_enigma_seal_standby", true);
+            aStorage.RegisterVariable("FTT.F_enigma_seal", true);
+            aStorage.RegisterVariable("FTT.S_enigma_seal", true);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class ChoiceSouma : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool accused_yokais
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(13);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(13, value);
+            }
+        }
+        
+        // 
+        public bool knows_powder
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(14);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(14, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("ChoiceSouma.accused_yokais", false);
+            aStorage.RegisterVariable("ChoiceSouma.knows_powder", false);
+        }
+    }
+}
