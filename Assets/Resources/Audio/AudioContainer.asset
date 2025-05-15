@@ -9,11 +9,11 @@ AudioRandomContainer:
   m_Name: AudioContainer
   m_Volume: 0
   m_Pitch: 0
-  m_AutomaticTriggerTime: 0
+  m_AutomaticTriggerTime: 36
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: 0, y: 0}
   m_PitchRandomizationRange: {x: 0, y: 0}
-  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: -6.2069206, y: 60}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements: []
   m_AvoidRepeatingLast: 0

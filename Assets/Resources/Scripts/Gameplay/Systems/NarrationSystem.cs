@@ -1,17 +1,29 @@
 using System.Collections.Generic;
-using Articy.Test;
-using Articy.Unity;
-using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
-using System;
+using Articy.Unity;
+using Articy.Test;
+using UnityEngine;
 using System.Linq;
+using System;
 
 enum NarrationState{
     DIALOG,
     CHOICE,
     CLOSED
 }
+
+[System.Serializable]
+struct CharacterState
+{
+    public string characterName;
+    public string characterState;
+
+    [ArticyTypeConstraint(typeof(Hub))]
+    public ArticyRef characterReference;
+
+}
+
 
 [RequireComponent(typeof(ArticyFlowPlayer))]
 public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
@@ -20,8 +32,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField] ArticyFlowPlayer flowPlayer;
 
     [Header("Characters")]
-    [ArticyTypeConstraint(typeof(Hub))]
-    [SerializeField] ArticyRef[] characters;
+    [SerializeField] CharacterState[] characters;
 
     [Header("UI References")]
     [SerializeField] List<TextMeshProUGUI> choiceTexts;
@@ -44,24 +55,40 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     }
 
-    public void StartWith(ArticyRef node)
+    public void StartWith(ArticyObject node)
     {
-        var list = ArticyFlowPlayer.GetBranchesOfNode(node.GetObject());
+        var list = ArticyFlowPlayer.GetBranchesOfNode(node);
         flowPlayer.Play(list[0]);
     }
 
-    public void StartWith(string character)
+    public void StartWith(string rawCharacter)
     {
-        for(int i = 0; i < characters.Length; i++)
+        print($"[ARTICY]: character to find >> {rawCharacter}");
+
+        foreach (var chr in characters)
         {
-            print($"[ARTICY]: character_name >> {characters[i]}");
-            if (characters[i].GetObject().name != character) continue;
-            var output = characters[i].GetObject<Hub>().OutputPins;
-            for(int j = 0; j < output.Count; j++)
+            if (chr.characterName != rawCharacter) break;
+
+            Hub hub = chr.characterReference.GetObject<Hub>();
+            var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
+            var conx = hub.OutputPins[0].Connections;
+            for (int i = 0; i < conx.Count; i++)
             {
-                print($"conx: {output[j].ToString()}");
+                var con = conx[i];
+                var branch = branches[i];
+                print($"branch:{branches.Count}");
+                print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
+                if (con.Label.ToString().Replace("STATE_", "") == characters[i].characterState)
+                {
+                    flowPlayer.Play(branch);
+                    return;
+                }
             }
+
         }
+
+
+
     }
 
 
@@ -91,7 +118,8 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         print($"[ARTICY]: branches availables: {aBranches.Count}");
 
         branchindex = new int[aBranches.Count];
-        for(int i = 0; i < branchindex.Length;i++) {
+        for (int i = 0; i < branchindex.Length; i++)
+        {
             Branch aBranch = aBranches[i];
             branchindex[i] = aBranch.BranchId;
         }
@@ -100,10 +128,10 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
-        print($"[ARTICY]: new node: {aObject.GetType()}");
-
         if (aObject == null) return;
-        else if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
+        //print($"[ARTICY]: new node: {(aObject as ArticyObject).TechnicalName}");
+
+        if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
         else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
         else if (aObject.GetType() == typeof(FlowFragment)) DispatchEvent(aObject as FlowFragment);
         else if (aObject.GetType() == typeof(OutputPin))
@@ -120,11 +148,13 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         ToggleChoiceUI(enabled);
     }
 
-    void ToggleDialogUI(bool enabled = false) {
+    void ToggleDialogUI(bool enabled = false)
+    {
         dialogContainer.SetActive(enabled);
     }
 
-    void ToggleChoiceUI(bool enabled = false) {
+    void ToggleChoiceUI(bool enabled = false)
+    {
         choicesContainer.SetActive(enabled);
     }
 
@@ -134,7 +164,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         state = NarrationState.CHOICE;
         List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
 
-        for(int i = 0; i < choiceButtons.Count; i++)
+        for (int i = 0; i < choiceButtons.Count; i++)
         {
             bool b = i < connections.Count;
             choiceButtons[i].SetActive(b);

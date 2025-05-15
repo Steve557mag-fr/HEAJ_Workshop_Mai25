@@ -470,26 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53a8dda18306d5429d5c0e9bfad7602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flowPlayer: {fileID: 426742863}
-  characters:
-  - instanceId: 0
-    referencingMode: 0
-    lowId: 355
-    highId: 16777216
-  choiceTexts:
-  - {fileID: 1966424266}
-  - {fileID: 496837286}
-  - {fileID: 1840134082}
-  - {fileID: 1715498716}
-  choiceButtons:
-  - {fileID: 2027471834}
-  - {fileID: 1773763080}
-  - {fileID: 2026808793}
-  - {fileID: 361507732}
-  choicesContainer: {fileID: 212092519}
-  dialogContainer: {fileID: 603274003}
-  uiTextDialog: {fileID: 1247507369}
-  uiTextDisplayName: {fileID: 2126295840}
 --- !u!114 &426742863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,8 +491,8 @@ MonoBehaviour:
     referencingMode: 0
     lowId: 0
     highId: 0
-  pauseOn: 31
-  ignoreInvalidBranches: 0
+  pauseOn: -1
+  ignoreInvalidBranches: 1
   continuouslyRecalculateBranches: 0
   continouslyRecalculateInterval: 1
 --- !u!1 &496837284
