@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FacticeScrollOfHistory
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  puzzleIcon: {fileID: 21300000, guid: 0976f5a218527314b918ca877baf6a2a, type: 3}
-  piece: {fileID: 8599090786545478849, guid: 1550b88c419cd4740a1b289e67e2cd1a, type: 3}
+  puzzleIcon: {fileID: 0}
+  piece: {fileID: 8599090786545478849, guid: a2206e5c66e001746acde60903dc4aae, type: 3}

@@ -1,15 +1,11 @@
-using NUnit.Framework;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class CraftSystem : MonoBehaviour
@@ -41,6 +37,12 @@ public class CraftSystem : MonoBehaviour
 
     [Header("Icon Display State")]
     [SerializeField] bool baseIconState = true;
+
+    [Header("Crafting Screen Size Parameters")]
+    [SerializeField][Range(0f, 1f)] float minX;
+    [SerializeField][Range(0f, 1f)] float maxX;
+    [SerializeField][Range(0f, 1f)] float minY;
+    [SerializeField][Range(0f, 1f)] float maxY;
 
 
     List<GameObject> gameItemList = new();
@@ -74,14 +76,12 @@ public class CraftSystem : MonoBehaviour
         if (currentPiece)
         {
             FollowMouse();
-            //Debug.Log(Input.mousePosition);
         }
     }
 
     private void FollowMouse()
     {
         currentPiece.gameObject.transform.position = new Vector3(Input.mousePosition.x + mouseDistance.x, Input.mousePosition.y + mouseDistance.y, 0);
-        //print(currentPiece.gameObject.transform.position);
     }
 
     internal static CraftSystem Get()
@@ -107,7 +107,6 @@ public class CraftSystem : MonoBehaviour
             GameItemObject result = craftList[i].craftResult;
             GameObject pattern = craftList[i].pattern;
             int j = i;
-            //Debug.Log($"name = {name}, result = {result.name}");
 
             GameObject prefab = Instantiate(recipeButtonPrefab, parent: recipeListContainer); 
             prefab.transform.Find("Button").Find("Name").GetComponent<TextMeshProUGUI>().text = name;
@@ -139,8 +138,6 @@ public class CraftSystem : MonoBehaviour
             Sprite itemIcon = gi.itemIcon;
             Sprite puzzleIcon = gi.puzzleIcon;
 
-            //Debug.Log($"Quantity = {quantity}, name = {name}, ");
-
             #region Creating GameItem Prefab and Assigning Variables
 
             GameObject prefab = Instantiate(itemSpritePrefab, parent: gameItemContainer);
@@ -156,22 +153,24 @@ public class CraftSystem : MonoBehaviour
 
             #endregion
 
-            #region Adding Event Triggers
+            if (gi.canBePlaced) 
+            {
+                #region Adding Event Triggers
 
-            EventTrigger eventTrigger = prefab.transform.GetComponent<EventTrigger>();
+                EventTrigger eventTrigger = prefab.transform.GetComponent<EventTrigger>();
 
-            EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
-            pointerDownEntry.eventID = EventTriggerType.PointerDown;
-            pointerDownEntry.callback.AddListener((data) => { BeginDrag(j); });
-            eventTrigger.triggers.Add(pointerDownEntry);
+                EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+                pointerDownEntry.eventID = EventTriggerType.PointerDown;
+                pointerDownEntry.callback.AddListener((data) => { BeginDrag(j); });
+                eventTrigger.triggers.Add(pointerDownEntry);
 
-            EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-            pointerUpEntry.eventID = EventTriggerType.PointerUp;
-            pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
-            eventTrigger.triggers.Add(pointerUpEntry);
+                EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+                pointerUpEntry.eventID = EventTriggerType.PointerUp;
+                pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
+                eventTrigger.triggers.Add(pointerUpEntry);
 
-            #endregion
-
+                #endregion
+            }
             gameItemList.Add(prefab);
         }
     }
@@ -193,7 +192,6 @@ public class CraftSystem : MonoBehaviour
     {
         if (index >= 0)
         {
-            //Debug.Log($"{index}");
             RemoveAllParts();
 
             selectedCraft = craftList[index];
@@ -240,28 +238,24 @@ public class CraftSystem : MonoBehaviour
 
             #region Adding Event Triggers To Make It Draggable
 
-            EventTrigger eventTrigger = piece.transform.GetComponent<EventTrigger>();
+                EventTrigger eventTrigger = piece.transform.GetComponent<EventTrigger>();
 
-            //print(eventTrigger);
+                EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+                pointerDownEntry.eventID = EventTriggerType.PointerDown;
+                pointerDownEntry.callback.AddListener((data) => { BeginDragInstance(tempPiece); });
+                eventTrigger.triggers.Add(pointerDownEntry);
 
-            EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
-            pointerDownEntry.eventID = EventTriggerType.PointerDown;
-            pointerDownEntry.callback.AddListener((data) => { BeginDragInstance(tempPiece); });
-            eventTrigger.triggers.Add(pointerDownEntry);
+                EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+                pointerUpEntry.eventID = EventTriggerType.PointerUp;
+                pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
+                eventTrigger.triggers.Add(pointerUpEntry);
 
-            EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-            pointerUpEntry.eventID = EventTriggerType.PointerUp;
-            pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
-            eventTrigger.triggers.Add(pointerUpEntry);
-
-            #endregion
+                #endregion
 
             piece.name = draggedGI.name;
-            //print($"Dragged piece is {draggedGI.name}");
             currentPiece = piece;
             mouseDistance.x = currentPiece.gameObject.transform.position.x - Input.mousePosition.x;
             mouseDistance.y = currentPiece.gameObject.transform.position.y - Input.mousePosition.y;
-            //print(mouseDistance);
             activePieceList.Add(piece);
         }
         else
@@ -289,12 +283,11 @@ public class CraftSystem : MonoBehaviour
                 RefreshGameItemList();
 
                 Transform nearestJoint = GetNearestJoint(currentPiece.transform);
-                //Debug.Log(nearestJoint);
                 if (nearestJoint == null) currentPiece = null;
                 else
                 {
                     Place(currentPiece.transform, nearestJoint);
-                    validPieceList.Remove(currentPiece);
+                    validPieceList.Add(currentPiece);
                     currentPiece = null;
                 }
             }
@@ -309,10 +302,10 @@ public class CraftSystem : MonoBehaviour
 
     public bool IsInRange(GameObject piece)
     {
-        return piece.transform.position.x / Screen.width > 0.10
-           && piece.transform.position.x / Screen.width < 0.80
-           && piece.transform.position.y / Screen.width > 0.20
-           && piece.transform.position.y / Screen.width < 0.90;
+        return piece.transform.position.x / Screen.width > minX
+           && piece.transform.position.x / Screen.width < maxX
+           && piece.transform.position.y / Screen.width > minY
+           && piece.transform.position.y / Screen.width < maxY;
     }
 
     public Transform GetNearestJoint(Transform piece)
@@ -334,13 +327,7 @@ public class CraftSystem : MonoBehaviour
                     nearestJoint = activePattern.transform.GetChild(i);
                 }
             }
-            //print($"Distance between closest child and dragged piece is {(nearestJoint.position - piece.position).magnitude} and accepted distance is {Screen.width / 150}");
-            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150)
-            {
-                //print($"Closest child's name is {nearestJoint.name}, and dragged piece name is {piece.name} and they are {(nearestJoint.position - piece.position).magnitude}f appart");
-                //print((nearestJoint.position - piece.position).magnitude);
-                return nearestJoint;
-            }
+            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150) return nearestJoint;
             else return null;
         }
         else return null;
@@ -351,7 +338,7 @@ public class CraftSystem : MonoBehaviour
     {
         piece.transform.position = at.position;
         validPieceList.Add(piece.gameObject);
-        print($"Placed {piece.transform.name} and added it to validPieceList as {validPieceList.First()}");
+        print($"Placed {piece.transform.name} and added it to validPieceList as {validPieceList.Last()}");
 
     }
 
@@ -366,6 +353,7 @@ public class CraftSystem : MonoBehaviour
                 Destroy(p);
             }
             activePieceList.Clear();
+            validPieceList.Clear();
             RefreshGameItemList();
             //print("Removed all Parts");
         }
@@ -373,7 +361,7 @@ public class CraftSystem : MonoBehaviour
 
     public bool PatternIsValid()
     {
-        for (int i = 0; i < activePattern.transform.childCount; i++)
+        for (int i = 0; i < activePattern.transform.childCount; i++) 
         {
             if (validPieceList.Count > 0)
             {
@@ -381,7 +369,7 @@ public class CraftSystem : MonoBehaviour
                 print(validPieceList[i + 1]);
                 if (!validPieceList[i + 1]) return false;
             }
-            else print("nothing in valiPieceList");
+            else print("nothing in validPieceList");
         }
         return true;
     }
@@ -390,7 +378,7 @@ public class CraftSystem : MonoBehaviour
     {
         if (PatternIsValid() && selectedCraft)
         {
-            //print($"Pattern Name is {activePattern.name}, playerState.FromString Results : {item.name}");
+            print($"Pattern {selectedCraft.pattern.name} is valid, adding {selectedCraft.craftResult} to the inventory");
             playerState.ModifyQuantity(selectedCraft.craftResult, 1);
             RefreshGameItemList();
 

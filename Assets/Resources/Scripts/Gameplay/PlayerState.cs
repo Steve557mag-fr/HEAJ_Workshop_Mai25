@@ -25,7 +25,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
             if(pair.Key.GetType() == typeof(T))
             {
                 result.Add(pair.Key);
-            }
+            } 
         }
 
         return result;
