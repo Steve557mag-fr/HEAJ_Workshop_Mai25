@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet/Muffled/Chime/SFX_Muffled_Chime-003.wav.meta
 guid: fa53fa253158a254f96c72ce96d84a2c
+========
+guid: 85861bede0a7a9d4ba81db77a71df5a5
+>>>>>>>> origin/Workspace-Marie:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet/Muffled/Chime/SFX_Muffled_Chime-002.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8

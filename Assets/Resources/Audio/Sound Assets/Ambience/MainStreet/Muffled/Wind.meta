@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet/Muffled/Wind.meta
 guid: 0f0af40e5d4092e4797a5d34abef5306
+========
+guid: 45440e86d831fc64da44aaed07aa896d
+>>>>>>>> origin/Workspace-Marie:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet/Muffled/Chime.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

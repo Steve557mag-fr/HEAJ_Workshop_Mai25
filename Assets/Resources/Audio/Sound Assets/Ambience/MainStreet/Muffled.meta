@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet/Muffled.meta
 guid: 5e6ad267663653948a0faeb3fc8adeec
+========
+guid: 6ac7086439091614389233d389989be2
+>>>>>>>> origin/Workspace-Marie:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
