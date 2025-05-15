@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using TMPro;
 using System.Text.RegularExpressions;
 using Articy.Unity;
 using Articy.Test;
 using UnityEngine;
 using System.Linq;
 using System;
+using TMPro;
 
 enum NarrationState{
     DIALOG,
@@ -48,11 +48,39 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         state = NarrationState.CLOSED;
         actionsFlowFragement.Add("board_load", (args) => { BoardManager.Get().LoadBoard(args[0]); });
-        actionsFlowFragement.Add("play_audio", (args) => { /*SoundManager.Get().Play(args[0]);*/ });
-        actionsFlowFragement.Add("show_ui", (args) => { /* [0]=> name_ui ; ... */ });
-        actionsFlowFragement.Add("add_item", (args) => { /* [0]=> name_item ; ... */ });
-        actionsFlowFragement.Add("add_hint", (args) => { /* [0]=> name_hint ; ... */ });
+        actionsFlowFragement.Add("play_audio", (args) => { SoundManager.Get().PlayAt(args[0]); });
+        actionsFlowFragement.Add("show_ui", ExecShowUI);
+        actionsFlowFragement.Add("hide_ui", ExecHideUI);
+        actionsFlowFragement.Add("add_item", ExecAddItem);
+        actionsFlowFragement.Add("add_hint", ExecAddHint);
+        actionsFlowFragement.Add("set_state", (args) => { NarrationSystem.Get().SetCharacterState(args[0], args[1]); });
+        actionsFlowFragement.Add("set_active", (args) => { DataSystem.Get().SetData($"{args[0]}_{args[1]}_enabled", Boolean.Parse(args[2])); });
+    }
 
+    private void ExecAddHint(string[] obj)
+    {
+        InventoryItemObject hi = HintObject.fromString(obj[0]);
+        if (hi == null) return;
+        if (!(hi is HintObject)) return;
+
+        PlayerState.Get().ModifyQuantity(hi, int.Parse(obj[1]));
+    }
+    private void ExecAddItem(string[] obj)
+    {
+        InventoryItemObject gi = GameItemObject.fromString(obj[0]);
+        if (gi == null) return;
+        if (!(gi is GameItemObject)) return;
+
+        PlayerState.Get().ModifyQuantity((GameItemObject)gi, int.Parse(obj[1]));
+    }
+
+    private void ExecHideUI(string[] obj)
+    {
+        UIManager.Get().SetUI(obj[0], false);
+    }
+    private void ExecShowUI(string[] obj)
+    {
+        UIManager.Get().SetUI(obj[0], true);
     }
 
     public void StartWith(ArticyObject node)
@@ -60,7 +88,6 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         var list = ArticyFlowPlayer.GetBranchesOfNode(node);
         flowPlayer.Play(list[0]);
     }
-
     public void StartWith(string rawCharacter)
     {
         print($"[ARTICY]: character to find >> {rawCharacter}");
@@ -84,10 +111,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
                     return;
                 }
             }
-
         }
-
-
 
     }
 
@@ -129,7 +153,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
         if (aObject == null) return;
-        //print($"[ARTICY]: new node: {(aObject as ArticyObject).TechnicalName}");
+        print($"[ARTICY]: new node: {aObject.GetType()}");
 
         if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
         else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
@@ -160,6 +184,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void DisplayChoices(Hub choice)
     {
+        print("[ARTICY]: update dialog!");
         ToggleChoiceUI(true);
         state = NarrationState.CHOICE;
         List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
@@ -174,6 +199,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void DisplayDialog(DialogueFragment dialog)
     {
+        print("[ARTICY]: update diag");
         ToggleDialogUI(true);
         state = NarrationState.DIALOG;
 
@@ -184,6 +210,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void DispatchEvent(FlowFragment flow)
     {
+        print("[ARTICY]: dispatch event");
         string stringAuto = Regex.Replace(flow.Text, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
         var args = stringAuto.Split('\n').ToList();
         string method = args[0];

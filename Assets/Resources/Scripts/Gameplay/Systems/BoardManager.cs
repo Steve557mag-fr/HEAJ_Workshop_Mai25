@@ -19,6 +19,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     internal string currentBoardName = "";
     bool isLock = false;
+    CickableInteraction[] userInteractions;
 
     private void Start()
     {
@@ -53,13 +54,14 @@ public class BoardManager : MonoBehaviour, IDataHandle
     void WhenBoardLoaded(string boardName)
     {
         isLock = false;
-
+        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsSortMode.None);
     }
 
-    public static void SetClickablesActive(bool state = false, string filter = "")
+    public void SetClickablesActive(bool state = false, string filter = "")
     {
-        foreach(var clk in FindObjectsByType<CickableInteraction>(FindObjectsSortMode.InstanceID))
+        foreach(var clk in userInteractions)
         {
+            print($"hi! {clk.name} -> {clk.tag}");
             if(clk.CompareTag(filter) || filter == "") clk.gameObject.SetActive(state);
         }
     }
