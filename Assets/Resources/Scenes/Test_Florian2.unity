@@ -570,7 +570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0005493164}
+  m_AnchoredPosition: {x: 0, y: -0.00048828125}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &201663604
@@ -3211,10 +3211,10 @@ MonoBehaviour:
   craftButton: {fileID: 1398086797}
   blackInk: {fileID: 11400000, guid: 3762b03fb4d7a664fa771959a9ee6839, type: 2}
   stringc: {fileID: 11400000, guid: 3d2d83e708c85f14dba0bf8ead1d8e92, type: 2}
-  wax: {fileID: 11400000, guid: 32d95a9dc6c172244a9397b86af08027, type: 2}
-  blade: {fileID: 11400000, guid: b3da5003559ce654881adc68f54961a7, type: 2}
-  wood: {fileID: 11400000, guid: 1ffc863acb4d46643a388dc6af086723, type: 2}
-  scissors: {fileID: 11400000, guid: 94d65351b801f41419fb1c4acef740ad, type: 2}
+  wax: {fileID: 11400000, guid: 8007d8a9b7f7d4e4d8dc09be40ef869d, type: 2}
+  blade: {fileID: 11400000, guid: 84d9c2e26c9c80f439c77d4aae27a9bb, type: 2}
+  wood: {fileID: 11400000, guid: 1e0e9dba6c23c914dad7efba6384f195, type: 2}
+  scissors: {fileID: 11400000, guid: fc28442ef47bf054090bfbbdac88b1d3, type: 2}
   candle: {fileID: 11400000, guid: fc28442ef47bf054090bfbbdac88b1d3, type: 2}
   baseIconState: 0
 --- !u!1 &1561009424

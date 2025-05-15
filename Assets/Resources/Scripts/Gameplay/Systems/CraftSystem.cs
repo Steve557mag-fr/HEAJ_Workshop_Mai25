@@ -235,7 +235,7 @@ public class CraftSystem : MonoBehaviour
         {
             piece = Instantiate(draggedGI.piece, parent: craftingUICanva);
             piece.transform.position = gameItemList[index].transform.position;
-
+             
             GameObject tempPiece = piece;
 
             #region Adding Event Triggers To Make It Draggable
