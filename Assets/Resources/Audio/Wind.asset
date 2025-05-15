@@ -30,16 +30,6 @@ AudioContainerElement:
   m_AudioClip: {fileID: 8300000, guid: e7a7cf8f2c74cd549afe9e412e8034d7, type: 3}
   m_Volume: 0
   m_Enabled: 1
---- !u!1233149941 &2118881188534365079
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SFX_wind-001_{2118881188534365079}
-  m_AudioClip: {fileID: 8300000, guid: c90344107b2bf074abe7a8d338cd7ff9, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
 --- !u!1233149941 &5857930290526853478
 AudioContainerElement:
   m_ObjectHideFlags: 1
@@ -59,14 +49,13 @@ AudioRandomContainer:
   m_Name: Wind
   m_Volume: 0
   m_Pitch: 0
-  m_AutomaticTriggerTime: 0.01
+  m_AutomaticTriggerTime: 5
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: 0, y: 0}
   m_PitchRandomizationRange: {x: 0, y: 0}
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
-  - {fileID: 2118881188534365079}
   - {fileID: -2560924299122681687}
   - {fileID: 6724124270935007087}
   - {fileID: 5857930290526853478}
@@ -75,7 +64,7 @@ AudioRandomContainer:
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 1
   m_TriggerMode: 1
-  m_AutomaticTriggerMode: 1
+  m_AutomaticTriggerMode: 0
   m_LoopMode: 0
   m_VolumeRandomizationEnabled: 0
   m_PitchRandomizationEnabled: 0
