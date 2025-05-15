@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e704b5b0c7974f45b1c93f74a586ad4, type: 3}
+  m_Name: SealOfTruth
+  m_EditorClassIdentifier: 
+  pattern: {fileID: 8599090786545478849, guid: 47eadcd08851c3b4a886fe3a278b75e6, type: 3}
+  craftResult: {fileID: 11400000, guid: 21bde200efef1764490b82fd5cdea512, type: 2}

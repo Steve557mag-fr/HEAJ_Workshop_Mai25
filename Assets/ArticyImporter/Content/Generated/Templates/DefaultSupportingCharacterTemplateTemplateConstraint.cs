@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Articy.Test_Project;
-using Articy.Test_Project.Features;
+using Articy.Test;
+using Articy.Test.Features;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using System;
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Articy.Test_Project.Templates
+namespace Articy.Test.Templates
 {
     
     
