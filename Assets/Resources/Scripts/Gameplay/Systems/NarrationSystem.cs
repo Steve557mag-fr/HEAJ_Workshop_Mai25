@@ -40,7 +40,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField] GameObject choicesContainer, dialogContainer;
     [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
 
-    int[] branchindex;
+    List<int> branchindex = new();
     NarrationState state;
     Dictionary<string, Action<string[]>> actionsFlowFragement = new();
 
@@ -94,8 +94,10 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
         foreach (var chr in characters)
         {
-            if (chr.characterName != rawCharacter) break;
+            print($"chr.characterName: {chr.characterName}");
+            if (chr.characterName != rawCharacter) continue;
 
+            // get character connections
             Hub hub = chr.characterReference.GetObject<Hub>();
             var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
             var conx = hub.OutputPins[0].Connections;
@@ -105,12 +107,13 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
                 var branch = branches[i];
                 print($"branch:{branches.Count}");
                 print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
-                if (con.Label.ToString().Replace("STATE_", "") == characters[i].characterState)
+                if (con.Label == chr.characterState)
                 {
                     flowPlayer.Play(branch);
                     return;
                 }
             }
+            break;
         }
 
     }
@@ -132,21 +135,24 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void Next(int index = 0)
     {
-        if (index < 0 && index >= branchindex.Length) return;
-        print("[ARTICY]: next node");
-        flowPlayer.Play(branchindex[index]);
+        if (index < 0 && index >= branchindex.Count) return;
+        print($"[ARTICY]: next node (branches={branchindex.Count})");
+        flowPlayer.Play(branchindex.Count == 0 ? 0 : branchindex[index]);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
         print($"[ARTICY]: branches availables: {aBranches.Count}");
 
-        branchindex = new int[aBranches.Count];
-        for (int i = 0; i < branchindex.Length; i++)
+        branchindex = new(aBranches.Count);
+        for (int i = 0; i < branchindex.Count; i++)
         {
             Branch aBranch = aBranches[i];
             branchindex[i] = aBranch.BranchId;
         }
+
+        if (!flowPlayer.CurrentObject.HasReference) return;
+        print($"[ARTICY]: current object ({flowPlayer.CurrentObject.GetObject().TechnicalName})");
 
     }
 
@@ -158,8 +164,29 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
         else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
         else if (aObject.GetType() == typeof(FlowFragment)) DispatchEvent(aObject as FlowFragment);
+        else if(aObject.GetType() == typeof(Dialogue))
+        {
+            var d = (aObject as Dialogue);
+            print($"dialogue : {d.DisplayName}");
+            StartWith(d.Children.First());
+        }
+        else if (aObject.GetType() == typeof(Condition))
+        {
+            var c = (aObject as Condition);
+            print($"condition : {c.Expression.RawScript}");
+            bool r = c.Expression.CallScript(flowPlayer.MethodProvider, flowPlayer.GlobalVariables);
+            print($" > result : {r}");
+        }
+        else if (aObject.GetType() == typeof(InputPin)) Next();
         else if (aObject.GetType() == typeof(OutputPin))
         {
+
+            if ((aObject as OutputPin).Connections.Count > 0)
+            {
+                Next();
+                return;
+            }
+
             state = NarrationState.CLOSED;
             ToggleUI(false);
         }

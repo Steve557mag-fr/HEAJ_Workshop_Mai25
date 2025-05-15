@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4149952623065158932}
   m_Layer: 0
   m_Name: DIA Interaction
-  m_TagString: Untagged
+  m_TagString: dia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

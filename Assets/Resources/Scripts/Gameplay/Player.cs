@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     void StartBoard(string boardLoaded)
     {
         inNavigation = false;
-        BoardManager.Get().SetClickablesActive(false, "tp");
 
     }
 

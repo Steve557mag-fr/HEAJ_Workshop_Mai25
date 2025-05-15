@@ -671,7 +671,7 @@ MonoBehaviour:
     referencingMode: 0
     lowId: 0
     highId: 0
-  pauseOn: -1
+  pauseOn: 175
   ignoreInvalidBranches: 1
   continuouslyRecalculateBranches: 0
   continouslyRecalculateInterval: 1

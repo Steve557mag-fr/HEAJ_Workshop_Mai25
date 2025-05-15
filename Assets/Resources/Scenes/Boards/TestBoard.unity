@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DIA Interaction
       objectReference: {fileID: 0}
-    - target: {fileID: 1226003999101060317, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
-      propertyPath: m_TagString
-      value: dia
-      objectReference: {fileID: 0}
     - target: {fileID: 2155271765887918392, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.15153337
@@ -174,6 +170,14 @@ PrefabInstance:
     - target: {fileID: 2155271765887918392, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149952623065158932, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 2af089e1978d74e4aae7eda875b6ebfe, type: 2}
+    - target: {fileID: 4149952623065158932, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Run
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

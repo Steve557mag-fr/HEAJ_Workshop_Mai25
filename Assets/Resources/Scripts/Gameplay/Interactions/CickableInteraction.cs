@@ -6,7 +6,7 @@ public class CickableInteraction : BaseInteraction
 
     private void OnMouseDown()
     {
-        if (NarrationSystem.GetNarrationState() != NarrationState.CLOSED) return;
+        if (BoardManager.Get().IsBusy() || NarrationSystem.GetNarrationState() != NarrationState.CLOSED) return;
 
         Debug.Log("ClickableInteraction :: OnMouseDown Triggered");
         Trigger();

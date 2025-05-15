@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,7 +21,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     internal string currentBoardName = "";
     bool isLock = false;
-    CickableInteraction[] userInteractions;
+    List<CickableInteraction> userInteractions = new();
 
     private void Start()
     {
@@ -43,6 +45,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
             SceneManager.LoadScene(boardName, LoadSceneMode.Additive);
             currentBoardName = boardName;
 
+
             //3. fade in
             LeanTween.alphaCanvas(fadingGroup, 0, fadingTime).setEase(easeMode).setOnComplete(() => {
                 boardLoaded(currentBoardName);
@@ -53,15 +56,24 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     void WhenBoardLoaded(string boardName)
     {
+        //1. unlock
         isLock = false;
-        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsSortMode.None);
+
+        //2. get interactions & disable tp
+        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsSortMode.None).ToList();
+        SetClickablesActive(filter: "tp");
+    }
+
+    public bool IsBusy()
+    {
+        return isLock;
     }
 
     public void SetClickablesActive(bool state = false, string filter = "")
     {
         foreach(var clk in userInteractions)
         {
-            print($"hi! {clk.name} -> {clk.tag}");
+            //print($"hi! {clk.name} -> {clk.tag}");
             if(clk.CompareTag(filter) || filter == "") clk.gameObject.SetActive(state);
         }
     }
@@ -73,12 +85,15 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     public JObject toJObject()
     {
-        throw new System.NotImplementedException();
+        return new()
+        {
+            {"board", currentBoardName}
+        };
     }
 
     public void fromJObject(JObject jo)
     {
-        throw new System.NotImplementedException();
+        LoadBoard(jo["board"].ToString());
     }
 
     public JObject getDefaultJObject()
