@@ -23,22 +23,9 @@ namespace Articy.Test.GlobalVariables
     public partial class ArticyScriptFragments : BaseScriptFragments, ISerializationCallbackReceiver
     {
         
-        #region Script fragments
-        /// <summary>
-        /// ObjectID: 0x10000000000016D
-        /// Articy Object ref: articy://localhost/view/cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92/72057594037928301?pane=selected&amp;tab=current
-        /// </summary>
-        public bool Script_720575940379282080x10000000000016DExpression(ArticyGlobalVariables aGlobalVariablesState, Articy.Unity.IBaseScriptMethodProvider aMethodProvider)
-        {
-            return aGlobalVariablesState.Test_Var.var_test == true
-;
-        }
-        #endregion
-        
         #region Unity serialization
         public virtual void OnAfterDeserialize_0x100000000000110()
         {
-            Conditions.Add(3033251832u, this.Script_720575940379282080x10000000000016DExpression);
         }
         #endregion
     }
