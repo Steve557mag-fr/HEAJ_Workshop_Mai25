@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8018234986385269503}
   - component: {fileID: 6040995236289178522}
   - component: {fileID: 8123587330674740944}
-  - component: {fileID: 503074997978527861}
+  - component: {fileID: 992794881933466934}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
@@ -142,7 +142,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &503074997978527861
+--- !u!114 &992794881933466934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,19 +151,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7241290850933697344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820f486e8b9cf0f40bf812429f8b37b8, type: 3}
+  m_Script: {fileID: 11500000, guid: ec84d8f746aa1364d99529e4a461daa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onTrigger:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: c562288bb55c86f4bb576d0550ccd257, type: 2}
-        m_TargetAssemblyTypeName: DialogPointObject, Assembly-CSharp
+        m_TargetAssemblyTypeName: CollectItemObject, Assembly-CSharp
         m_MethodName: Run
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 992794881933466934}
+          m_ObjectArgumentAssemblyTypeName: CickableInteraction, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -69,6 +69,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     public void SetClickablesActive(bool state = false, string filter = "")
     {
+        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
         foreach(var clk in userInteractions)
         {
             print($"hi! {clk.name} -> {clk.tag}");

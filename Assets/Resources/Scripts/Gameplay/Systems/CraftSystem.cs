@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -114,6 +113,7 @@ public class CraftSystem : MonoBehaviour
 
     public void RefreshCraftList()
     {
+        return;
         craftList.Clear();
         for(int i = 0; i < activeCraftList.Count; i++)
         {
@@ -144,6 +144,7 @@ public class CraftSystem : MonoBehaviour
 
     public void RefreshGameItemList()
     {
+        return;
         if (gameItemList.Count != 0)
         {
             foreach (var gi in gameItemList)

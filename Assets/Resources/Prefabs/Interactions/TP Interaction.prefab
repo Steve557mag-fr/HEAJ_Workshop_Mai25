@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1361638931421503532}
   - component: {fileID: 5156269264993973855}
   - component: {fileID: 7816755676651570620}
-  - component: {fileID: 5230261718090256401}
+  - component: {fileID: 1516985665865197237}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: tp
@@ -143,7 +143,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5230261718090256401
+--- !u!114 &1516985665865197237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,14 +152,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378408880781255993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820f486e8b9cf0f40bf812429f8b37b8, type: 3}
+  m_Script: {fileID: 11500000, guid: ec84d8f746aa1364d99529e4a461daa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 56abfc105071181488124d3e04859e21, type: 2}
-        m_TargetAssemblyTypeName: DialogPointObject, Assembly-CSharp
+      - m_Target: {fileID: 11400000, guid: d11594ed1a5a4a647961b4d3e00f4533, type: 2}
+        m_TargetAssemblyTypeName: BoardChangeObject, Assembly-CSharp
         m_MethodName: Run
         m_Mode: 1
         m_Arguments:
@@ -204,8 +204,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.2364569, y: -0, z: -0, w: 0.971642}
   m_LocalPosition: {x: 0, y: -0.714, z: -0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2155271765887918392}
   m_LocalEulerAnglesHint: {x: 27.355, y: 0, z: 0}

@@ -32,6 +32,30 @@ namespace Articy.Test.GlobalVariables
         [HideInInspector()]
         private Test_Var mTest_Var = new Test_Var();
         
+        [SerializeField()]
+        [HideInInspector()]
+        private GameItemCheck mGameItemCheck = new GameItemCheck();
+        
+        [SerializeField()]
+        [HideInInspector()]
+        private FTT mFTT = new FTT();
+        
+        [SerializeField()]
+        [HideInInspector()]
+        private ChoiceSouma mChoiceSouma = new ChoiceSouma();
+        
+        [SerializeField()]
+        [HideInInspector()]
+        private Intro mIntro = new Intro();
+        
+        [SerializeField()]
+        [HideInInspector()]
+        private CanLoot mCanLoot = new CanLoot();
+        
+        [SerializeField()]
+        [HideInInspector()]
+        private KotaroEnigma mKotaroEnigma = new KotaroEnigma();
+        
         #region Initialize static VariableName set
         static ArticyGlobalVariables()
         {
@@ -39,6 +63,56 @@ namespace Articy.Test.GlobalVariables
             variableNames.Add("Day1_Hints.Knows_Momiji");
             variableNames.Add("Day1_Hints.NewVariable");
             variableNames.Add("Test_Var.var_test");
+            variableNames.Add("GameItemCheck.intro_items");
+            variableNames.Add("GameItemCheck.moriyama_picture");
+            variableNames.Add("GameItemCheck.aoyama_seal_uncharged");
+            variableNames.Add("GameItemCheck.aoyama_seal_charged");
+            variableNames.Add("GameItemCheck.recipe_seal");
+            variableNames.Add("GameItemCheck.hint_jade_crafted");
+            variableNames.Add("GameItemCheck.hint_momiji_crafted");
+            variableNames.Add("GameItemCheck.moriyama_scissors");
+            variableNames.Add("GameItemCheck.momiji_scraper");
+            variableNames.Add("GameItemCheck.item_momiji_obtained");
+            variableNames.Add("GameItemCheck.item_jade_obtained");
+            variableNames.Add("GameItemCheck.momiji_pouch");
+            variableNames.Add("GameItemCheck.hint_identity_crafted");
+            variableNames.Add("FTT.F_enigma_scroll_standby");
+            variableNames.Add("FTT.R_K_enigma_scroll");
+            variableNames.Add("FTT.S_enigma_scroll_standby");
+            variableNames.Add("FTT.F_enigma_scroll_achieved");
+            variableNames.Add("FTT.S_enigma_locals");
+            variableNames.Add("FTT.M_enigma_picture_standby");
+            variableNames.Add("FTT.A_enigma_seal_standby");
+            variableNames.Add("FTT.F_enigma_seal");
+            variableNames.Add("FTT.S_enigma_seal");
+            variableNames.Add("FTT.R_K_day1_stains");
+            variableNames.Add("FTT.K_R_day1_entry");
+            variableNames.Add("FTT.F_kamikiri");
+            variableNames.Add("FTT.S_enigma_standby");
+            variableNames.Add("FTT.K_R_enigma_death");
+            variableNames.Add("FTT.M_enigma_scissors");
+            variableNames.Add("FTT.momiji_leak");
+            variableNames.Add("FTT.S_momiji_pouch");
+            variableNames.Add("FTT.S_jade");
+            variableNames.Add("ChoiceSouma.accused_yokais");
+            variableNames.Add("ChoiceSouma.knows_powder");
+            variableNames.Add("ChoiceSouma.lack_trust");
+            variableNames.Add("ChoiceSouma.is_chased");
+            variableNames.Add("Intro.got_wax");
+            variableNames.Add("Intro.got_blackink");
+            variableNames.Add("Intro.got_string");
+            variableNames.Add("Intro.phase");
+            variableNames.Add("CanLoot.Scroll_Of_History");
+            variableNames.Add("CanLoot.Spirituous_Powder");
+            variableNames.Add("CanLoot.remains_Spirituous_Powder");
+            variableNames.Add("KotaroEnigma.hasStarted");
+            variableNames.Add("KotaroEnigma.hints_found");
+            variableNames.Add("KotaroEnigma.has_clicked_stains");
+            variableNames.Add("KotaroEnigma.has_clicked_ashes");
+            variableNames.Add("KotaroEnigma.has_clicked_desk");
+            variableNames.Add("KotaroEnigma.has_clicked_tools");
+            variableNames.Add("KotaroEnigma.got_both_hints");
+            variableNames.Add("KotaroEnigma.wanna_talk_to_aoyama");
         }
         #endregion
         
@@ -58,6 +132,54 @@ namespace Articy.Test.GlobalVariables
             }
         }
         
+        public GameItemCheck GameItemCheck
+        {
+            get
+            {
+                return mGameItemCheck;
+            }
+        }
+        
+        public FTT FTT
+        {
+            get
+            {
+                return mFTT;
+            }
+        }
+        
+        public ChoiceSouma ChoiceSouma
+        {
+            get
+            {
+                return mChoiceSouma;
+            }
+        }
+        
+        public Intro Intro
+        {
+            get
+            {
+                return mIntro;
+            }
+        }
+        
+        public CanLoot CanLoot
+        {
+            get
+            {
+                return mCanLoot;
+            }
+        }
+        
+        public KotaroEnigma KotaroEnigma
+        {
+            get
+            {
+                return mKotaroEnigma;
+            }
+        }
+        
         public static ArticyGlobalVariables Default
         {
             get
@@ -70,6 +192,12 @@ namespace Articy.Test.GlobalVariables
         {
             Day1_Hints.RegisterVariables(this);
             Test_Var.RegisterVariables(this);
+            GameItemCheck.RegisterVariables(this);
+            FTT.RegisterVariables(this);
+            ChoiceSouma.RegisterVariables(this);
+            Intro.RegisterVariables(this);
+            CanLoot.RegisterVariables(this);
+            KotaroEnigma.RegisterVariables(this);
         }
         
         public static ArticyGlobalVariables CreateGlobalVariablesClone()

@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 426742862}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -1531,7 +1531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426742861}
   - component: {fileID: 426742863}
-  - component: {fileID: 426742862}
+  - component: {fileID: 426742864}
   m_Layer: 0
   m_Name: == NARRATION ==
   m_TagString: Untagged
@@ -1554,62 +1554,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &426742862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426742860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53a8dda18306d5429d5c0e9bfad7602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flowPlayer: {fileID: 426742863}
-  characters:
-  - characterName: SOUMA
-    characterState: 
-    characterReference:
-      instanceId: 0
-      referencingMode: 0
-      lowId: 432
-      highId: 16777216
-  - characterName: MORIYAMA
-    characterState: 
-    characterReference:
-      instanceId: 0
-      referencingMode: 0
-      lowId: 437
-      highId: 16777216
-  - characterName: FUKURO
-    characterState: ENIGMA_SCROLL_STANDBY
-    characterReference:
-      instanceId: 0
-      referencingMode: 0
-      lowId: 422
-      highId: 16777216
-  - characterName: AOYAMA
-    characterState: 
-    characterReference:
-      instanceId: 0
-      referencingMode: 0
-      lowId: 427
-      highId: 16777216
-  choiceTexts:
-  - {fileID: 1966424266}
-  - {fileID: 496837286}
-  - {fileID: 1840134082}
-  - {fileID: 1715498716}
-  choiceButtons:
-  - {fileID: 2027471834}
-  - {fileID: 1773763080}
-  - {fileID: 2026808793}
-  - {fileID: 361507732}
-  choicesContainer: {fileID: 212092519}
-  dialogContainer: {fileID: 603274003}
-  uiTextDialog: {fileID: 1247507369}
-  uiTextDisplayName: {fileID: 2126295840}
 --- !u!114 &426742863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1635,6 +1579,54 @@ MonoBehaviour:
   ignoreInvalidBranches: 1
   continuouslyRecalculateBranches: 0
   continouslyRecalculateInterval: 1
+--- !u!114 &426742864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426742860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12dafc290a97e14468ea721c6f2ffb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowPlayer: {fileID: 426742863}
+  characters:
+  - characterName: SOUMA
+    characterState: 
+    characterReference:
+      instanceId: 0
+      referencingMode: 0
+      lowId: 432
+      highId: 16777216
+  - characterName: FUKURO
+    characterState: 
+    characterReference:
+      instanceId: 0
+      referencingMode: 0
+      lowId: 422
+      highId: 16777216
+  - characterName: MORIYAMA
+    characterState: 
+    characterReference:
+      instanceId: 0
+      referencingMode: 0
+      lowId: 437
+      highId: 16777216
+  - characterName: AOYAMA
+    characterState: 
+    characterReference:
+      instanceId: 0
+      referencingMode: 0
+      lowId: 427
+      highId: 16777216
+  choiceTexts: []
+  choiceButtons: []
+  choicesContainer: {fileID: 0}
+  dialogContainer: {fileID: 0}
+  uiTextDialog: {fileID: 0}
+  uiTextDisplayName: {fileID: 0}
 --- !u!1 &469045780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,6 +2475,17 @@ MonoBehaviour:
   minY: 0.189
   maxY: 0.656
   activePieceList: []
+  craftList: []
+  gameItemList: []
+  activeCraftList: []
+  selectedCraft: {fileID: 0}
+  draggedGI: {fileID: 0}
+  activePattern: {fileID: 0}
+  mouseDistance: {x: 0, y: 0, z: 0}
+  currentPiece: {prefab: {fileID: 0}, isPlaced: 0, moves: 0, index: 0}
+  piece: {prefab: {fileID: 0}, isPlaced: 0, moves: 0, index: 0}
+  iconState: 0
+  giExisted: 0
 --- !u!4 &704028444
 Transform:
   m_ObjectHideFlags: 0
@@ -5012,7 +5015,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 426742862}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: NextDialog
         m_Mode: 1
@@ -5633,7 +5636,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 426742862}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -6081,7 +6084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939141012}
-  - component: {fileID: 1939141014}
+  - component: {fileID: 1939141016}
   - component: {fileID: 1939141015}
   m_Layer: 0
   m_Name: == GAME & BOARDS ==
@@ -6105,18 +6108,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1939141014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939141009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6fe347438a670408bed774638ef13c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1939141015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6134,6 +6125,18 @@ MonoBehaviour:
   easeMode: 1
   entryBoard: TestBoard
   userInteractions: []
+--- !u!114 &1939141016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939141009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d772cc689772a45b434d1aed4098fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966418176
 GameObject:
   m_ObjectHideFlags: 0
@@ -6805,7 +6808,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 426742862}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -6938,7 +6941,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 426742862}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -7253,7 +7256,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2098604991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f060c7697300f4ebc220913f5ced3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3df8153b353f5684d87349853d8ed11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 476273e768e7a7b409404e4eba07c035, type: 2}
