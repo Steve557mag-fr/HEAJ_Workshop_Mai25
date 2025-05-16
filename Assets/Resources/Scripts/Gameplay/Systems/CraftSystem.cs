@@ -113,7 +113,6 @@ public class CraftSystem : MonoBehaviour
 
     public void RefreshCraftList()
     {
-        return;
         craftList.Clear();
         for(int i = 0; i < activeCraftList.Count; i++)
         {
@@ -144,7 +143,7 @@ public class CraftSystem : MonoBehaviour
 
     public void RefreshGameItemList()
     {
-        return;
+
         if (gameItemList.Count != 0)
         {
             foreach (var gi in gameItemList)
