@@ -1,21 +1,18 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class CraftSystem : MonoBehaviour
 {
     [Header("PlayerState Reference")]
     [SerializeField] PlayerState playerState;
+    [SerializeField] ModalSystem modalSystem;
 
     [Header("Prefabs")]
     [SerializeField] GameObject itemSpritePrefab;
@@ -42,19 +39,41 @@ public class CraftSystem : MonoBehaviour
     [Header("Icon Display State")]
     [SerializeField] bool baseIconState = true;
 
+    [Header("Crafting Screen Size Parameters")]
+    [SerializeField][Range(0f, 1f)] float minX;
+    [SerializeField][Range(0f, 1f)] float maxX;
+    [SerializeField][Range(0f, 1f)] float minY;
+    [SerializeField][Range(0f, 1f)] float maxY;
 
+    [Header("List of active pieces")]
+    [SerializeField] List<Piece> activePieceList = new();
+
+    List<CraftDataObject> craftList = new();
     List<GameObject> gameItemList = new();
-    List<GameObject> activePieceList = new();
-    List<GameObject> validPieceList = new();
-    List<CraftDataObject> craftList;
-    CraftDataObject selectedCraft;
+    List<GameObject> activeCraftList = new();
+    CraftDataObject selectedCraft = null;
     GameItemObject draggedGI;
     GameObject activePattern = null;
-    GameObject currentPiece = null;
-    GameObject piece;
     Vector3 mouseDistance;
+    Piece currentPiece;
+    Piece piece;
     bool iconState;
     bool giExisted;
+
+    [System.Serializable]
+    public struct Piece
+    {
+        public GameObject prefab;
+        public bool isPlaced;
+        public bool moves;
+        public int index;
+
+        public Piece(GameObject prefab, bool isPlaced) : this()
+        {
+            this.prefab = prefab;
+            this.isPlaced = isPlaced;
+        }
+    }
 
     private void Start()
     {
@@ -64,24 +83,26 @@ public class CraftSystem : MonoBehaviour
         playerState.ModifyQuantity(stringc, 10);
         playerState.ModifyQuantity(blade, 10);
         playerState.ModifyQuantity(wood, 10);
+        craftList.Add(candle);
+        craftList.Add(scissors);
         RefreshCraftList();
         RefreshGameItemList();
-        removePartsButton.GetComponent<Button>().onClick.AddListener(() => { RemoveAllParts(); });
+        removePartsButton.GetComponent<Button>().onClick.AddListener(() => { RemoveAllParts(true); });
     }
 
     private void Update()
     {
-        if (currentPiece)
+        //print($"current piece is {currentPiece}");
+        if (currentPiece.prefab)
         {
+            print($"active piece 'moves' state is {currentPiece.moves}");
             FollowMouse();
-            //Debug.Log(Input.mousePosition);
         }
     }
 
     private void FollowMouse()
     {
-        currentPiece.gameObject.transform.position = new Vector3(Input.mousePosition.x + mouseDistance.x, Input.mousePosition.y + mouseDistance.y, 0);
-        //print(currentPiece.gameObject.transform.position);
+        currentPiece.prefab.transform.position = new Vector3(Input.mousePosition.x + mouseDistance.x, Input.mousePosition.y + mouseDistance.y, 0);
     }
 
     internal static CraftSystem Get()
@@ -89,16 +110,39 @@ public class CraftSystem : MonoBehaviour
         return FindFirstObjectByType<CraftSystem>();
     }
 
+    public bool IsOpen()
+    {
+        return craftingUI.activeSelf;
+    }
+
     public void SetUIActive(bool state)
     {
         craftingUI.SetActive(state);
+        RefreshCraftList();
+        RefreshGameItemList();
+
+        if(state == false)
+        {
+            SelectCraft(-1);
+            RemoveAllParts(false);
+        }
     }
 
     public void RefreshCraftList()
     {
-        craftList = GameManager.Get().QueryAvailableCrafts();
+        craftList.Clear();
+        for(int i = 0; i < activeCraftList.Count; i++)
+        {
+            Destroy(activeCraftList[i]);
+        }
+        activeCraftList.Clear();
 
-        craftList.Add(candle);
+        for(int d = 0; d < playerState.GetFilteredBy<CraftDataObject>().Count; d++)
+        {
+            craftList[d] = (CraftDataObject)playerState.GetFilteredBy<CraftDataObject>()[d];
+        }
+
+
         craftList.Add(scissors);
 
         for (int i = 0; i < craftList.Count; i++)
@@ -107,11 +151,12 @@ public class CraftSystem : MonoBehaviour
             GameItemObject result = craftList[i].craftResult;
             GameObject pattern = craftList[i].pattern;
             int j = i;
-            //Debug.Log($"name = {name}, result = {result.name}");
 
             GameObject prefab = Instantiate(recipeButtonPrefab, parent: recipeListContainer); 
             prefab.transform.Find("Button").Find("Name").GetComponent<TextMeshProUGUI>().text = name;
-            prefab.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => { SelectCraft(j); }); 
+            prefab.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => { SelectCraft(j); });
+
+            activeCraftList.Add(prefab);
         }
     }
 
@@ -139,8 +184,6 @@ public class CraftSystem : MonoBehaviour
             Sprite itemIcon = gi.itemIcon;
             Sprite puzzleIcon = gi.puzzleIcon;
 
-            //Debug.Log($"Quantity = {quantity}, name = {name}, ");
-
             #region Creating GameItem Prefab and Assigning Variables
 
             GameObject prefab = Instantiate(itemSpritePrefab, parent: gameItemContainer);
@@ -156,22 +199,24 @@ public class CraftSystem : MonoBehaviour
 
             #endregion
 
-            #region Adding Event Triggers
+            if (gi.canBePlaced) 
+            {
+                #region Adding Event Triggers
 
-            EventTrigger eventTrigger = prefab.transform.GetComponent<EventTrigger>();
+                EventTrigger eventTrigger = prefab.transform.GetComponent<EventTrigger>();
 
-            EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
-            pointerDownEntry.eventID = EventTriggerType.PointerDown;
-            pointerDownEntry.callback.AddListener((data) => { BeginDrag(j); });
-            eventTrigger.triggers.Add(pointerDownEntry);
+                EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+                pointerDownEntry.eventID = EventTriggerType.PointerDown;
+                pointerDownEntry.callback.AddListener((data) => { BeginDrag(j); });
+                eventTrigger.triggers.Add(pointerDownEntry);
 
-            EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-            pointerUpEntry.eventID = EventTriggerType.PointerUp;
-            pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
-            eventTrigger.triggers.Add(pointerUpEntry);
+                EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+                pointerUpEntry.eventID = EventTriggerType.PointerUp;
+                pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
+                eventTrigger.triggers.Add(pointerUpEntry);
 
-            #endregion
-
+                #endregion
+            }
             gameItemList.Add(prefab);
         }
     }
@@ -193,32 +238,26 @@ public class CraftSystem : MonoBehaviour
     {
         if (index >= 0)
         {
-            //Debug.Log($"{index}");
-            RemoveAllParts();
-
+            RemoveAllParts(true);
             selectedCraft = craftList[index];
             craftButton.gameObject.SetActive(true);
             DisplayCraft();
-
-
         }
         else
         {
-            RemoveAllParts();
+            RemoveAllParts(false);
             selectedCraft = null;
             DisplayCraft();
         }
     }
 
-    public void DisplayCraft()
+    public void DisplayCraft() 
     {
         if (activePattern) Destroy(activePattern);
-
         if (selectedCraft)
         {
             activePattern = Instantiate(selectedCraft.pattern, parent: patternContainer);
             activePattern.name = selectedCraft.name;
-
         }
     }
 
@@ -226,184 +265,190 @@ public class CraftSystem : MonoBehaviour
     {
         giExisted = false;
         gameItemContainer.GetComponentInParent<ScrollRect>().enabled = false;
-
         draggedGI = (GameItemObject)playerState.GetFilteredBy<GameItemObject>()[index];
 
         int quant = playerState.inventory[draggedGI];
 
         if (quant != 0)
         {
-            piece = Instantiate(draggedGI.piece, parent: craftingUICanva);
-            piece.transform.position = gameItemList[index].transform.position;
+            GameObject pieceInstance = Instantiate(draggedGI.piece, parent: craftingUICanva);
+            pieceInstance.transform.position = gameItemList[index].transform.position;
 
-            GameObject tempPiece = piece;
+            piece = new Piece(pieceInstance, false);
+
+            Piece tempPiece = piece;
 
             #region Adding Event Triggers To Make It Draggable
 
-            EventTrigger eventTrigger = piece.transform.GetComponent<EventTrigger>();
+                EventTrigger eventTrigger = piece.prefab.GetComponent<EventTrigger>();
 
-            //print(eventTrigger);
+                EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
+                pointerDownEntry.eventID = EventTriggerType.PointerDown;
+                pointerDownEntry.callback.AddListener((data) => { BeginDragInstance(tempPiece); });
+                eventTrigger.triggers.Add(pointerDownEntry);
 
-            EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
-            pointerDownEntry.eventID = EventTriggerType.PointerDown;
-            pointerDownEntry.callback.AddListener((data) => { BeginDragInstance(tempPiece); });
-            eventTrigger.triggers.Add(pointerDownEntry);
-
-            EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
-            pointerUpEntry.eventID = EventTriggerType.PointerUp;
-            pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
-            eventTrigger.triggers.Add(pointerUpEntry);
+                EventTrigger.Entry pointerUpEntry = new EventTrigger.Entry();
+                pointerUpEntry.eventID = EventTriggerType.PointerUp;
+                pointerUpEntry.callback.AddListener((data) => { EndDrag(); });
+                eventTrigger.triggers.Add(pointerUpEntry); 
 
             #endregion
 
-            piece.name = draggedGI.name;
-            //print($"Dragged piece is {draggedGI.name}");
-            currentPiece = piece;
-            mouseDistance.x = currentPiece.gameObject.transform.position.x - Input.mousePosition.x;
-            mouseDistance.y = currentPiece.gameObject.transform.position.y - Input.mousePosition.y;
-            //print(mouseDistance);
+            piece.prefab.name = draggedGI.name;
+            piece.index = activePieceList.Count;
             activePieceList.Add(piece);
+
+            currentPiece.index = piece.index;
+            currentPiece.prefab = piece.prefab;
+
+            mouseDistance.x = currentPiece.prefab.transform.position.x - Input.mousePosition.x;
+            mouseDistance.y = currentPiece.prefab.transform.position.y - Input.mousePosition.y;
         }
-        else
-        {
-            print($"Not Enough {draggedGI.name}");
-        }
+        else print($"Not Enough {draggedGI.name}"); 
     }
 
-    public void BeginDragInstance(GameObject piece)
+    public void BeginDragInstance(Piece draggedPiece)
     {
         giExisted = true;
-        currentPiece = piece;
-        mouseDistance.x = currentPiece.gameObject.transform.position.x - Input.mousePosition.x;
-        mouseDistance.y = currentPiece.gameObject.transform.position.y - Input.mousePosition.y;
+        currentPiece = draggedPiece;
+        currentPiece.prefab = draggedPiece.prefab; // je crois que ces 2 lignes servent à rien
+        currentPiece.index = draggedPiece.index; // je crois que ces 2 lignes servent à rien
+        print($"Current Piece index is {currentPiece.index}");
+        mouseDistance.x = currentPiece.prefab.transform.position.x - Input.mousePosition.x;
+        mouseDistance.y = currentPiece.prefab.transform.position.y - Input.mousePosition.y;
     }
 
     public void EndDrag()
     {
-        if (currentPiece)
+        //check for position
+        if (IsInRange(currentPiece.prefab))
         {
-            //check for position
-            if (IsInRange(currentPiece))
-            {
-                if(!giExisted)playerState.ModifyQuantity(draggedGI, -1);
-                RefreshGameItemList();
+            //check if the piece was already instantialized
+            if (!giExisted) playerState.ModifyQuantity(draggedGI, -1);
+            RefreshGameItemList();
 
-                Transform nearestJoint = GetNearestJoint(currentPiece.transform);
-                //Debug.Log(nearestJoint);
-                if (nearestJoint == null) currentPiece = null;
-                else
-                {
-                    Place(currentPiece.transform, nearestJoint);
-                    validPieceList.Remove(currentPiece);
-                    currentPiece = null;
-                }
+            //get the nearest joint if there's one 
+            Transform nearestJoint = GetNearestJoint(currentPiece.prefab.transform);
+            if (nearestJoint)
+            {
+                //place the piece at the nearest joint position
+                Place(currentPiece, nearestJoint);
+                //release the piece from the drag
+                currentPiece.prefab = null;
             }
             else
             {
-                activePieceList.Remove(piece);
-                Destroy(piece);
+                Piece p = activePieceList[currentPiece.index];
+                p.isPlaced = false;
+                activePieceList[currentPiece.index] = p;
+
+                currentPiece.prefab = null; 
             }
+        }
+        else
+        {
+            if (giExisted) playerState.ModifyQuantity(draggedGI, 1);
+            activePieceList.RemoveAt(currentPiece.index);
+            Destroy(currentPiece.prefab);
         }
         gameItemContainer.GetComponentInParent<ScrollRect>().enabled = true;
     }
 
-    public bool IsInRange(GameObject piece)
+    public bool IsInRange(GameObject currentPiece) 
     {
-        return piece.transform.position.x / Screen.width > 0.10
-           && piece.transform.position.x / Screen.width < 0.80
-           && piece.transform.position.y / Screen.width > 0.20
-           && piece.transform.position.y / Screen.width < 0.90;
-    }
+        return currentPiece.transform.position.x / Screen.width > minX
+           && currentPiece.transform.position.x / Screen.width < maxX
+           && currentPiece.transform.position.y / Screen.height > minY
+           && currentPiece.transform.position.y / Screen.height < maxY;
+    }   
 
-    public Transform GetNearestJoint(Transform piece)
+    public Transform GetNearestJoint(Transform currentPieceTransform)
     {
         float distance;
-        int nearestDistanceIndex = 0;
+        int nearestDistanceIndex;
         float nearestDistance = math.INFINITY;
-        Transform nearestJoint = piece;
+        Transform nearestJoint = currentPieceTransform;
 
         if (activePattern)
         {
             for (int i = 0; i < activePattern.transform.childCount; i++)
             {
-                distance = (activePattern.transform.GetChild(i).position - piece.position).magnitude;
-                if (distance < nearestDistance && activePattern.transform.GetChild(i).name == piece.name)
+                distance = (activePattern.transform.GetChild(i).position - currentPieceTransform.position).magnitude;
+                if (distance < nearestDistance && activePattern.transform.GetChild(i).name == currentPieceTransform.name)
                 {
                     nearestDistance = distance;
                     nearestDistanceIndex = i;
                     nearestJoint = activePattern.transform.GetChild(i);
                 }
             }
-            //print($"Distance between closest child and dragged piece is {(nearestJoint.position - piece.position).magnitude} and accepted distance is {Screen.width / 150}");
-            if ((nearestJoint.position - piece.position).magnitude < Screen.width/150)
-            {
-                //print($"Closest child's name is {nearestJoint.name}, and dragged piece name is {piece.name} and they are {(nearestJoint.position - piece.position).magnitude}f appart");
-                //print((nearestJoint.position - piece.position).magnitude);
-                return nearestJoint;
-            }
+            if ((nearestJoint.position - currentPieceTransform.position).magnitude < Screen.width/130) return nearestJoint;
             else return null;
         }
         else return null;
-
     }
 
-    public void Place(Transform piece, Transform at)
+    public void Place(Piece toPlace, Transform at) 
     {
-        piece.transform.position = at.position;
-        validPieceList.Add(piece.gameObject);
-        print($"Placed {piece.transform.name} and added it to validPieceList as {validPieceList.First()}");
-
+        toPlace.prefab.transform.position = at.position;
+        Piece p = activePieceList[currentPiece.index];
+        p.isPlaced = true; 
+        activePieceList[currentPiece.index] = p;  
+        //print($"the current piece's prefab is : {activePieceList[currentPiece.index].prefab} and its isPlaced state is : {activePieceList[currentPiece.index].isPlaced}");
+        //print("We are right after having placed a piece correctly");
+        //foreach (Piece piece in activePieceList) 
+        //{
+        //    print($"The {piece.prefab.name}'s isPlaced state is {piece.isPlaced}");
+        //}
     }
 
-    public void RemoveAllParts()
+    public void RemoveAllParts(bool fromCraft)
     {
         if(activePieceList.Count != 0)
         {
             foreach (var p in activePieceList)
             {
-                //print(p.name);
-                playerState.ModifyQuantity((GameItemObject)playerState.fromString(p.name), 1);
-                Destroy(p);
-            }
+                if(fromCraft) playerState.ModifyQuantity((GameItemObject)playerState.fromString(p.prefab.name), 1);
+                Destroy(p.prefab);
+            } 
             activePieceList.Clear();
             RefreshGameItemList();
-            //print("Removed all Parts");
         }
     }
 
     public bool PatternIsValid()
     {
-        for (int i = 0; i < activePattern.transform.childCount; i++)
+        int count = 0;
+        int temp = 0;
+        //print($"There are {activePieceList.Count} pieces active");
+        foreach (Piece piece in activePieceList)
         {
-            if (validPieceList.Count > 0)
+            //print($"In the {count} loop, {piece.prefab.name}'s isPlaced state is {piece.isPlaced}");
+            if (piece.isPlaced)
             {
-                print(i);
-                print(validPieceList[i + 1]);
-                if (!validPieceList[i + 1]) return false;
+                temp++;
+                //print($"Because {piece.prefab.name}'s isPlaced state is {piece.isPlaced}, the number of correctly placed pieces is {temp}");
             }
-            else print("nothing in valiPieceList");
+            count++;
         }
-        return true;
+        //print($"At the end of PatternIsValid, {temp} pieces were placed correctly and {activePattern.transform.childCount} needed to be correct");
+        return temp == activePattern.transform.childCount;
+
     }
 
     public void Craft()
     {
-        if (PatternIsValid() && selectedCraft)
+
+        if (selectedCraft && PatternIsValid())
         {
-            //print($"Pattern Name is {activePattern.name}, playerState.FromString Results : {item.name}");
+            modalSystem.OpenUI(selectedCraft.craftResult);
             playerState.ModifyQuantity(selectedCraft.craftResult, 1);
             RefreshGameItemList();
 
             SelectCraft(-1);
-
             craftButton.gameObject.SetActive(false);
         }
-        else
-        {
-            print("Pattern is not valid. try again :)");
-        }
+        else print("Pattern is not valid. try again :)");
 
     }
-
 
 }

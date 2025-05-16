@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Data/BoardChanges/Park.asset.meta
 guid: d11594ed1a5a4a647961b4d3e00f4533
+========
+guid: ec01009ab393f9142b7266e2b2d9fa4e
+>>>>>>>> Workspace_Florian:Assets/Resources/Data/Crafts/Scraper.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
