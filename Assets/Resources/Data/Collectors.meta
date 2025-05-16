@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Data/Collectors.meta
 guid: 38a034c5ad16fc34f97a7a5a75f3376d
+========
+guid: 90107f0cb5fd0d04ebfd093d3f9465f9
+>>>>>>>> origin/Workshop_Matt:Assets/Resources/Audio/Sound Assets/Ambience/MainStreet/Normal.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

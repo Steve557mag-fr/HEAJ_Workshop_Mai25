@@ -1,27 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7299956229578717216
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1174674681, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
-  m_Name: LocalizationManager
-  m_EditorClassIdentifier: 
-  mLocalizeObjectDefinitions: 0
-  mLanguageId: 127
-  mLanguages:
-  - mArticyLanguageId: 127
-    mCultureName: fr
-    mLanguageName: French
-    mIsVoiceOver: 0
-  mThrowOnMissingText: 0
-  mClearOnLanguageSwitch: 1
---- !u!114 &-4778660247590662221
+--- !u!114 &-8921030781084454246
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,35 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
   m_Name: ArticyScriptFragments
   m_EditorClassIdentifier: 
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1676762633, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
-  m_Name: ArticyDatabase
-  m_EditorClassIdentifier: 
-  mHierarchy: {fileID: 4244096689617049212}
-  mLocalization: {fileID: -7299956229578717216}
-  mRuleSetId: 269
-  mInternalProject:
-    mName: Test
-    mDetailName: 
-    mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
-    mTechnicalName: Test
-  mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: 1526291753016925113}
-  mScriptFragments: {fileID: -4778660247590662221}
-  mPackages:
-  - PackageId: 72057594037928208
-    PackageName: Tous objets
-    PackagePath: package_0x100000000000110
-    mIsDefaultPackage: 1
---- !u!114 &1526291753016925113
+--- !u!114 &-6117289334279884622
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,16 +92,65 @@ MonoBehaviour:
   mLiveStringVariableCache: []
   mIsInitialized: 1
   mDay1_Hints:
-    _VariableStorage: {fileID: 1526291753016925113}
+    _VariableStorage: {fileID: -6117289334279884622}
   mTest_Var:
-    _VariableStorage: {fileID: 1526291753016925113}
+    _VariableStorage: {fileID: -6117289334279884622}
   mGameItemCheck:
-    _VariableStorage: {fileID: 1526291753016925113}
+    _VariableStorage: {fileID: -6117289334279884622}
   mFTT:
-    _VariableStorage: {fileID: 1526291753016925113}
+    _VariableStorage: {fileID: -6117289334279884622}
   mChoiceSouma:
-    _VariableStorage: {fileID: 1526291753016925113}
---- !u!114 &4244096689617049212
+    _VariableStorage: {fileID: -6117289334279884622}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1676762633, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: ArticyDatabase
+  m_EditorClassIdentifier: 
+  mHierarchy: {fileID: 8493974781575338910}
+  mLocalization: {fileID: 3688163913840984955}
+  mRuleSetId: 269
+  mInternalProject:
+    mName: Test
+    mDetailName: 
+    mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
+    mTechnicalName: Test
+  mImportedAssets: []
+  mDefaultGlobalVariables: {fileID: -6117289334279884622}
+  mScriptFragments: {fileID: -8921030781084454246}
+  mPackages:
+  - PackageId: 72057594037928208
+    PackageName: Tous objets
+    PackagePath: package_0x100000000000110
+    mIsDefaultPackage: 1
+--- !u!114 &3688163913840984955
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1174674681, guid: df2ec02f61e861546b9427c26ccacb8d, type: 3}
+  m_Name: LocalizationManager
+  m_EditorClassIdentifier: 
+  mLocalizeObjectDefinitions: 0
+  mLanguageId: 127
+  mLanguages:
+  - mArticyLanguageId: 127
+    mCultureName: fr
+    mLanguageName: French
+    mIsVoiceOver: 0
+  mThrowOnMissingText: 0
+  mClearOnLanguageSwitch: 1
+--- !u!114 &8493974781575338910
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
