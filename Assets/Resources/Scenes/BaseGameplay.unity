@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 426742864}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -2264,28 +2264,28 @@ MonoBehaviour:
   flowPlayer: {fileID: 426742863}
   characters:
   - characterName: SOUMA
-    characterState: 
+    characterState: ENIGMA_SCROLL_STANDBY
     characterReference:
       instanceId: 0
       referencingMode: 0
       lowId: 432
       highId: 16777216
   - characterName: FUKURO
-    characterState: 
+    characterState: ENIGMA_SCROLL_STANDBY
     characterReference:
       instanceId: 0
       referencingMode: 0
       lowId: 422
       highId: 16777216
   - characterName: MORIYAMA
-    characterState: 
+    characterState: ENIGMA_PICTURE
     characterReference:
       instanceId: 0
       referencingMode: 0
       lowId: 437
       highId: 16777216
   - characterName: AOYAMA
-    characterState: 
+    characterState: ENIGMA_SEAL
     characterReference:
       instanceId: 0
       referencingMode: 0
@@ -7772,7 +7772,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 426742864}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: NextDialog
         m_Mode: 1
@@ -8766,7 +8766,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 426742864}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -10170,7 +10170,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 426742864}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3
@@ -10303,7 +10303,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 426742864}
         m_TargetAssemblyTypeName: NarrationSystem, Assembly-CSharp
         m_MethodName: ChooseBranch
         m_Mode: 3

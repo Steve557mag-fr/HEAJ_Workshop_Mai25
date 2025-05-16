@@ -263,9 +263,15 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     internal void SetCharacterState(string character, string characterState)
     {
-        ArticyDatabase.DefaultGlobalVariables.SetVariableByString(
-            $"{character}", characterState
-        );
+        for(int i = 0; i < characters.Length; i++)
+        {
+            var chr = characters[i];
+
+            if (chr.characterName == character)
+            {
+                chr.characterState = characterState;
+            }
+        }
     }
 
     internal static NarrationSystem Get()

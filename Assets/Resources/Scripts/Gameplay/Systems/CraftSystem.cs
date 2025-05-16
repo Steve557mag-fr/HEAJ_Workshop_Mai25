@@ -420,6 +420,11 @@ public class CraftSystem : MonoBehaviour
 
     }
 
+    public bool IsBusy()
+    {
+        return craftingUICanva.gameObject.activeSelf;
+    }
+
     public void Craft()
     {
 
@@ -458,5 +463,6 @@ public class CraftSystem : MonoBehaviour
         Gizmos.DrawLine(new(-100, maxWY), new(100, maxWY));
 
     }
+    
 
 }
