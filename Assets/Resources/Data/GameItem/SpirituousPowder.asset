@@ -16,4 +16,5 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 2d0eccedf025a5345a9a247d00c3703c, type: 3}
   puzzleIcon: {fileID: 21300000, guid: 41fc5789421d97c4c89a33fc4382799f, type: 3}
   piece: {fileID: 8599090786545478849, guid: 77417e70c9e3a364d903dac8c5b95259, type: 3}
-  soundCue: {fileID: 0}
+  soundGrab: {fileID: 8300000, guid: 1f491a9167638b2459189d132802ea7e, type: 3}
+  soundDrop: {fileID: 8300000, guid: fbb226896dec4f84d94e2d2b6aac83d3, type: 3}
