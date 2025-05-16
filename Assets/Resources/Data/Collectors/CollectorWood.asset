@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8afc1ec28dcd9ce48aa91444969a5f48, type: 3}
-  m_Name: CollectorScroll
+  m_Name: CollectorWood
   m_EditorClassIdentifier: 
-  collectedItem: {fileID: 0}
+  collectedItem: {fileID: 11400000, guid: 1e0e9dba6c23c914dad7efba6384f195, type: 2}
   quantity: 1
-  markInifite: 0
+  markInifite: 1
   itemNode:
     instanceId: 0
     referencingMode: 0

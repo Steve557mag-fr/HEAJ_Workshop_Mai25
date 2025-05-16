@@ -15,3 +15,8 @@ MonoBehaviour:
   collectedItem: {fileID: 11400000, guid: acddee0034d371744aa4676a40469c2e, type: 2}
   quantity: 1
   markInifite: 0
+  itemNode:
+    instanceId: 0
+    referencingMode: 0
+    lowId: 2682
+    highId: 16777216
