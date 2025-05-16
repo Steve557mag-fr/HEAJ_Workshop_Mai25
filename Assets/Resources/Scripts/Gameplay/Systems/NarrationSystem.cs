@@ -48,7 +48,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         var list = ArticyFlowPlayer.GetBranchesOfNode(node.GetObject());
         flowPlayer.Play(list[0]);
-        print($"branches : {list.Count}");
+        //print($"branches : {list.Count}");
 
     }
 
@@ -60,7 +60,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             var output = characters[i].GetObject<Hub>().OutputPins;
             for(int j = 0; j < output.Count; j++)
             {
-                print($"conx: {output[j].ToString()}");
+                //print($"conx: {output[j].ToString()}");
             }
 
         }
@@ -95,7 +95,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             branchindex[i] = aBranch.BranchId;
         }
 
-        print($"branches availables: {branchindex.Length}");
+        //print($"branches availables: {branchindex.Length}");
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
@@ -110,7 +110,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             ToggleUI(false);
         }
 
-        print(aObject.GetType());
+        //print(aObject.GetType());
 
     }
 

@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
-  m_Name: FacticeScrollOfHistory
+  m_Script: {fileID: 11500000, guid: 5de8931945ad86e43b15f296075dda21, type: 3}
+  m_Name: Locals
   m_EditorClassIdentifier: 
   canBePlaced: 0
-  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  puzzleIcon: {fileID: 0}
-  piece: {fileID: 8599090786545478849, guid: a2206e5c66e001746acde60903dc4aae, type: 3}

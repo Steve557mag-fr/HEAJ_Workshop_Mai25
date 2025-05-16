@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CraftData", menuName = "")]
-public class CraftDataObject : ScriptableObject
+public class CraftDataObject : InventoryItemObject
 {
     
     public GameObject pattern;
