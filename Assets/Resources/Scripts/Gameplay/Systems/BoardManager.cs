@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,7 +19,6 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     internal string currentBoardName = "";
     bool isLock = false;
-    [SerializeField] List<CickableInteraction> userInteractions = new();
 
     private void Start()
     {
@@ -55,25 +52,15 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     void WhenBoardLoaded(string boardName)
     {
-        //1. get interactions & disable tp
-        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
-        
-        //2. unlock
         isLock = false;
+
     }
 
-    public bool IsBusy()
+    public static void SetClickablesActive(bool state = false, string filter = "")
     {
-        return isLock;
-    }
-
-    public void SetClickablesActive(bool state = false, string filter = "")
-    {
-        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
-        foreach(var clk in userInteractions)
+        foreach(var clk in FindObjectsByType<CickableInteraction>(FindObjectsSortMode.InstanceID))
         {
-            print($"hi! {clk.name} -> {clk.tag}");
-            if (clk.CompareTag(filter) || filter == "") clk.SetActivation(state);
+            if(clk.CompareTag(filter) || filter == "") clk.gameObject.SetActive(state);
         }
     }
 
@@ -84,22 +71,19 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     public JObject toJObject()
     {
-        return new()
-        {
-            {"board", currentBoardName}
-        };
+        throw new System.NotImplementedException();
     }
 
     public void fromJObject(JObject jo)
     {
-        LoadBoard(jo["board"].ToString());
+        throw new System.NotImplementedException();
     }
 
     public JObject getDefaultJObject()
     {
         return new()
         {
-            {"board", entryBoard}
+            {"board", ""}
         };
     }
 }

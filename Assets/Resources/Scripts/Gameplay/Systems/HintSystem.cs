@@ -41,24 +41,24 @@ public class HintSystem : MonoBehaviour
 
     public void TryCraftHint()
     {
-        foreach (HintCraftData data in hintCraftsData) {
-            if(currentHints.Equals(data.hints)){
-                //do stuff..
-                if (data.dialogResult.IsUnityNull())
-                {
-                    NarrationSystem.Get().StartWith(data.dialogResult.GetObject());
-                }
-                else
-                {
-                    NarrationSystem.Get()
-                    .SetCharacterState(
-                        data.characterResult, 
-                        data.characterStateResult
-                    );
-                }
-                return;
-            }
-        }
+        //foreach (HintCraftData data in hintCraftsData) {
+        //    if(currentHints.Equals(data.hints)){
+        //        //do stuff..
+        //        if (data.dialogResult.IsUnityNull())
+        //        {
+        //            NarrationSystem.Get().StartWith(data.dialogResult.GetObject());
+        //        }
+        //        else
+        //        {
+        //            NarrationSystem.Get()
+        //            .SetCharacterState(
+        //                data.characterResult, 
+        //                data.characterStateResult
+        //            );
+        //        }
+        //        return;
+        //    }
+        //}
     }
 
 }
