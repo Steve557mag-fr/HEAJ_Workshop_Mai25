@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlackInk
   m_EditorClassIdentifier: 
   canBePlaced: 1
-  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemIcon: {fileID: 21300000, guid: 3cb7296ec169ea446b03dfeaf6470082, type: 3}
   puzzleIcon: {fileID: 21300000, guid: 21ec310c4d3622e4d9a3c156bd714077, type: 3}
   piece: {fileID: 8599090786545478849, guid: 3e60196fb065c5b42b63279b7ce5a1de, type: 3}
+  soundCue: {fileID: 0}

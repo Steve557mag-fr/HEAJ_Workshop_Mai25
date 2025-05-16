@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: String
   m_EditorClassIdentifier: 
   canBePlaced: 1
-  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemIcon: {fileID: 21300000, guid: 1f75a5d0840de53469c7f9d484d5f384, type: 3}
   puzzleIcon: {fileID: 21300000, guid: 6561eafbbf37a2c42b9780c0cd79bd56, type: 3}
   piece: {fileID: 8599090786545478849, guid: 18b5a538ea25f414888c4806b17df40b, type: 3}
+  soundCue: {fileID: 0}

@@ -10,14 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e704b5b0c7974f45b1c93f74a586ad4, type: 3}
-<<<<<<<< HEAD:Assets/Resources/Data/Crafts/Candle.asset
   m_Name: Candle
   m_EditorClassIdentifier: 
-  pattern: {fileID: 8599090786545478849, guid: 32edecfaba93696449a6b49b11e61355, type: 3}
-  craftResult: {fileID: 11400000, guid: 1ffc863acb4d46643a388dc6af086723, type: 2}
-========
-  m_Name: Scissors
-  m_EditorClassIdentifier: 
-  pattern: {fileID: 8599090786545478849, guid: 336cde598b147474cbc6384a99dc5710, type: 3}
-  craftResult: {fileID: 11400000, guid: d06bbade30f653946a674ced1e0a0ddc, type: 2}
->>>>>>>> Workspace_Florian:Assets/Resources/Data/Crafts/Scissors.asset
+  pattern: {fileID: 8599090786545478849, guid: bf4014747f970dd4aaf7d5a22b27c45a, type: 3}
+  craftResult: {fileID: 11400000, guid: 20cb52625eeb57849a5136a5928bec45, type: 2}
