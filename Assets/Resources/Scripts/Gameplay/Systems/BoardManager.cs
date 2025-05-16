@@ -21,7 +21,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     internal string currentBoardName = "";
     bool isLock = false;
-    List<CickableInteraction> userInteractions = new();
+    [SerializeField] List<CickableInteraction> userInteractions = new();
 
     private void Start()
     {
@@ -45,7 +45,6 @@ public class BoardManager : MonoBehaviour, IDataHandle
             SceneManager.LoadScene(boardName, LoadSceneMode.Additive);
             currentBoardName = boardName;
 
-
             //3. fade in
             LeanTween.alphaCanvas(fadingGroup, 0, fadingTime).setEase(easeMode).setOnComplete(() => {
                 boardLoaded(currentBoardName);
@@ -56,12 +55,11 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     void WhenBoardLoaded(string boardName)
     {
-        //1. unlock
+        //1. get interactions & disable tp
+        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+        
+        //2. unlock
         isLock = false;
-
-        //2. get interactions & disable tp
-        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsSortMode.None).ToList();
-        SetClickablesActive(filter: "tp");
     }
 
     public bool IsBusy()
@@ -73,8 +71,8 @@ public class BoardManager : MonoBehaviour, IDataHandle
     {
         foreach(var clk in userInteractions)
         {
-            //print($"hi! {clk.name} -> {clk.tag}");
-            if(clk.CompareTag(filter) || filter == "") clk.gameObject.SetActive(state);
+            print($"hi! {clk.name} -> {clk.tag}");
+            if(clk.CompareTag(filter) || filter == "") clk.gameObject.transform.parent.gameObject.SetActive(state);
         }
     }
 
@@ -100,7 +98,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
     {
         return new()
         {
-            {"board", ""}
+            {"board", entryBoard}
         };
     }
 }

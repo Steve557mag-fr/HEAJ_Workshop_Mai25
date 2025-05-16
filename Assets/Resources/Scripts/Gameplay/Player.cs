@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     {
         inNavigation = !inNavigation;
         print(inNavigation);
-        BoardManager.Get().SetClickablesActive(inNavigation, "tp");
-        BoardManager.Get().SetClickablesActive(!inNavigation, "dia");
+        BoardManager.Get().SetClickablesActive(inNavigation, filter:"tp");
+        BoardManager.Get().SetClickablesActive(!inNavigation, filter:"dia");
     }
 
     internal static Player Get()
