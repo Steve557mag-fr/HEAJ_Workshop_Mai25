@@ -9316,7 +9316,7 @@ MonoBehaviour:
   fadingGroup: {fileID: 1373482279}
   fadingTime: 1
   easeMode: 13
-  entryBoard: TestBoard
+  entryBoard: YukikoHome
   userInteractions: []
 --- !u!114 &1939141016
 MonoBehaviour:
