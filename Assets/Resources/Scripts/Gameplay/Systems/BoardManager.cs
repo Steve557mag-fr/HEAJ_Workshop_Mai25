@@ -72,7 +72,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
         foreach(var clk in userInteractions)
         {
             print($"hi! {clk.name} -> {clk.tag}");
-            if(clk.CompareTag(filter) || filter == "") clk.gameObject.transform.parent.gameObject.SetActive(state);
+            if (clk.CompareTag(filter) || filter == "") clk.SetActivation(state);
         }
     }
 

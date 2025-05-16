@@ -27,15 +27,6 @@ public class CraftSystem : MonoBehaviour
     [SerializeField] Button removePartsButton;
     [SerializeField] Button craftButton;
 
-    [Header("Scriptable Object References")]
-    [SerializeField] GameItemObject blackInk;
-    [SerializeField] GameItemObject stringc;
-    [SerializeField] GameItemObject wax;
-    [SerializeField] GameItemObject blade;
-    [SerializeField] GameItemObject wood;
-    [SerializeField] CraftDataObject scissors;
-    [SerializeField] CraftDataObject candle;
-
     [Header("Icon Display State")]
     [SerializeField] bool baseIconState = true;
 
@@ -78,13 +69,6 @@ public class CraftSystem : MonoBehaviour
     private void Start()
     {
         iconState = baseIconState;
-        playerState.ModifyQuantity(blackInk, 10);
-        playerState.ModifyQuantity(wax, 10);
-        playerState.ModifyQuantity(stringc, 10);
-        playerState.ModifyQuantity(blade, 10);
-        playerState.ModifyQuantity(wood, 10);
-        craftList.Add(candle);
-        craftList.Add(scissors);
         RefreshCraftList();
         RefreshGameItemList();
         removePartsButton.GetComponent<Button>().onClick.AddListener(() => { RemoveAllParts(true); });
@@ -142,9 +126,7 @@ public class CraftSystem : MonoBehaviour
             craftList[d] = (CraftDataObject)playerState.GetFilteredBy<CraftDataObject>()[d];
         }
 
-
-        craftList.Add(scissors);
-
+         
         for (int i = 0; i < craftList.Count; i++)
         {
             string name = craftList[i].name;
@@ -176,7 +158,6 @@ public class CraftSystem : MonoBehaviour
         for (int i = 0; i < playerState.inventory.Keys.Count; i++)
         {
             var gi = (GameItemObject)key[i];
-
             int j = i;
 
             int quantity = playerState.inventory[gi];
@@ -448,6 +429,29 @@ public class CraftSystem : MonoBehaviour
             craftButton.gameObject.SetActive(false);
         }
         else print("Pattern is not valid. try again :)");
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        var w = 1919/2;
+        var h = 1080/2;
+
+
+        var minWX = w * minX;
+        var maxWX = w * maxX;
+        
+        var minWY = h * minY;
+        var maxWY = h * maxY;
+
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawLine(new(minWX, -100), new(minWX, 100));
+        Gizmos.DrawLine(new(maxWX, -100), new(maxWX, 100));
+
+        Gizmos.DrawLine(new(-100, minWY), new(100, minWY));
+        Gizmos.DrawLine(new(-100, maxWY), new(100, maxWY));
 
     }
 

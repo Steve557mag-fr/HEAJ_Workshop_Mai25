@@ -32,18 +32,6 @@ namespace Articy.Test.GlobalVariables
         [HideInInspector()]
         private Test_Var mTest_Var = new Test_Var();
         
-        [SerializeField()]
-        [HideInInspector()]
-        private GameItemCheck mGameItemCheck = new GameItemCheck();
-        
-        [SerializeField()]
-        [HideInInspector()]
-        private FTT mFTT = new FTT();
-        
-        [SerializeField()]
-        [HideInInspector()]
-        private ChoiceSouma mChoiceSouma = new ChoiceSouma();
-        
         #region Initialize static VariableName set
         static ArticyGlobalVariables()
         {
@@ -51,22 +39,6 @@ namespace Articy.Test.GlobalVariables
             variableNames.Add("Day1_Hints.Knows_Momiji");
             variableNames.Add("Day1_Hints.NewVariable");
             variableNames.Add("Test_Var.var_test");
-            variableNames.Add("GameItemCheck.intro_items");
-            variableNames.Add("GameItemCheck.moriyama_picture");
-            variableNames.Add("GameItemCheck.aoyama_seal_uncharged");
-            variableNames.Add("GameItemCheck.aoyama_seal_charged");
-            variableNames.Add("GameItemCheck.recipe_seal");
-            variableNames.Add("FTT.F_enigma_scroll_standby");
-            variableNames.Add("FTT.R_K_enigma_scroll");
-            variableNames.Add("FTT.S_enigma_scroll_standby");
-            variableNames.Add("FTT.F_enigma_scroll_achieved");
-            variableNames.Add("FTT.S_enigma_locals");
-            variableNames.Add("FTT.M_enigma_picture_standby");
-            variableNames.Add("FTT.A_enigma_seal_standby");
-            variableNames.Add("FTT.F_enigma_seal");
-            variableNames.Add("FTT.S_enigma_seal");
-            variableNames.Add("ChoiceSouma.accused_yokais");
-            variableNames.Add("ChoiceSouma.knows_powder");
         }
         #endregion
         
@@ -86,30 +58,6 @@ namespace Articy.Test.GlobalVariables
             }
         }
         
-        public GameItemCheck GameItemCheck
-        {
-            get
-            {
-                return mGameItemCheck;
-            }
-        }
-        
-        public FTT FTT
-        {
-            get
-            {
-                return mFTT;
-            }
-        }
-        
-        public ChoiceSouma ChoiceSouma
-        {
-            get
-            {
-                return mChoiceSouma;
-            }
-        }
-        
         public static ArticyGlobalVariables Default
         {
             get
@@ -122,9 +70,6 @@ namespace Articy.Test.GlobalVariables
         {
             Day1_Hints.RegisterVariables(this);
             Test_Var.RegisterVariables(this);
-            GameItemCheck.RegisterVariables(this);
-            FTT.RegisterVariables(this);
-            ChoiceSouma.RegisterVariables(this);
         }
         
         public static ArticyGlobalVariables CreateGlobalVariablesClone()

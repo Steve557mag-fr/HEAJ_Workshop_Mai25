@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<<< HEAD:Assets/Resources/Data/BoardChanges/Park.asset
   m_Script: {fileID: 11500000, guid: ee642528c64e8cd4185837b12b38c9b7, type: 3}
   m_Name: Park
   m_EditorClassIdentifier: 
   boardName: Park
-========
-  m_Script: {fileID: 11500000, guid: 5de8931945ad86e43b15f296075dda21, type: 3}
-  m_Name: Blood
   m_EditorClassIdentifier: 
   canBePlaced: 0
->>>>>>>> Workspace_Florian:Assets/Resources/Data/HintObject/Blood.asset

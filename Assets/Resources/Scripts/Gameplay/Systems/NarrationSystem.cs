@@ -6,6 +6,8 @@ using UnityEngine;
 using System.Linq;
 using System;
 using TMPro;
+using Articy.Unity.Interfaces;
+using System.Runtime.ConstrainedExecution;
 
 enum NarrationState{
     DIALOG,
@@ -53,6 +55,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         actionsFlowFragement.Add("hide_ui", ExecHideUI);
         actionsFlowFragement.Add("add_item", ExecAddItem);
         actionsFlowFragement.Add("add_hint", ExecAddHint);
+        actionsFlowFragement.Add("collect", (args) => { CollectItemObject.TriggerEndCollect(); });
         actionsFlowFragement.Add("set_state", (args) => { NarrationSystem.Get().SetCharacterState(args[0], args[1]); });
         actionsFlowFragement.Add("set_active", (args) => { DataSystem.Get().SetData($"{args[0]}_{args[1]}_enabled", Boolean.Parse(args[2])); });
     }
@@ -97,27 +100,34 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             print($"chr.characterName: {chr.characterName}");
             if (chr.characterName != rawCharacter) continue;
 
-            // get character connections
             Hub hub = chr.characterReference.GetObject<Hub>();
-            var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
-            var conx = hub.OutputPins[0].Connections;
-            for (int i = 0; i < conx.Count; i++)
+            StartWithHub(hub, chr.characterState);
+
+        }
+    }
+
+    public void StartWithHub(Hub hub, string state)
+    {
+        var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
+        if (hub.OutputPins.Count == 0) return;
+        print($"hub.OutputPins.Count : {hub.OutputPins.Count}");
+
+
+        var conx = hub.OutputPins[0].Connections;
+        for (int i = 0; i < conx.Count; i++)
+        {
+            var con = conx[i];
+            var branch = branches[i];
+            print($"branch:{branches.Count}");
+            print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
+            if (con.Label == state)
             {
-                var con = conx[i];
-                var branch = branches[i];
-                print($"branch:{branches.Count}");
-                print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
-                if (con.Label == chr.characterState)
-                {
-                    flowPlayer.Play(branch);
-                    return;
-                }
+                flowPlayer.Play(branch);
+                return;
             }
-            break;
         }
 
     }
-
 
     public void NextDialog()
     {
