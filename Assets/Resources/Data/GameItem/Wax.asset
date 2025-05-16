@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Wax
   m_EditorClassIdentifier: 
   canBePlaced: 1
-  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemIcon: {fileID: 21300000, guid: cae9e2948f4d893428ac59c5c59c85a6, type: 3}
   puzzleIcon: {fileID: 21300000, guid: b2a373e8abf7aba4ea86941bd1ff2e75, type: 3}
   piece: {fileID: 8599090786545478849, guid: e487b835ec1752546ac3cb79352aec25, type: 3}
+  soundCue: {fileID: 0}
