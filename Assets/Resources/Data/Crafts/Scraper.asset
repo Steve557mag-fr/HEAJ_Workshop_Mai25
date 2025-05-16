@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Scraper
   m_EditorClassIdentifier: 
   pattern: {fileID: 8599090786545478849, guid: bb57378e7b7e96d4796754e5207f0d83, type: 3}
-  craftResult: {fileID: 0}
+  craftResult: {fileID: 11400000, guid: d542d75b50174f44096eadaefd96cd73, type: 2}

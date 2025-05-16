@@ -11,6 +11,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Boards/TestBoard.unity
     guid: 114b578575bdd914e90911e3f59127fd
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boards/KotaroRoom.unity
+    guid: 47f40c38e66be4842bcdc110f4939fd4
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boards/Library.unity
+    guid: 59ad5dce81a986b4a81b6413c3830b29
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boards/MainHall.unity
+    guid: 7f5a6c31dcf268944a64eacddac52f9e
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boards/MainStreet.unity
+    guid: 4f9e762b63f50e84d9ffb905e7476a7b
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boards/Park.unity
+    guid: a13cc7634057b2f43821713a6cdb7b46
+  - enabled: 1
+    path: Assets/Resources/Scenes/Boards/YukikoHome.unity
+    guid: 4f0a63c5a8a101b4f85a7c6a552215c2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

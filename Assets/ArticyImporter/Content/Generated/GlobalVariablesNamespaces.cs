@@ -181,14 +181,126 @@ namespace Articy.Test.GlobalVariables
             }
         }
         
+        // 
+        public bool hint_jade_crafted
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(4);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(4, value);
+            }
+        }
+        
+        // 
+        public bool hint_momiji_crafted
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(5);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(5, value);
+            }
+        }
+        
+        // 
+        public bool moriyama_scissors
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(6);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(6, value);
+            }
+        }
+        
+        // 
+        public bool momiji_scraper
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(7);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(7, value);
+            }
+        }
+        
+        // 
+        public bool item_momiji_obtained
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(8);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(8, value);
+            }
+        }
+        
+        // 
+        public bool item_jade_obtained
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(9);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(9, value);
+            }
+        }
+        
+        // 
+        public bool momiji_pouch
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(10);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(10, value);
+            }
+        }
+        
+        // 
+        public bool hint_identity_crafted
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(11);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(11, value);
+            }
+        }
+        
         public void RegisterVariables(BaseGlobalVariables aStorage)
         {
             _VariableStorage = aStorage;
-            aStorage.RegisterVariable("GameItemCheck.intro_items", 3);
+            aStorage.RegisterVariable("GameItemCheck.intro_items", 0);
             aStorage.RegisterVariable("GameItemCheck.moriyama_picture", 0);
             aStorage.RegisterVariable("GameItemCheck.aoyama_seal_uncharged", 0);
             aStorage.RegisterVariable("GameItemCheck.aoyama_seal_charged", 0);
             aStorage.RegisterVariable("GameItemCheck.recipe_seal", 0);
+            aStorage.RegisterVariable("GameItemCheck.hint_jade_crafted", false);
+            aStorage.RegisterVariable("GameItemCheck.hint_momiji_crafted", false);
+            aStorage.RegisterVariable("GameItemCheck.moriyama_scissors", true);
+            aStorage.RegisterVariable("GameItemCheck.momiji_scraper", false);
+            aStorage.RegisterVariable("GameItemCheck.item_momiji_obtained", false);
+            aStorage.RegisterVariable("GameItemCheck.item_jade_obtained", false);
+            aStorage.RegisterVariable("GameItemCheck.momiji_pouch", false);
+            aStorage.RegisterVariable("GameItemCheck.hint_identity_crafted", false);
         }
     }
 }
@@ -208,11 +320,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(4);
+                return _VariableStorage.Internal_GetVariableValueBoolean(12);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(4, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(12, value);
             }
         }
         
@@ -221,11 +333,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(5);
+                return _VariableStorage.Internal_GetVariableValueBoolean(13);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(5, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(13, value);
             }
         }
         
@@ -234,11 +346,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(6);
+                return _VariableStorage.Internal_GetVariableValueBoolean(14);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(6, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(14, value);
             }
         }
         
@@ -247,11 +359,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(7);
+                return _VariableStorage.Internal_GetVariableValueBoolean(15);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(7, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(15, value);
             }
         }
         
@@ -260,11 +372,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(8);
+                return _VariableStorage.Internal_GetVariableValueBoolean(16);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(8, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(16, value);
             }
         }
         
@@ -273,11 +385,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(9);
+                return _VariableStorage.Internal_GetVariableValueBoolean(17);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(9, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(17, value);
             }
         }
         
@@ -286,11 +398,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(10);
+                return _VariableStorage.Internal_GetVariableValueBoolean(18);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(10, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(18, value);
             }
         }
         
@@ -299,11 +411,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(11);
+                return _VariableStorage.Internal_GetVariableValueBoolean(19);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(11, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(19, value);
             }
         }
         
@@ -312,11 +424,128 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(12);
+                return _VariableStorage.Internal_GetVariableValueBoolean(20);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(12, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(20, value);
+            }
+        }
+        
+        // 
+        public bool R_K_day1_stains
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(21);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(21, value);
+            }
+        }
+        
+        // 
+        public bool K_R_day1_entry
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(22);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(22, value);
+            }
+        }
+        
+        // 
+        public bool F_kamikiri
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(23);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(23, value);
+            }
+        }
+        
+        // 
+        public bool S_enigma_standby
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(24);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(24, value);
+            }
+        }
+        
+        // 
+        public bool K_R_enigma_death
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(25);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(25, value);
+            }
+        }
+        
+        // 
+        public bool M_enigma_scissors
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(26);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(26, value);
+            }
+        }
+        
+        // 
+        public bool momiji_leak
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(27);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(27, value);
+            }
+        }
+        
+        // 
+        public bool S_momiji_pouch
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(28);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(28, value);
+            }
+        }
+        
+        // 
+        public bool S_jade
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(29);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(29, value);
             }
         }
         
@@ -327,11 +556,20 @@ namespace Articy.Test.GlobalVariables
             aStorage.RegisterVariable("FTT.R_K_enigma_scroll", true);
             aStorage.RegisterVariable("FTT.S_enigma_scroll_standby", true);
             aStorage.RegisterVariable("FTT.F_enigma_scroll_achieved", true);
-            aStorage.RegisterVariable("FTT.S_enigma_locals", false);
+            aStorage.RegisterVariable("FTT.S_enigma_locals", true);
             aStorage.RegisterVariable("FTT.M_enigma_picture_standby", true);
             aStorage.RegisterVariable("FTT.A_enigma_seal_standby", true);
             aStorage.RegisterVariable("FTT.F_enigma_seal", true);
             aStorage.RegisterVariable("FTT.S_enigma_seal", true);
+            aStorage.RegisterVariable("FTT.R_K_day1_stains", true);
+            aStorage.RegisterVariable("FTT.K_R_day1_entry", true);
+            aStorage.RegisterVariable("FTT.F_kamikiri", true);
+            aStorage.RegisterVariable("FTT.S_enigma_standby", true);
+            aStorage.RegisterVariable("FTT.K_R_enigma_death", true);
+            aStorage.RegisterVariable("FTT.M_enigma_scissors", true);
+            aStorage.RegisterVariable("FTT.momiji_leak", true);
+            aStorage.RegisterVariable("FTT.S_momiji_pouch", true);
+            aStorage.RegisterVariable("FTT.S_jade", true);
         }
     }
 }
@@ -351,11 +589,11 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(13);
+                return _VariableStorage.Internal_GetVariableValueBoolean(30);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(13, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(30, value);
             }
         }
         
@@ -364,11 +602,37 @@ namespace Articy.Test.GlobalVariables
         {
             get
             {
-                return _VariableStorage.Internal_GetVariableValueBoolean(14);
+                return _VariableStorage.Internal_GetVariableValueBoolean(31);
             }
             set
             {
-                _VariableStorage.Internal_SetVariableValueBoolean(14, value);
+                _VariableStorage.Internal_SetVariableValueBoolean(31, value);
+            }
+        }
+        
+        // 
+        public bool lack_trust
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(32);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(32, value);
+            }
+        }
+        
+        // 
+        public bool is_chased
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(33);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(33, value);
             }
         }
         
@@ -377,6 +641,269 @@ namespace Articy.Test.GlobalVariables
             _VariableStorage = aStorage;
             aStorage.RegisterVariable("ChoiceSouma.accused_yokais", false);
             aStorage.RegisterVariable("ChoiceSouma.knows_powder", false);
+            aStorage.RegisterVariable("ChoiceSouma.lack_trust", false);
+            aStorage.RegisterVariable("ChoiceSouma.is_chased", false);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class Intro : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool got_wax
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(34);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(34, value);
+            }
+        }
+        
+        // 
+        public bool got_blackink
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(35);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(35, value);
+            }
+        }
+        
+        // 
+        public bool got_string
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(36);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(36, value);
+            }
+        }
+        
+        // 
+        public bool phase
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(37);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(37, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("Intro.got_wax", false);
+            aStorage.RegisterVariable("Intro.got_blackink", false);
+            aStorage.RegisterVariable("Intro.got_string", false);
+            aStorage.RegisterVariable("Intro.phase", true);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class CanLoot : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool Scroll_Of_History
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(38);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(38, value);
+            }
+        }
+        
+        // 
+        public bool Spirituous_Powder
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(39);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(39, value);
+            }
+        }
+        
+        // 
+        public bool remains_Spirituous_Powder
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(40);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(40, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("CanLoot.Scroll_Of_History", false);
+            aStorage.RegisterVariable("CanLoot.Spirituous_Powder", false);
+            aStorage.RegisterVariable("CanLoot.remains_Spirituous_Powder", true);
+        }
+    }
+}
+namespace Articy.Test.GlobalVariables
+{
+    
+    
+    [Serializable()]
+    public class KotaroEnigma : IArticyNamespace
+    {
+        
+        [SerializeField()]
+        private BaseGlobalVariables _VariableStorage;
+        
+        // 
+        public bool hasStarted
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(41);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(41, value);
+            }
+        }
+        
+        // 
+        public int hints_found
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueInt32(5);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueInt32(5, value);
+            }
+        }
+        
+        // 
+        public bool has_clicked_stains
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(42);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(42, value);
+            }
+        }
+        
+        // 
+        public bool has_clicked_ashes
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(43);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(43, value);
+            }
+        }
+        
+        // 
+        public bool has_clicked_desk
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(44);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(44, value);
+            }
+        }
+        
+        // 
+        public bool has_clicked_tools
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(45);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(45, value);
+            }
+        }
+        
+        // 
+        public bool got_both_hints
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(46);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(46, value);
+            }
+        }
+        
+        // 
+        public bool wanna_talk_to_aoyama
+        {
+            get
+            {
+                return _VariableStorage.Internal_GetVariableValueBoolean(47);
+            }
+            set
+            {
+                _VariableStorage.Internal_SetVariableValueBoolean(47, value);
+            }
+        }
+        
+        public void RegisterVariables(BaseGlobalVariables aStorage)
+        {
+            _VariableStorage = aStorage;
+            aStorage.RegisterVariable("KotaroEnigma.hasStarted", false);
+            aStorage.RegisterVariable("KotaroEnigma.hints_found", 0);
+            aStorage.RegisterVariable("KotaroEnigma.has_clicked_stains", false);
+            aStorage.RegisterVariable("KotaroEnigma.has_clicked_ashes", false);
+            aStorage.RegisterVariable("KotaroEnigma.has_clicked_desk", false);
+            aStorage.RegisterVariable("KotaroEnigma.has_clicked_tools", false);
+            aStorage.RegisterVariable("KotaroEnigma.got_both_hints", false);
+            aStorage.RegisterVariable("KotaroEnigma.wanna_talk_to_aoyama", true);
         }
     }
 }
