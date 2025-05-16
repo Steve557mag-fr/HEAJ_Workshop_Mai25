@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
   m_Name: Paper
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  canBePlaced: 1
+  itemIcon: {fileID: 21300000, guid: 5df3ae3955d633b49bc52a4c8fbdb6f8, type: 3}
   puzzleIcon: {fileID: 21300000, guid: 668677d769357ef418506a53ccb569d5, type: 3}
   piece: {fileID: 8599090786545478849, guid: bdcb6e9039035784da9078aae3181b4a, type: 3}
+  soundCue: {fileID: 0}

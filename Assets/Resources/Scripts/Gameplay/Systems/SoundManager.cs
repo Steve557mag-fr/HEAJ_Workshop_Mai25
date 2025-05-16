@@ -22,7 +22,26 @@ public class SoundManager : MonoBehaviour
         sourceAmbience.Play();
     }
 
+    public void PlayAt(string audio, string channel = "Dialog")
+    {
+        switch (channel)
+        {
+            case "Dialog":
+                PlayDialog(Resources.Load<AudioClip>(audio));
+                break;
 
+            case "FX":
+                PlayFX(Resources.Load<AudioClip>(audio));
+                break;
+
+            case "Ambiance":
+                SetAmbience(Resources.Load<AudioClip>(audio));
+                break;
+
+            default:
+                break;
+        }
+    }
 
 
     public void LoadParameters()
@@ -45,6 +64,11 @@ public class SoundManager : MonoBehaviour
         DataSystem.instance.SetData("AmbienceVolume", ambienceVolume);
         DataSystem.instance.SetData("MasterVolume", masterVolume);
 
+    }
+
+    internal static SoundManager Get()
+    {
+        return FindAnyObjectByType<SoundManager>();
     }
 
 }
