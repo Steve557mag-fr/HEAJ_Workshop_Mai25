@@ -1,5 +1,5 @@
-//using Articy.Test;
-//using Articy.Unity;
+using Articy.Test;
+using Articy.Unity;
 using UnityEngine;
 
 
@@ -16,23 +16,23 @@ public class DialogPointObject : ScriptableObject
     public StartType startType;
     public string characterName;
 
-    //[ArticyTypeConstraint(typeof(Dialogue), typeof(Hub))]
-    //public ArticyRef entryPoint;
+    [ArticyTypeConstraint(typeof(Dialogue), typeof(Hub))]
+    public ArticyRef entryPoint;
 
 
-    //public void Run()
-    //{
-    //    switch (startType)
-    //    {
-    //        case StartType.ENTRY_POINT:
-    //            NarrationSystem.Get().StartWith(entryPoint.GetObject());
-    //            break;
+    public void Run()
+    {
+        switch (startType)
+        {
+            case StartType.ENTRY_POINT:
+                NarrationSystem.Get().StartWith(entryPoint.GetObject());
+                break;
 
-    //        case StartType.CHARACTER_NAME:
-    //            NarrationSystem.Get().StartWith(characterName);
-    //            break;
+            case StartType.CHARACTER_NAME:
+                NarrationSystem.Get().StartWith(characterName);
+                break;
 
-    //    }
-    //}
+        }
+    }
 
 }

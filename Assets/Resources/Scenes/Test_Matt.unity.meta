@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Data/Collectors.meta
+guid: da66691e9cddac3458046c0547f69353
+folderAsset: yes
+========
 guid: fb065bba4def80b4e9012731eef8de8a
+>>>>>>>> origin/Workspace-Noemie:Assets/Resources/Scenes/Test_Matt.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

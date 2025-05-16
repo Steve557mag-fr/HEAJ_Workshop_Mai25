@@ -7003,6 +7003,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candle_Yukiko
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2efd9d1b111bff346b983fa8cc267f02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -7,6 +7,7 @@ public class ObjectSwaperEditor : EditorWindow
     Object fromPrefab, toPrefab;
     string fromName;
     ObjectSwap source;
+    StringPrecision stringComparaisonPrecision;
 
     [MenuItem("Tools/Objects Swaper #o")]
     public static void ShowWindow()
@@ -31,7 +32,27 @@ public class ObjectSwaperEditor : EditorWindow
             switch (source)
             {
                 case ObjectSwap.BY_NAME:
-                    if (g.name == fromName) Replace(g);
+
+
+                    switch (stringComparaisonPrecision)
+                    {
+                        case StringPrecision.CONTAINS:
+                            if (g.name.Contains(fromName, System.StringComparison.OrdinalIgnoreCase)) Replace(g);
+                            break;
+
+                        case StringPrecision.CONTAINS_EXACT:
+                            if (g.name.Contains(fromName)) Replace(g);
+                            break;
+
+                        case StringPrecision.EQUAL:
+                            if (g.name.Equals(fromName, System.StringComparison.OrdinalIgnoreCase)) Replace(g);
+                            break;
+
+                        case StringPrecision.EQUAL_EXACT:
+                            if (g.name == fromName) Replace(g);
+                            break;
+
+                    }
                     break;
 
                 case ObjectSwap.BY_PREFAB:
@@ -69,6 +90,7 @@ public class ObjectSwaperEditor : EditorWindow
         GUILayout.Label("Source: ");
         source = (ObjectSwap) EditorGUILayout.EnumPopup(source);
         if (source == ObjectSwap.BY_NAME) fromName = EditorGUILayout.TextField("name contains: ", fromName);
+        if (source == ObjectSwap.BY_NAME) stringComparaisonPrecision = (StringPrecision)EditorGUILayout.EnumPopup("string comparaison: ", stringComparaisonPrecision);
         if (source == ObjectSwap.BY_PREFAB) fromPrefab = EditorGUILayout.ObjectField("source prefab: ", fromPrefab, typeof(GameObject), false);
         GUILayout.Space(10);
 
@@ -85,4 +107,12 @@ public enum ObjectSwap
 {
     BY_NAME,
     BY_PREFAB
+}
+
+public enum StringPrecision
+{
+    CONTAINS,
+    CONTAINS_EXACT,
+    EQUAL,
+    EQUAL_EXACT
 }

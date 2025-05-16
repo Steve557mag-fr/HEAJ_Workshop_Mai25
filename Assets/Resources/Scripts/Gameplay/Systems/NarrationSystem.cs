@@ -1,11 +1,13 @@
 using System.Collections.Generic;
-using TMPro;
 using System.Text.RegularExpressions;
 using Articy.Unity;
 using Articy.Test;
 using UnityEngine;
 using System.Linq;
 using System;
+using TMPro;
+using Articy.Unity.Interfaces;
+using System.Runtime.ConstrainedExecution;
 
 enum NarrationState{
     DIALOG,
@@ -40,7 +42,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField] GameObject choicesContainer, dialogContainer;
     [SerializeField] TextMeshProUGUI uiTextDialog, uiTextDisplayName;
 
-    int[] branchindex;
+    List<int> branchindex = new();
     NarrationState state;
     Dictionary<string, Action<string[]>> actionsFlowFragement = new();
 
@@ -48,11 +50,40 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         state = NarrationState.CLOSED;
         actionsFlowFragement.Add("board_load", (args) => { BoardManager.Get().LoadBoard(args[0]); });
-        actionsFlowFragement.Add("play_audio", (args) => { /*SoundManager.Get().Play(args[0]);*/ });
-        actionsFlowFragement.Add("show_ui", (args) => { /* [0]=> name_ui ; ... */ });
-        actionsFlowFragement.Add("add_item", (args) => { /* [0]=> name_item ; ... */ });
-        actionsFlowFragement.Add("add_hint", (args) => { /* [0]=> name_hint ; ... */ });
+        actionsFlowFragement.Add("play_audio", (args) => { SoundManager.Get().PlayAt(args[0]); });
+        actionsFlowFragement.Add("show_ui", ExecShowUI);
+        actionsFlowFragement.Add("hide_ui", ExecHideUI);
+        actionsFlowFragement.Add("add_item", ExecAddItem);
+        actionsFlowFragement.Add("add_hint", ExecAddHint);
+        actionsFlowFragement.Add("collect", (args) => { CollectItemObject.TriggerEndCollect(); });
+        actionsFlowFragement.Add("set_state", (args) => { NarrationSystem.Get().SetCharacterState(args[0], args[1]); });
+        actionsFlowFragement.Add("set_active", (args) => { DataSystem.Get().SetData($"{args[0]}_{args[1]}_enabled", Boolean.Parse(args[2])); });
+    }
 
+    private void ExecAddHint(string[] obj)
+    {
+        InventoryItemObject hi = HintObject.fromString(obj[0]);
+        if (hi == null) return;
+        if (!(hi is HintObject)) return;
+
+        PlayerState.Get().ModifyQuantity(hi, int.Parse(obj[1]));
+    }
+    private void ExecAddItem(string[] obj)
+    {
+        InventoryItemObject gi = GameItemObject.fromString(obj[0]);
+        if (gi == null) return;
+        if (!(gi is GameItemObject)) return;
+
+        PlayerState.Get().ModifyQuantity((GameItemObject)gi, int.Parse(obj[1]));
+    }
+
+    private void ExecHideUI(string[] obj)
+    {
+        UIManager.Get().SetUI(obj[0], false);
+    }
+    private void ExecShowUI(string[] obj)
+    {
+        UIManager.Get().SetUI(obj[0], true);
     }
 
     public void StartWith(ArticyObject node)
@@ -60,37 +91,43 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         var list = ArticyFlowPlayer.GetBranchesOfNode(node);
         flowPlayer.Play(list[0]);
     }
-
     public void StartWith(string rawCharacter)
     {
         print($"[ARTICY]: character to find >> {rawCharacter}");
 
         foreach (var chr in characters)
         {
-            if (chr.characterName != rawCharacter) break;
+            print($"chr.characterName: {chr.characterName}");
+            if (chr.characterName != rawCharacter) continue;
 
             Hub hub = chr.characterReference.GetObject<Hub>();
-            var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
-            var conx = hub.OutputPins[0].Connections;
-            for (int i = 0; i < conx.Count; i++)
-            {
-                var con = conx[i];
-                var branch = branches[i];
-                print($"branch:{branches.Count}");
-                print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
-                if (con.Label.ToString().Replace("STATE_", "") == characters[i].characterState)
-                {
-                    flowPlayer.Play(branch);
-                    return;
-                }
-            }
+            StartWithHub(hub, chr.characterState);
 
         }
-
-
-
     }
 
+    public void StartWithHub(Hub hub, string state)
+    {
+        var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
+        if (hub.OutputPins.Count == 0) return;
+        print($"hub.OutputPins.Count : {hub.OutputPins.Count}");
+
+
+        var conx = hub.OutputPins[0].Connections;
+        for (int i = 0; i < conx.Count; i++)
+        {
+            var con = conx[i];
+            var branch = branches[i];
+            print($"branch:{branches.Count}");
+            print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
+            if (con.Label == state)
+            {
+                flowPlayer.Play(branch);
+                return;
+            }
+        }
+
+    }
 
     public void NextDialog()
     {
@@ -108,34 +145,58 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void Next(int index = 0)
     {
-        if (index < 0 && index >= branchindex.Length) return;
-        print("[ARTICY]: next node");
-        flowPlayer.Play(branchindex[index]);
+        if (index < 0 && index >= branchindex.Count) return;
+        print($"[ARTICY]: next node (branches={branchindex.Count})");
+        flowPlayer.Play(branchindex.Count == 0 ? 0 : branchindex[index]);
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
         print($"[ARTICY]: branches availables: {aBranches.Count}");
 
-        branchindex = new int[aBranches.Count];
-        for (int i = 0; i < branchindex.Length; i++)
+        branchindex = new(aBranches.Count);
+        for (int i = 0; i < branchindex.Count; i++)
         {
             Branch aBranch = aBranches[i];
             branchindex[i] = aBranch.BranchId;
         }
+
+        if (!flowPlayer.CurrentObject.HasReference) return;
+        print($"[ARTICY]: current object ({flowPlayer.CurrentObject.GetObject().TechnicalName})");
 
     }
 
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
         if (aObject == null) return;
-        //print($"[ARTICY]: new node: {(aObject as ArticyObject).TechnicalName}");
+        print($"[ARTICY]: new node: {aObject.GetType()}");
 
         if (aObject.GetType() == typeof(Hub)) DisplayChoices(aObject as Hub);
         else if (aObject.GetType() == typeof(DialogueFragment)) DisplayDialog(aObject as DialogueFragment);
         else if (aObject.GetType() == typeof(FlowFragment)) DispatchEvent(aObject as FlowFragment);
+        else if(aObject.GetType() == typeof(Dialogue))
+        {
+            var d = (aObject as Dialogue);
+            print($"dialogue : {d.DisplayName}");
+            StartWith(d.Children.First());
+        }
+        else if (aObject.GetType() == typeof(Condition))
+        {
+            var c = (aObject as Condition);
+            print($"condition : {c.Expression.RawScript}");
+            bool r = c.Expression.CallScript(flowPlayer.MethodProvider, flowPlayer.GlobalVariables);
+            print($" > result : {r}");
+        }
+        else if (aObject.GetType() == typeof(InputPin)) Next();
         else if (aObject.GetType() == typeof(OutputPin))
         {
+
+            if ((aObject as OutputPin).Connections.Count > 0)
+            {
+                Next();
+                return;
+            }
+
             state = NarrationState.CLOSED;
             ToggleUI(false);
         }
@@ -160,6 +221,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void DisplayChoices(Hub choice)
     {
+        print("[ARTICY]: update dialog!");
         ToggleChoiceUI(true);
         state = NarrationState.CHOICE;
         List<OutgoingConnection> connections = choice.OutputPins[0].Connections;
@@ -174,6 +236,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void DisplayDialog(DialogueFragment dialog)
     {
+        print("[ARTICY]: update diag");
         ToggleDialogUI(true);
         state = NarrationState.DIALOG;
 
@@ -184,6 +247,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     void DispatchEvent(FlowFragment flow)
     {
+        print("[ARTICY]: dispatch event");
         string stringAuto = Regex.Replace(flow.Text, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
         var args = stringAuto.Split('\n').ToList();
         string method = args[0];

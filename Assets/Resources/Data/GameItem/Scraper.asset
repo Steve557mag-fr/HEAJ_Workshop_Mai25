@@ -10,8 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
+<<<<<<<< HEAD:Assets/Resources/Data/GameItem/Paper.asset
+  m_Name: Paper
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
+  puzzleIcon: {fileID: 21300000, guid: 668677d769357ef418506a53ccb569d5, type: 3}
+  piece: {fileID: 8599090786545478849, guid: bdcb6e9039035784da9078aae3181b4a, type: 3}
+========
   m_Name: Scraper
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  puzzleIcon: {fileID: 21300000, guid: 0976f5a218527314b918ca877baf6a2a, type: 3}
-  piece: {fileID: 8599090786545478849, guid: 1550b88c419cd4740a1b289e67e2cd1a, type: 3}
+  puzzleIcon: {fileID: 0}
+  piece: {fileID: 8599090786545478849, guid: bb57378e7b7e96d4796754e5207f0d83, type: 3}
+>>>>>>>> Workspace_Florian:Assets/Resources/Data/GameItem/Scraper.asset
