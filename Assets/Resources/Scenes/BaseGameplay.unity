@@ -184,8 +184,8 @@ RectTransform:
   m_Children:
   - {fileID: 977853016}
   - {fileID: 1373482278}
-  - {fileID: 1547815917}
   - {fileID: 2045310810}
+  - {fileID: 1547815917}
   m_Father: {fileID: 1789707437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -380,8 +380,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c1045512f7148443a37b033944ef261, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2808,7 +2808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &624156338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2893,7 +2893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c1045512f7148443a37b033944ef261, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 8f04f19d589d74647a2284a602e8f938, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3219,8 +3219,9 @@ GameObject:
   m_Component:
   - component: {fileID: 704028444}
   - component: {fileID: 704028445}
+  - component: {fileID: 704028446}
   m_Layer: 0
-  m_Name: == CRAFT ==
+  m_Name: == CRAFT & HINTS ==
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3270,6 +3271,22 @@ MonoBehaviour:
   minY: 0.127
   maxY: 0.953
   activePieceList: []
+--- !u!114 &704028446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704028442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a0aafc2490f1543859e0bbeb61ab81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabUX: {fileID: 0}
+  hintContainer: {fileID: 0}
+  currentHints: []
+  hintCraftsData: []
 --- !u!1 &815625286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,7 +4098,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 704028445}
+        m_TargetAssemblyTypeName: CraftSystem, Assembly-CSharp
+        m_MethodName: SwitchItemDisplay
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &949020451
 GameObject:
@@ -6547,7 +6576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 83.543335, y: -8.532999}
+  m_AnchoredPosition: {x: 125.315, y: -8.532999}
   m_SizeDelta: {x: 138.778, y: 40.005}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1389940522
@@ -6638,7 +6667,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c1045512f7148443a37b033944ef261, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 8f04f19d589d74647a2284a602e8f938, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7121,7 +7150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250.63, y: -8.532999}
+  m_AnchoredPosition: {x: 375.945, y: -8.532999}
   m_SizeDelta: {x: 138.778, y: 40.005}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1570201018
@@ -7188,7 +7217,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c1045512f7148443a37b033944ef261, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 8f04f19d589d74647a2284a602e8f938, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7851,8 +7880,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0976f5a218527314b918ca877baf6a2a, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8924,6 +8953,7 @@ MonoBehaviour:
   sliderFX: {fileID: 1379511108}
   sliderDialog: {fileID: 618907536}
   sliderAmbience: {fileID: 2106474992}
+  userInterfaces: []
 --- !u!1 &1824564709
 GameObject:
   m_ObjectHideFlags: 0
@@ -10380,8 +10410,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0976f5a218527314b918ca877baf6a2a, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11123,8 +11153,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c1045512f7148443a37b033944ef261, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
