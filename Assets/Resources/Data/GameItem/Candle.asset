@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
   m_Name: Candle
   m_EditorClassIdentifier: 
+  canBePlaced: 0
   itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  puzzleIcon: {fileID: 21300000, guid: 0976f5a218527314b918ca877baf6a2a, type: 3}
-  piece: {fileID: 8599090786545478849, guid: 1550b88c419cd4740a1b289e67e2cd1a, type: 3}
+  puzzleIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  piece: {fileID: 8599090786545478849, guid: e487b835ec1752546ac3cb79352aec25, type: 3}
+  soundGrab: {fileID: 8300000, guid: 67db143d9912e79449314871fa392dbb, type: 3}
+  soundDrop: {fileID: 8300000, guid: a444c312992cc24478f71074fe8181ca, type: 3}
