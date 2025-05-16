@@ -26,16 +26,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void NewGame(string slotName)
-    {
-        //reset boardManager et playerstate
-
-        PlayerState.Get().fromJObject(PlayerState.Get().getDefaultJObject());
-        BoardManager.Get().fromJObject(BoardManager.Get().getDefaultJObject());
-
-        SaveGame(slotName);
-    }
-
     public void SaveGame(string slotName) {
 
         JObject saveSlot = new();

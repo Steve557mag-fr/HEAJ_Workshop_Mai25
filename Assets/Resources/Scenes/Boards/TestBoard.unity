@@ -171,14 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4149952623065158932, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
-      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 2af089e1978d74e4aae7eda875b6ebfe, type: 2}
-    - target: {fileID: 4149952623065158932, guid: 9264fc5751e5e564eac114363a1bad26, type: 3}
-      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Run
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -720,10 +712,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TP Interaction
       objectReference: {fileID: 0}
-    - target: {fileID: 1226003999101060317, guid: 54d49e39980671b4b837cc83fa6eaf72, type: 3}
-      propertyPath: m_TagString
-      value: tp
-      objectReference: {fileID: 0}
     - target: {fileID: 2155271765887918392, guid: 54d49e39980671b4b837cc83fa6eaf72, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.8886791
@@ -767,10 +755,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8973211845045650680, guid: 54d49e39980671b4b837cc83fa6eaf72, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54d49e39980671b4b837cc83fa6eaf72, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

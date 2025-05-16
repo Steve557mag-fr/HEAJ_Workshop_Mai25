@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e704b5b0c7974f45b1c93f74a586ad4, type: 3}
   m_Name: FacticeScrollOfHistory
   m_EditorClassIdentifier: 
-  pattern: {fileID: 8599090786545478849, guid: a2206e5c66e001746acde60903dc4aae, type: 3}
-  craftResult: {fileID: 11400000, guid: 0ede6c615f01b414195f1179edba0517, type: 2}
+  pattern: {fileID: 8599090786545478849, guid: 0504b35ff784e594bb8e84fc306c9f5a, type: 3}
+  craftResult: {fileID: 0}

@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9270203319f2be43b73a706ea11e4ec, type: 3}
   m_Name: String
   m_EditorClassIdentifier: 
-  canBePlaced: 1
-  itemIcon: {fileID: 21300000, guid: 1f75a5d0840de53469c7f9d484d5f384, type: 3}
+  itemIcon: {fileID: 0}
   puzzleIcon: {fileID: 21300000, guid: 6561eafbbf37a2c42b9780c0cd79bd56, type: 3}
   piece: {fileID: 8599090786545478849, guid: 18b5a538ea25f414888c4806b17df40b, type: 3}
-  soundCue: {fileID: 0}

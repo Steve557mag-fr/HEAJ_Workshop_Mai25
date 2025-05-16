@@ -8,7 +8,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
 {
     [SerializeField] internal Dictionary<InventoryItemObject, int> inventory = new();
 
-    public void ModifyQuantity(InventoryItemObject item, int quantity = 1, bool markInfinite = false)
+    public void ModifyQuantity(GameItemObject item, int quantity = 1, bool markInfinite = false)
     {
         if (inventory.ContainsKey(item))
         {
