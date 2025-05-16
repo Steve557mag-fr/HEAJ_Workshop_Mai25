@@ -244,9 +244,11 @@ public class CraftSystem : MonoBehaviour
 
     public void BeginDrag(int index)
     {
+
         giExisted = false;
         gameItemContainer.GetComponentInParent<ScrollRect>().enabled = false;
         draggedGI = (GameItemObject)playerState.GetFilteredBy<GameItemObject>()[index];
+        SoundManager.Get().PlayFX(draggedGI.soundGrab);
 
         int quant = playerState.inventory[draggedGI];
 
@@ -307,6 +309,8 @@ public class CraftSystem : MonoBehaviour
             //check if the piece was already instantialized
             if (!giExisted) playerState.ModifyQuantity(draggedGI, -1);
             RefreshGameItemList();
+
+            SoundManager.Get().PlayFX(draggedGI.soundDrop);
 
             //get the nearest joint if there's one 
             Transform nearestJoint = GetNearestJoint(currentPiece.prefab.transform);

@@ -9,6 +9,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] Dictionary<string, GameObject> containers;
     [SerializeField] Slider sliderFX,sliderDialog,sliderAmbience;
 
+    [SerializeField] List<GameObject> userInterfaces;
+
+    private void Start()
+    {
+        
+        foreach(GameObject go in userInterfaces)
+        {
+            containers.Add(go.name, go);
+        }
+
+    }
+
     internal void SetUI(string name, bool state = false)
     {
         if (containers.ContainsKey(name)) containers[name].SetActive(state);

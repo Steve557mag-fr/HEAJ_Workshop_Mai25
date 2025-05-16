@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,16 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         BoardManager.Get().boardLoaded += StartBoard;
+    }
+
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Get().Pause();
+        }
+
     }
 
     void StartBoard(string boardLoaded)
