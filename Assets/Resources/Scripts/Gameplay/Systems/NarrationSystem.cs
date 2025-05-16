@@ -11,7 +11,7 @@ using System.Runtime.ConstrainedExecution;
 
 enum NarrationState{
     DIALOG,
-    CHOICE,
+    CHOICE, 
     CLOSED
 }
 
