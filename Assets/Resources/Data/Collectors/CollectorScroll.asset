@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afc1ec28dcd9ce48aa91444969a5f48, type: 3}
   m_Name: CollectorScroll
   m_EditorClassIdentifier: 
-  collectedItem: {fileID: 0}
-  quantity: 1
-  markInifite: 0
+  collectedItem: {fileID: 11400000, guid: 0ede6c615f01b414195f1179edba0517, type: 2}
   itemNode:
     instanceId: 0
     referencingMode: 0

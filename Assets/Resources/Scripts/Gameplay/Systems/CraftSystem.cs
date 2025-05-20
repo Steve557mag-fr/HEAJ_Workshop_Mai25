@@ -42,26 +42,27 @@ public class CraftSystem : MonoBehaviour
     List<GameObject> gameItemList = new();
     List<GameObject> activeCraftList = new();
     CraftDataObject selectedCraft = null;
-    GameItemObject draggedGI;
     GameObject activePattern = null;
     Vector3 mouseDistance;
-    Piece currentPiece;
-    Piece piece;
+    Piece? currentPiece;
     bool iconState;
     bool giExisted;
 
     [System.Serializable]
     public struct Piece
     {
+        public GameItemObject draggedGI;
         public GameObject prefab;
         public bool isPlaced;
         public bool moves;
         public int index;
 
-        public Piece(GameObject prefab, bool isPlaced) : this()
+        public Piece(GameItemObject gi, GameObject prefab, bool isPlaced, int index) : this()
         {
+            this.draggedGI = gi;
             this.prefab = prefab;
             this.isPlaced = isPlaced;
+            this.index = index;
         }
     }
 
@@ -76,16 +77,16 @@ public class CraftSystem : MonoBehaviour
     private void Update()
     {
         //print($"current piece is {currentPiece}");
-        if (currentPiece.prefab)
+        if (currentPiece.HasValue && currentPiece.Value.prefab)
         {
-            print($"active piece 'moves' state is {currentPiece.moves}");
+            print($"active piece 'moves' state is {currentPiece.Value.moves}");
             FollowMouse();
         }
     }
 
     private void FollowMouse()
     {
-        currentPiece.prefab.transform.position = new Vector3(Input.mousePosition.x + mouseDistance.x, Input.mousePosition.y + mouseDistance.y, 0);
+        currentPiece.Value.prefab.transform.position = new Vector3(Input.mousePosition.x + mouseDistance.x, Input.mousePosition.y + mouseDistance.y, 0);
     }
 
     internal static CraftSystem Get()
@@ -120,10 +121,8 @@ public class CraftSystem : MonoBehaviour
         }
         activeCraftList.Clear();
 
-        for(int d = 0; d < playerState.GetFilteredBy<CraftDataObject>().Count; d++)
-        {
-            craftList[d] = (CraftDataObject)playerState.GetFilteredBy<CraftDataObject>()[d];
-        }
+
+        craftList = playerState.GetFilteredBy<CraftDataObject>().Select(e => (CraftDataObject)e).ToList();
 
          
         for (int i = 0; i < craftList.Count; i++)
@@ -153,11 +152,11 @@ public class CraftSystem : MonoBehaviour
             gameItemList.Clear();
         }
 
-        var key = playerState.inventory.Keys.ToList();
+        var gameitems = playerState.GetFilteredBy<GameItemObject>().Select(e => (GameItemObject)e).ToList();
 
-        for (int i = 0; i < playerState.inventory.Keys.Count; i++)
+        for (int i = 0; i < gameitems.Count; i++)
         {
-            var gi = (GameItemObject)key[i];
+            GameItemObject gi = (GameItemObject)gameitems[i];
             int j = i;
 
             int quantity = playerState.inventory[gi];
@@ -244,26 +243,25 @@ public class CraftSystem : MonoBehaviour
 
     public void BeginDrag(int index)
     {
+        GameItemObject draggedGI = (GameItemObject)playerState.GetFilteredBy<GameItemObject>()[index];
 
-        giExisted = false;
         gameItemContainer.GetComponentInParent<ScrollRect>().enabled = false;
-        draggedGI = (GameItemObject)playerState.GetFilteredBy<GameItemObject>()[index];
         SoundManager.Get().PlayFX(draggedGI.soundGrab);
 
         int quant = playerState.inventory[draggedGI];
-
         if (quant != 0)
         {
             GameObject pieceInstance = Instantiate(draggedGI.piece, parent: craftingUICanva);
             pieceInstance.transform.position = gameItemList[index].transform.position;
+            pieceInstance.name = draggedGI.name;
 
-            piece = new Piece(pieceInstance, false);
-
-            Piece tempPiece = piece;
+            currentPiece = new Piece(draggedGI, pieceInstance, false, activePieceList.Count);
+            Piece tempPiece = currentPiece.Value;
+            activePieceList.Add(currentPiece.Value);
 
             #region Adding Event Triggers To Make It Draggable
 
-                EventTrigger eventTrigger = piece.prefab.GetComponent<EventTrigger>();
+            EventTrigger eventTrigger = currentPiece.Value.prefab.GetComponent<EventTrigger>();
 
                 EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry();
                 pointerDownEntry.eventID = EventTriggerType.PointerDown;
@@ -277,66 +275,62 @@ public class CraftSystem : MonoBehaviour
 
             #endregion
 
-            piece.prefab.name = draggedGI.name;
-            piece.index = activePieceList.Count;
-            activePieceList.Add(piece);
-
-            currentPiece.index = piece.index;
-            currentPiece.prefab = piece.prefab;
-
-            mouseDistance.x = currentPiece.prefab.transform.position.x - Input.mousePosition.x;
-            mouseDistance.y = currentPiece.prefab.transform.position.y - Input.mousePosition.y;
+            mouseDistance.x = currentPiece.Value.prefab.transform.position.x - Input.mousePosition.x;
+            mouseDistance.y = currentPiece.Value.prefab.transform.position.y - Input.mousePosition.y;
         }
         else print($"Not Enough {draggedGI.name}"); 
+
     }
 
     public void BeginDragInstance(Piece draggedPiece)
     {
-        giExisted = true;
         currentPiece = draggedPiece;
-        currentPiece.prefab = draggedPiece.prefab; // je crois que ces 2 lignes servent à rien
-        currentPiece.index = draggedPiece.index; // je crois que ces 2 lignes servent à rien
-        print($"Current Piece index is {currentPiece.index}");
-        mouseDistance.x = currentPiece.prefab.transform.position.x - Input.mousePosition.x;
-        mouseDistance.y = currentPiece.prefab.transform.position.y - Input.mousePosition.y;
+        print($"Current Piece index is {currentPiece.Value.index}");
+        mouseDistance.x = currentPiece.Value.prefab.transform.position.x - Input.mousePosition.x;
+        mouseDistance.y = currentPiece.Value.prefab.transform.position.y - Input.mousePosition.y;
     }
 
     public void EndDrag()
     {
-        //check for position
-        if (IsInRange(currentPiece.prefab))
-        {
-            //check if the piece was already instantialized
-            if (!giExisted) playerState.ModifyQuantity(draggedGI, -1);
-            RefreshGameItemList();
+        if (!currentPiece.HasValue) return;
 
-            SoundManager.Get().PlayFX(draggedGI.soundDrop);
-
-            //get the nearest joint if there's one 
-            Transform nearestJoint = GetNearestJoint(currentPiece.prefab.transform);
-            if (nearestJoint)
-            {
-                //place the piece at the nearest joint position
-                Place(currentPiece, nearestJoint);
-                //release the piece from the drag
-                currentPiece.prefab = null;
-            }
-            else
-            {
-                Piece p = activePieceList[currentPiece.index];
-                p.isPlaced = false;
-                activePieceList[currentPiece.index] = p;
-
-                currentPiece.prefab = null; 
-            }
-        }
-        else
-        {
-            if (giExisted) playerState.ModifyQuantity(draggedGI, 1);
-            activePieceList.RemoveAt(currentPiece.index);
-            Destroy(currentPiece.prefab);
-        }
+        //activate the scroll
         gameItemContainer.GetComponentInParent<ScrollRect>().enabled = true;
+
+        //check for position
+        if (!currentPiece.HasValue || !IsInRange(currentPiece.Value.prefab))
+        {
+            playerState.ModifyQuantity(currentPiece.Value.draggedGI , 1);
+            activePieceList.RemoveAt(currentPiece.Value.index);
+            Destroy(currentPiece.Value.prefab);
+            return;
+
+        }
+
+        //check if the piece was already instantialized
+        if (!currentPiece.HasValue) playerState.ModifyQuantity(currentPiece.Value.draggedGI, -1);
+
+        //refresh ui gameItem
+        RefreshGameItemList();
+
+        //get the nearest joint if there's one 
+        Transform nearestJoint = GetNearestJoint(currentPiece.Value.prefab.transform);
+        if (nearestJoint)
+        {
+            //place the piece at the nearest joint position
+            Place(currentPiece.Value, nearestJoint);
+
+        }
+
+        //play the drop sound
+        SoundManager.Get().PlayFX(currentPiece.Value.draggedGI.soundDrop);
+        
+        //release the piece from the drag
+        Piece p = activePieceList[currentPiece.Value.index];
+        p.isPlaced = nearestJoint != null;
+        activePieceList[currentPiece.Value.index] = p;
+        currentPiece = null;
+
     }
 
     public bool IsInRange(GameObject currentPiece) 
@@ -375,15 +369,6 @@ public class CraftSystem : MonoBehaviour
     public void Place(Piece toPlace, Transform at) 
     {
         toPlace.prefab.transform.position = at.position;
-        Piece p = activePieceList[currentPiece.index];
-        p.isPlaced = true; 
-        activePieceList[currentPiece.index] = p;  
-        //print($"the current piece's prefab is : {activePieceList[currentPiece.index].prefab} and its isPlaced state is : {activePieceList[currentPiece.index].isPlaced}");
-        //print("We are right after having placed a piece correctly");
-        //foreach (Piece piece in activePieceList) 
-        //{
-        //    print($"The {piece.prefab.name}'s isPlaced state is {piece.isPlaced}");
-        //}
     }
 
     public void RemoveAllParts(bool fromCraft)
@@ -402,7 +387,6 @@ public class CraftSystem : MonoBehaviour
 
     public bool PatternIsValid()
     {
-        int count = 0;
         int temp = 0;
         //print($"There are {activePieceList.Count} pieces active");
         foreach (Piece piece in activePieceList)
@@ -413,7 +397,6 @@ public class CraftSystem : MonoBehaviour
                 temp++;
                 //print($"Because {piece.prefab.name}'s isPlaced state is {piece.isPlaced}, the number of correctly placed pieces is {temp}");
             }
-            count++;
         }
         //print($"At the end of PatternIsValid, {temp} pieces were placed correctly and {activePattern.transform.childCount} needed to be correct");
         return temp == activePattern.transform.childCount;
@@ -427,7 +410,6 @@ public class CraftSystem : MonoBehaviour
 
     public void Craft()
     {
-
         if (selectedCraft && PatternIsValid())
         {
             modalSystem.OpenUI(selectedCraft.craftResult);
@@ -436,6 +418,7 @@ public class CraftSystem : MonoBehaviour
 
             SelectCraft(-1);
             craftButton.gameObject.SetActive(false);
+
         }
         else print("Pattern is not valid. try again :)");
 
@@ -464,5 +447,4 @@ public class CraftSystem : MonoBehaviour
 
     }
     
-
 }

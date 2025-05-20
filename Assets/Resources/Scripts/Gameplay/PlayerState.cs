@@ -8,6 +8,18 @@ public class PlayerState : MonoBehaviour, IDataHandle
 {
     [SerializeField] internal Dictionary<InventoryItemObject, int> inventory = new();
 
+    [SerializeField] List<InventoryItemObject> inventoryItems = new();
+
+    public void Start()
+    {
+        
+        foreach(var item in inventoryItems)
+        {
+            ModifyQuantity(item, markInfinite: true);
+        }
+
+    }
+
     public void ModifyQuantity(InventoryItemObject item, int quantity = 1, bool markInfinite = false)
     {
         if (inventory.ContainsKey(item))
@@ -31,7 +43,7 @@ public class PlayerState : MonoBehaviour, IDataHandle
         return result;
     }
 
-    public InventoryItemObject? fromString(string s)
+    public InventoryItemObject fromString(string s)
     {
         foreach(var p in inventory.ToList())
         {

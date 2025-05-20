@@ -118,13 +118,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1226003999101060317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec84d8f746aa1364d99529e4a461daa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 432109a00b1ca3f48adc52292bedcbf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 2af089e1978d74e4aae7eda875b6ebfe, type: 2}
+      - m_Target: {fileID: 11400000, guid: 525cc03076c5d104d9d87ab314f4d2f7, type: 2}
         m_TargetAssemblyTypeName: DialogPointObject, Assembly-CSharp
         m_MethodName: Run
         m_Mode: 1

@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afc1ec28dcd9ce48aa91444969a5f48, type: 3}
   m_Name: CollectorWax
   m_EditorClassIdentifier: 
-  collectedItem: {fileID: 11400000, guid: acddee0034d371744aa4676a40469c2e, type: 2}
-  quantity: 1
-  markInifite: 0
+  collectedItem: {fileID: 11400000, guid: 8007d8a9b7f7d4e4d8dc09be40ef869d, type: 2}
   itemNode:
     instanceId: 0
     referencingMode: 0

@@ -6,17 +6,18 @@ using UnityEngine;
 public class CollectItemObject : ScriptableObject
 {
     [SerializeField] InventoryItemObject collectedItem;
-    [SerializeField] int quantity = 1;
-    [SerializeField] bool markInifite = false;
+    //[SerializeField] int quantity = 1;
+    //[SerializeField] bool markInifite = false;
 
     [ArticyTypeConstraint(typeof(Hub))]
     [SerializeField] ArticyRef itemNode;
 
-    static CickableInteraction currentRef;
+    static ClickableInteraction currentRef;
 
-    public void Run(CickableInteraction self)
+    public void Run(ClickableInteraction self)
     {
         currentRef = self;
+        Debug.Log(collectedItem.name);
         NarrationSystem.Get().StartWithHub(itemNode.GetObject<Hub>(), collectedItem.name);
     }
 

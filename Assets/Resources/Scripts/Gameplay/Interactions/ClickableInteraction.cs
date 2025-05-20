@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CickableInteraction : BaseInteraction
+public class ClickableInteraction : BaseInteraction
 {
 
     [SerializeField] UnityEvent onEnter;

@@ -1,6 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-953047736359633183
+--- !u!114 &-3352421272588346342
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
+  m_Name: ArticyScriptFragments
+  m_EditorClassIdentifier: 
+--- !u!114 &-1957657504786978323
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,21 +194,21 @@ MonoBehaviour:
   mLiveStringVariableCache: []
   mIsInitialized: 1
   mDay1_Hints:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mTest_Var:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mGameItemCheck:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mFTT:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mChoiceSouma:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mIntro:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mCanLoot:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
   mKotaroEnigma:
-    _VariableStorage: {fileID: -953047736359633183}
+    _VariableStorage: {fileID: -1957657504786978323}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,8 +230,8 @@ MonoBehaviour:
     mId: cbe76fa2-bb2b-402d-b0c4-4b5adf6c0c92
     mTechnicalName: Test
   mImportedAssets: []
-  mDefaultGlobalVariables: {fileID: -953047736359633183}
-  mScriptFragments: {fileID: 8463629311640468887}
+  mDefaultGlobalVariables: {fileID: -1957657504786978323}
+  mScriptFragments: {fileID: -3352421272588346342}
   mPackages:
   - PackageId: 72057594037928208
     PackageName: Tous objets
@@ -4484,15 +4496,3 @@ MonoBehaviour:
     mIsVoiceOver: 0
   mThrowOnMissingText: 0
   mClearOnLanguageSwitch: 1
---- !u!114 &8463629311640468887
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99095e542d252464b95e0dfbf4e03268, type: 3}
-  m_Name: ArticyScriptFragments
-  m_EditorClassIdentifier: 

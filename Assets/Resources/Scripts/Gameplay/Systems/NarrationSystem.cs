@@ -6,17 +6,11 @@ using UnityEngine;
 using System.Linq;
 using System;
 using TMPro;
-using Articy.Unity.Interfaces;
-using System.Runtime.ConstrainedExecution;
+using UnityEngine.Audio;
 
-enum NarrationState{
-    DIALOG,
-    CHOICE, 
-    CLOSED
-}
 
 [System.Serializable]
-struct CharacterState
+struct CharacterInfo
 {
     public string characterName;
     public string characterState;
@@ -24,6 +18,13 @@ struct CharacterState
     [ArticyTypeConstraint(typeof(Hub))]
     public ArticyRef characterReference;
 
+    public AudioResource clipTalk;
+
+}
+enum NarrationState{
+    DIALOG,
+    CHOICE, 
+    CLOSED
 }
 
 
@@ -34,7 +35,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     [SerializeField] ArticyFlowPlayer flowPlayer;
 
     [Header("Characters")]
-    [SerializeField] CharacterState[] characters;
+    [SerializeField] CharacterInfo[] characters;
 
     [Header("UI References")]
     [SerializeField] List<TextMeshProUGUI> choiceTexts;
@@ -45,6 +46,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     List<int> branchindex = new();
     NarrationState state;
     Dictionary<string, Action<string[]>> actionsFlowFragement = new();
+
 
     private void Start()
     {
@@ -59,6 +61,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         actionsFlowFragement.Add("set_state", (args) => { NarrationSystem.Get().SetCharacterState(args[0], args[1]); });
         actionsFlowFragement.Add("set_active", (args) => { DataSystem.Get().SetData($"{args[0]}_{args[1]}_enabled", Boolean.Parse(args[2])); });
     }
+
 
     private void ExecAddHint(string[] obj)
     {
@@ -76,7 +79,6 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
         PlayerState.Get().ModifyQuantity((GameItemObject)gi, int.Parse(obj[1]));
     }
-
     private void ExecHideUI(string[] obj)
     {
         UIManager.Get().SetUI(obj[0], false);
@@ -85,6 +87,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         UIManager.Get().SetUI(obj[0], true);
     }
+
 
     public void StartWith(ArticyObject node)
     {
@@ -95,60 +98,60 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         print($"[ARTICY]: character to find >> {rawCharacter}");
 
-        foreach (var chr in characters)
-        {
-            print($"chr.characterName: {chr.characterName}");
-            if (chr.characterName != rawCharacter) continue;
+        CharacterInfo? chr = GetCharacterInfo(rawCharacter);
+        if (chr.HasValue) StartWithHub(chr.Value.characterReference.GetObject<Hub>(), chr.Value.characterState);
+        else Debug.LogWarning("character not found!");
 
-            Hub hub = chr.characterReference.GetObject<Hub>();
-            StartWithHub(hub, chr.characterState);
-
-        }
     }
-
     public void StartWithHub(Hub hub, string state)
     {
-        var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
-        if (hub.OutputPins.Count == 0) return;
+        print($"hub to check: {hub}");
         print($"hub.OutputPins.Count : {hub.OutputPins.Count}");
+        if (hub.OutputPins.Count == 0) return;
+        
+        // get branches
+        var branches = ArticyFlowPlayer.GetBranchesOfNode(hub);
+        print($"branch:{branches.Count}");
 
-
+        // Check each connections
         var conx = hub.OutputPins[0].Connections;
+        print($"connexions.Count :{conx.Count}");
+
+
         for (int i = 0; i < conx.Count; i++)
         {
             var con = conx[i];
             var branch = branches[i];
-            print($"branch:{branches.Count}");
             print($"con:{con.Label} ; branch:{branch.DefaultDescription}");
+            
             if (con.Label == state)
             {
+                print("> conx find!");
                 flowPlayer.Play(branch);
                 return;
             }
         }
 
     }
-
     public void NextDialog()
     {
         if (state == NarrationState.CHOICE) return;
         Next();
     }
-
-    public void ChooseBranch(int index)
+    public void ChooseChoice(int index)
     {
         if (state == NarrationState.DIALOG) return;
         state = NarrationState.DIALOG;
         ToggleChoiceUI();
         Next(index);
     }
-
     void Next(int index = 0)
     {
         if (index < 0 && index >= branchindex.Count) return;
         print($"[ARTICY]: next node (branches={branchindex.Count})");
-        flowPlayer.Play(branchindex.Count == 0 ? 0 : branchindex[index]);
+        flowPlayer.Play(branchindex.Count == 0 ? 0 : branchindex[index]);   
     }
+
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
     {
@@ -161,11 +164,14 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             branchindex[i] = aBranch.BranchId;
         }
 
-        if (!flowPlayer.CurrentObject.HasReference) return;
+        if (!flowPlayer.CurrentObject.HasReference)
+        {
+            Close();
+            return;
+        }
         print($"[ARTICY]: current object ({flowPlayer.CurrentObject.GetObject().TechnicalName})");
 
     }
-
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
         if (aObject == null) return;
@@ -176,48 +182,28 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         else if (aObject.GetType() == typeof(FlowFragment)) DispatchEvent(aObject as FlowFragment);
         else if(aObject.GetType() == typeof(Dialogue))
         {
-            var d = (aObject as Dialogue);
+            Dialogue d = aObject as Dialogue;
             print($"dialogue : {d.DisplayName}");
             StartWith(d.Children.First());
         }
-        else if (aObject.GetType() == typeof(Condition))
-        {
-            var c = (aObject as Condition);
-            print($"condition : {c.Expression.RawScript}");
-            bool r = c.Expression.CallScript(flowPlayer.MethodProvider, flowPlayer.GlobalVariables);
-            print($" > result : {r}");
-        }
-        else if (aObject.GetType() == typeof(InputPin)) Next();
-        else if (aObject.GetType() == typeof(OutputPin))
-        {
-
-            if ((aObject as OutputPin).Connections.Count > 0)
-            {
-                Next();
-                return;
-            }
-
-            state = NarrationState.CLOSED;
-            ToggleUI(false);
-        }
-
+        
     }
+
 
     void ToggleUI(bool enabled = false)
     {
         ToggleDialogUI(enabled);
         ToggleChoiceUI(enabled);
     }
-
     void ToggleDialogUI(bool enabled = false)
     {
         dialogContainer.SetActive(enabled);
     }
-
     void ToggleChoiceUI(bool enabled = false)
     {
         choicesContainer.SetActive(enabled);
     }
+
 
     void DisplayChoices(Hub choice)
     {
@@ -233,7 +219,6 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
             choiceTexts[i].text = b ? connections[i].Label : "";
         }
     }
-
     void DisplayDialog(DialogueFragment dialog)
     {
         print("[ARTICY]: update diag");
@@ -241,10 +226,12 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         state = NarrationState.DIALOG;
 
         uiTextDialog.text = dialog.Text;
-        uiTextDisplayName.text = dialog.Speaker != null ? dialog.Speaker.name : "? ? ?";
+        uiTextDisplayName.text = dialog.Speaker != null ? ArticyDatabase.GetObject<Entity>(dialog.Speaker.Id).DisplayName : "? ? ?";
+
+        CharacterInfo? chr = GetCharacterInfo(uiTextDisplayName.text);
+        if (chr.HasValue) SoundManager.Get().PlayDialog(chr.Value.clipTalk);
 
     }
-
     void DispatchEvent(FlowFragment flow)
     {
         print("[ARTICY]: dispatch event");
@@ -259,8 +246,24 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         }
         Next();
     }
+    void Close()
+    {
+        ToggleUI(false);
+        state = NarrationState.CLOSED;
+    }
 
 
+    internal CharacterInfo? GetCharacterInfo(string character)
+    {
+        foreach(var chr in characters)
+        {
+            if(chr.characterName == character)
+            {
+                return chr;
+            }
+        }
+        return null;
+    }
     internal void SetCharacterState(string character, string characterState)
     {
         for(int i = 0; i < characters.Length; i++)
@@ -274,11 +277,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         }
     }
 
+
     internal static NarrationSystem Get()
     {
         return FindFirstObjectByType<NarrationSystem>();
     }
-
     internal static NarrationState GetNarrationState()
     {
         return Get().state;

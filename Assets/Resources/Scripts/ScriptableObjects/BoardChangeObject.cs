@@ -8,6 +8,7 @@ public class BoardChangeObject : ScriptableObject
 
     public void Run()
     {
+        Player.Get().inNavigation = false;
         BoardManager.Get().LoadBoard(boardName);
     }
 

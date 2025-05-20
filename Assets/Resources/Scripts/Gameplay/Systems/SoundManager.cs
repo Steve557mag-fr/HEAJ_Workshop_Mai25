@@ -7,18 +7,22 @@ public class SoundManager : MonoBehaviour
     public AudioSource sourceFX, sourceAmbience, sourceDialog;
 
 
-    public void PlayFX(AudioClip clip)
+    public void PlayFX(AudioResource resource)
     {
-        sourceFX.PlayOneShot(clip);
+        if (resource == null) return;
+        sourceFX.resource = resource;
+        sourceFX.Play();
     }
-    public void PlayDialog(AudioClip clip)
+    public void PlayDialog(AudioResource resource)
     {
-        sourceAmbience.PlayOneShot(clip);
+        if (resource == null) return;
+        sourceAmbience.resource = resource;
+        sourceAmbience.Play();
     }
-    public void SetAmbience(AudioClip clip = null)
+    public void SetAmbience(AudioResource resource)
     {
         sourceAmbience.Stop();
-        sourceAmbience.clip = clip;
+        sourceAmbience.resource = resource;
         sourceAmbience.Play();
     }
 

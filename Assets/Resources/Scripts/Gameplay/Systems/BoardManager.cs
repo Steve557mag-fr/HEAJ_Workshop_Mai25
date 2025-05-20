@@ -21,7 +21,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     internal string currentBoardName = "";
     bool isLock = false;
-    [SerializeField] List<CickableInteraction> userInteractions = new();
+    [SerializeField] List<ClickableInteraction> userInteractions = new();
 
     private void Start()
     {
@@ -56,7 +56,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
     void WhenBoardLoaded(string boardName)
     {
         //1. get interactions & disable tp
-        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+        userInteractions = FindObjectsByType<ClickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
         
         //2. unlock
         isLock = false;
@@ -69,7 +69,7 @@ public class BoardManager : MonoBehaviour, IDataHandle
 
     public void SetClickablesActive(bool state = false, string filter = "")
     {
-        userInteractions = FindObjectsByType<CickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+        userInteractions = FindObjectsByType<ClickableInteraction>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
         foreach(var clk in userInteractions)
         {
             print($"hi! {clk.name} -> {clk.tag}");
