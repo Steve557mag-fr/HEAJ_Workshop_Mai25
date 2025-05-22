@@ -7,6 +7,8 @@ using System.Linq;
 using System;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEditor.Experimental.GraphView;
+using Newtonsoft.Json.Linq;
 
 
 [System.Serializable]
@@ -77,7 +79,7 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
         if (gi == null) return;
         if (!(gi is GameItemObject)) return;
 
-        PlayerState.Get().ModifyQuantity((GameItemObject)gi, int.Parse(obj[1]));
+        PlayerState.Get().ModifyQuantity((GameItemObject)gi, obj.Length > 1 ? int.Parse(obj[1]) : 1);
     }
     private void ExecHideUI(string[] obj)
     {
@@ -91,8 +93,8 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
 
     public void StartWith(ArticyObject node)
     {
-        var list = ArticyFlowPlayer.GetBranchesOfNode(node);
-        flowPlayer.Play(list[0]);
+        flowPlayer.StartOn = node;
+        flowPlayer.Play();
     }
     public void StartWith(string rawCharacter)
     {
@@ -234,9 +236,11 @@ public class NarrationSystem : MonoBehaviour, IArticyFlowPlayerCallbacks
     }
     void DispatchEvent(FlowFragment flow)
     {
-        print("[ARTICY]: dispatch event");
+        print($"[ARTICY]: dispatch event >> \n{flow.Text}");
         string stringAuto = Regex.Replace(flow.Text, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
+        print(stringAuto);
         var args = stringAuto.Split('\n').ToList();
+
         string method = args[0];
         args.RemoveAt(0);
 

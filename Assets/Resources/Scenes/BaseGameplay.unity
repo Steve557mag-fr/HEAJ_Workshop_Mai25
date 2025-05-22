@@ -2260,7 +2260,7 @@ MonoBehaviour:
       referencingMode: 0
       lowId: 437
       highId: 16777216
-    clipTalk: {fileID: 0}
+    clipTalk: {fileID: 6418180475301049370, guid: d03ed8db70a91644da4aee8a9e1c1975, type: 2}
   - characterName: AOYAMA
     characterState: ENIGMA_SEAL
     characterReference:
